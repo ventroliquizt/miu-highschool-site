@@ -1,8 +1,8 @@
-{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: 'Segoe UI', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 body {
@@ -37,21 +37,32 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px 50px;
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 24px;
-  color: #003366;
+
+.logo{
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOqGu46Cg840bGdTOBGZScBX5v5hIXBSZLVGnWxbD8P6IceMCuq98jkNFo6WOuvEhty6Q&usqp=CAU)
+              no-repeat center center / contain;
+  width: 150px;
+  height: 50px;
 }
 
+
+
+
 .nav-menu a {
+  border: 2px solid #070606;
+  background: transparent;
+  padding: 10px 10px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
   margin-left: 20px;
   text-decoration: none;
   color: #333;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .nav-menu i {
@@ -60,7 +71,7 @@ body {
 }
 
 .hero {
-  background: url('https://www.miu.edu.mn/miu_alt.png') no-repeat center center/cover;
+  background: url('https://static.youthop.com/uploads/2021/12/main-photo-1038x692.jpg') no-repeat center center/cover;
   height: 500px;
   display: flex;
   align-items: center;
@@ -77,14 +88,15 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; 
-} 
+  height: 100%;
+}
+
 .hero-content {
   position: relative;
   max-width: 600px;
 }
 
-.hero-content h1 {
+.hero-content h2\ {
   font-size: 36px;
   margin-bottom: 15px;
 }
@@ -94,8 +106,9 @@ body {
   line-height: 1.5;
 }
 
-.hero-buttons .btn-yellow {
-  background-color: #ffc107;
+.hero-buttons .btn-purple {
+  background-color: #272168;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   margin-right: 10px;
@@ -113,40 +126,21 @@ body {
 }
 
 .features {
-  background-color: #002244;
+  background-color: #272168;
   color: #fff;
   text-align: center;
   padding: 40px 20px;
 }
 
 .features h2 {
-  margin-bottom: 30px;
+  margin-bottom: 5%;
 }
 
-.feature-boxes {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-}
 
-.feature-box {
-  width: 150px;
-  height: 150px;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  font-size: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
-.feature-box i {
-  font-size: 30px;
-  margin-bottom: 10px;
-}
+
+
+
 
 .blue {
   background-color: #007bff;
@@ -159,3 +153,60 @@ body {
 .red {
   background-color: #dc3545;
 }
+.backround {
+  background: url('https://static.youthop.com/uploads/2021/12/main-photo-scaled.jpg') no-repeat center center/cover;
+  padding: 60px 40px;
+  text-align: center;
+  filter: blur(2px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; 
+}
+
+
+.photo-card {
+  display: flex;
+  align-items: center;
+  background: #4B3EAC;      /* your purple color */
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 1500px;        /* make it wider to fill more space */
+  margin: 20px auto;        /* smaller top/bottom spacing, keep centered horizontally */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.photo-card img {
+  width: 700px;             /* bigger image if needed */
+  height: auto;
+  border-radius: 15px;
+  margin-right: 30px;       /* space between image and text */
+}
+
+.description {
+  flex: 1;                  /* let text take remaining space */
+}
+
+
+.description p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 22px;         /* bigger paragraph for easier reading */
+  color: #ffffff;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 900px) {
+  .photo-card {
+    flex-direction: column; /* stack image & text */
+    text-align: center;
+  }
+
+  .photo-card img {
+    margin-right: 0;
+    margin-bottom: 20px;
+    width: 80%;             /* scale image on smaller screens */
+  }
+}
+
