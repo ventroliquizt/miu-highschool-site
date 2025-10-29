@@ -1,68 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name = "viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>MIU HIGH-SCHOOL</title>
-    <link rel="stylesheet" href="style.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Website</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="top-bar">
-    <div class="contact info">
-      <span><i class="fas fa-enevelop"></i>info@miu.edu.mn</span>
-      <span><i class="fas fa-phone"></i>+976 88272822</span>
-    </div>
-    <div class = "social-login">
-      <span>Follow us :</span>
-      <a href="https://www.facebook.com/sa.studentaffairs.3" target="blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.instagram.com/miu_mongolia/" target="blank"><i class="fab fa-instagram"></i></a> 
-    
 
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul class="nav-left">
+      <li class="dropdown">
+        <a href="#about">About Us</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Vice's greeting</a></li>
+          <li><a href="#">Mission & Vision</a></li>
+          <li><a href="#">Our Success</a></li>
+          <li><a href="#">Staff</a></li>
+          <li><a href="#">Enviroment</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#programms">Programms</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Schedules</a></li>
+          <li><a href="#">Extracrurricular activity</a></li>
+          <li><a href="#">Volunteer</a></li>
+        </ul>
+
+      </li>
+      <li class="dropdown">
+        <a href="#admission">Admissions</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Progress of Admission</a></li>
+          <li><a href="#">Online Admissions</a></li>
+          <li><a href="#">Information of Tution</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="logo">
+      <a href="#home"><img src="mis_logo_001-copy-removebg-preview.png" alt="School Logo"></a>
     </div>
-  </div>
-<header class="header">
-  <header class="logo"></header>
-  <nav class="nav-menu">
-    <a href="#">Home</a>
-    <a href="#">Information</a>
-    <a href="#">About us</a>
-    <a href="#">Contact</a>
+
+    <ul class="nav-right">
+      <li class="dropdown">
+        <a href="#info">Information</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#About student">About Student</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Cafeteria</a></li>
+          <li><a href="#">Uniform</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#contact">Contact Us</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Email</a></li>
+          <li><a href="#">Location</a></li>
+          <li><a href="#">Phone</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </li>
+    </ul>
   </nav>
 
+  <!-- Sections -->
+  <section id="home" class="hero-section">
+    <img src="istockphoto-1470158757-612x612.jpg" alt="School hero image" class="hero-image">
+    <h1>Welcome to Our School</h1>
+    <p>Our motto, mission, and vision go here.</p>
+  </section>
 
-
-</header>
-<section class="hero">
-  <div class="hero-content">
-    <h2>Ерөнхий боловсролын ЭМ АЙ ЮУ Бүрэн Дунд Сургууль</h2>
-    <div class="hero-buttons">
-      <button class="btn-purple">Read more</button>
-      <button class="btn-outline">Get started</button>
-
+  <section id="about" class="info-section">
+    <div class="info-image">
+      <img src="about-photo.png" alt="About our school">
     </div>
-  </div>
+    <div class="info-text">
+      <h2>About Us</h2>
+      <p>Write a short description about your school here. You can talk about history, values, or achievements.</p>
+    </div>
+  </section>
 
-</section>
+  <section id="community" class="info-section reverse">
+    <div class="info-text">
+      <h2>Community</h2>
+      <p>Explain your school community, events, or programs here.</p>
+    </div>
+    <div class="info-image">
+      <img src="community-photo.png" alt="Community activities">
+    </div>
+  </section>
 
-<section class="features">
-  <h2>The platform to know everything about us</h2>
-  <p>
-    Welcome to MIU High-school, where we are dedicated to providing a nurturing and stimulating environment for students to excel academically, socially, and personally. Our mission is to empower young minds with knowledge, critical thinking skills, and a strong sense of ethics, preparing them to become responsible global citizens. At MIU High-school, we believe in fostering creativity, collaboration, and a lifelong love for learning. Join us on this exciting journey of growth and discovery!
-  </p>
-</section>
+  <section id="info" class="info-section">
+    <div class="info-image">
+      <img src="info-photo.png" alt="Information">
+    </div>
+    <div class="info-text">
+      <h2>Information</h2>
+      <p>Provide additional information, notices, or resources here.</p>
+    </div>
+  </section>
 
-<div class="photo-card">
-  <img src="https://scontent.fuln11-1.fna.fbcdn.net/v/t39.30808-6/500279252_1778630489620114_7004784555484695952_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=LQxfn87gvyMQ7kNvwHoxvNs&_nc_oc=Admc696z0T_Id5AY-z6ToG6ZrHyIg7bReRgA3ktGF7MlkmbyoEc4oxdwkHxl099WN5I&_nc_zt=23&_nc_ht=scontent.fuln11-1.fna&_nc_gid=HHIPudRfpBwjmlLFCvdbyw&oh=00_AffwTB1DTEY8OilNLLxdh3nF02GjiBFEOSG7WOWO8WwVuQ&oe=68F269B3" alt="Image about register">
-  <div class="description">
-    <h2>Register now for 2024-2025 academic year</h2>
-    <p>We are excited to announce that registration for the 2024-2025 academic year at MIU High-school is now open! Secure your child's spot in our vibrant learning community by completing the registration process today. Don't miss out on the opportunity to provide your child with an exceptional education and a supportive environment for growth. Register now and embark on a journey of academic excellence and personal development at MIU High-school!</p>
-  </div>
-</div>
+  <section id="contact" class="info-section reverse">
+    <div class="info-text">
+      <h2>Contact Us</h2>
+      <p>Email, phone, or address information can go here.</p>
+    </div>
+    <div class="info-image">
+      <img src="contact-photo.png" alt="Contact">
+    </div>
+  </section>
 
 </body>
-</div>
 </html>
