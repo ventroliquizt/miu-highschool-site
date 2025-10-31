@@ -23,9 +23,9 @@ main {
   display: flex;                   /* Horizontal layout */
   align-items: center;             /* Vertically center content */
   justify-content: space-between;  /* Space between left, logo, right */
-  padding: 0 50px;                 /* Horizontal padding */
+  padding: 60px;                 /* Horizontal padding */
   height: 60px;                    /* Ensure navbar has height */
-  background-color: #f0f0f0;      /* Visible background */
+  background-color: #1b2c66;      /* Visible background */
   position: sticky;                /* Stays on top */
   top: 0;
   z-index: 1000;
@@ -46,16 +46,14 @@ main {
   padding: 0 15px;
   height: 100%;        /* Fill navbar height */
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
   font-weight: bold;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .nav-left a:hover, .nav-right a:hover {
-  background-color: #333;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+  background-color: #000000;
+  color: #4d71b8
 }
 
 .nav-left  {
@@ -76,24 +74,89 @@ margin-left: 225px;
 
 
 /* Hero Section */
+
 .hero-section {
+  position: relative;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 400px;
-  background-color: #e0e0e0;
-  text-align: center;
-  padding: 50px;
+  overflow: hidden;
 }
+
+
+
+
+
+
 
 .hero-section h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
+  margin-bottom: 600px;
+  color: rgb(249, 248, 248);
+  font-size: 3rem;
+  text-align: center;
+  z-index: 1;
+  opacity: 0;                     /* hidden initially */
+  transform: translateY(30px);    /* slightly lower */
+  transition: all 1.2s ease;      /* smooth fade & move */
+}
+.bttn-container {
+  position: absolute;
+  bottom:300px;
+  left: 150px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #2163b3;   /* button color */
+  color: hsl(0, 27%, 98%);                  /* text color */
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.hero-section p {
-  font-size: 20px;
+.bttn-container:hover {
+  background-color: #fbfbfb;  /* hover color */
+  transform: translateY(-5px); /* slight lift on hover */
+} 
+
+.bttn-container2 {
+  position: absolute;
+  bottom: 300px;
+  left: 350px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #2163b3;   /* button color */
+  color: #fff;                  /* text color */
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+} 
+.bttn-container2:hover {
+  background-color: #fbfbfb;  /* hover color */
+  transform: translateY(-5px); /* slight lift on hover */
+}
+
+
+
+.auto-rotate {
+  width: 200px;
+  margin-top: 100px;
+  margin-left: 750px;
+}
+
+.auto-rotate {
+  animation: auto-rotateanimation;
+  animation-timeline: view();
+}
+@keyframes auto-rotateanimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Info Sections */
@@ -119,6 +182,19 @@ margin-left: 225px;
 .info-text {
   max-width: 900px;
 }
+/* Fade-up base style for all info sections */
+.info-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 2s ease-out;
+}
+
+/* When visible */
+.info-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 .info-text h2 {
   margin-bottom: 20px;
@@ -165,7 +241,7 @@ html {
 }
 
 .dropdown-menu a:hover {
-  background-color: #333;
+  background-color: #7886bc;
   color: #fff;
 }
 
