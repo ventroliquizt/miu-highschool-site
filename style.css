@@ -25,7 +25,7 @@ main {
   justify-content: space-between;  /* Space between left, logo, right */
   padding: 60px;                 /* Horizontal padding */
   height: 60px;                    /* Ensure navbar has height */
-  background-color: #1b2c66;      /* Visible background */
+  background-color: #b50e0e;      /* Visible background */
   position: sticky;                /* Stays on top */
   top: 0;
   z-index: 1000;
@@ -52,8 +52,8 @@ main {
 }
 
 .nav-left a:hover, .nav-right a:hover {
-  background-color: #000000;
-  color: #4d71b8
+  background-color: #ffffff;
+  color: #b50e0e;
 }
 
 .nav-left  {
@@ -65,10 +65,15 @@ margin-left: 225px;
 }
 
 
-.logo img {
-  height: 60px;
-  display: block;
+.logo a{
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  font-size: 40px;
+
 }
+
 
 
 
@@ -76,73 +81,62 @@ margin-left: 225px;
 /* Hero Section */
 
 .hero-section {
-  position: relative;
-  height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 100vh; /* full screen height */
+  width: 100%;
   overflow: hidden;
 }
 
+.hero-image {
+  flex: 0 0 65%; /* 65% of width for image */
+  position: relative;
+}
 
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* cover the whole container */
+}
+.hero-text {
+  flex: 0 0 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
 
+  /* Red background */
+  background: #b50e0e;
+  border: 2px solid #fff;
+  border-radius: 10px;
 
+  color: #fff;
+  margin: 0.5rem;
+}
 
+.hero-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 
+  /* smooth fade effect */
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+}
 
-.hero-section h1 {
-  margin-bottom: 600px;
-  color: rgb(249, 248, 248);
+/* Decorative crown above h1 */
+.decorated-title::before {
+  content: "✨";
+  display: block;
   font-size: 3rem;
-  text-align: center;
-  z-index: 1;
-  opacity: 0;                     /* hidden initially */
-  transform: translateY(30px);    /* slightly lower */
-  transition: all 1.2s ease;      /* smooth fade & move */
-}
-.bttn-container {
-  position: absolute;
-  bottom:300px;
-  left: 150px;
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #2163b3;   /* button color */
-  color: hsl(0, 27%, 98%);                  /* text color */
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.bttn-container:hover {
-  background-color: #fbfbfb;  /* hover color */
-  transform: translateY(-5px); /* slight lift on hover */
-} 
-
-.bttn-container2 {
-  position: absolute;
-  bottom: 300px;
-  left: 350px;
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #2163b3;   /* button color */
-  color: #fff;                  /* text color */
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.2s;
-} 
-.bttn-container2:hover {
-  background-color: #fbfbfb;  /* hover color */
-  transform: translateY(-5px); /* slight lift on hover */
+  margin-bottom: 0.3rem;
+  text-align: left;
 }
 
 
 
 .auto-rotate {
   width: 200px;
-  margin-top: 100px;
+  margin-top: 0%;
   margin-left: 750px;
 }
 
@@ -160,17 +154,32 @@ margin-left: 225px;
 }
 
 /* Info Sections */
+/* Main info section styling */
 .info-section {
   display: flex;
   align-items: center;
   gap: 30px;
   padding: 50px;
+  margin-top: 200px;
+
+  /* Fade-up base style */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 2s ease-out;
 }
 
+/* Reverse layout for zig-zag */
 .info-section.reverse {
   flex-direction: row-reverse;
 }
 
+/* When section becomes visible */
+.info-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image styling */
 .info-image img {
   width: 100%;
   max-width: 500px;
@@ -178,23 +187,10 @@ margin-left: 225px;
   border-radius: 10px;
 }
 
-
+/* Text styling */
 .info-text {
   max-width: 900px;
 }
-/* Fade-up base style for all info sections */
-.info-section {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 2s ease-out;
-}
-
-/* When visible */
-.info-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 
 .info-text h2 {
   margin-bottom: 20px;
@@ -204,6 +200,7 @@ margin-left: 225px;
 .info-text p {
   font-size: 18px;
 }
+
 
 /* Smooth Scroll */
 html {
@@ -241,7 +238,7 @@ html {
 }
 
 .dropdown-menu a:hover {
-  background-color: #7886bc;
+  background-color: #b50e0e;
   color: #fff;
 }
 
