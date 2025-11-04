@@ -46,7 +46,7 @@
     </ul>
 
     <div class="logo">
-      <a href="#home"><img src="mis_logo_001-copy-removebg-preview.png" alt="School Logo" /></a>
+      <a href="#home">MIS</a>
     </div>
 
     <ul class="nav-right">
@@ -79,55 +79,75 @@
 
   <!-- ===== Hero Section ===== -->
   <main>
-    <section id="home" class="hero-section">
-      <spline-viewer
-        class="background-hero"
-        url="https://prod.spline.design/yb7e5deWrFKOxcLV/scene.splinecode">
-      </spline-viewer>
-      <div class="bttn-container">
-        <a href="#">About us</a>
-        </div>
-        <div class="bttn-container2">
-        <a href="#">Admissions</a>
-        </div>
-    </section>
+<section id="home" class="hero-section">
+  <div class="hero-image">
+    <img src="571824159_1915855125897649_9209040587861907538_n.jpg" alt="students">
+  </div>
+  <div class="hero-text">
+    <h1 class="decorated-title" id="hero-text">Welcome to Mongolian International School</h1>
+  </div>
+</section>
+
 
     <section class="logo-rotate-section">
       <img src="mis_logo_001-copy-removebg-preview.png" alt="School Logo" class="auto-rotate" />
     </section>
 
     <!-- ===== Info Sections ===== -->
-    <section id="about" class="info-section">
-      <div class="info-image">
-        <img src="about-photo.png" alt="About our school" />
-      </div>
-      <div class="info-text">
-        <h2>About Us</h2>
-        <p>
-          Write a short description about your school here. You can talk about its history, values, or achievements.
-        </p>
-      </div>
-    </section>
+<main>
+  <!-- Vice's greeting (image left, text right) -->
+  <section id="vice-greeting" class="info-section">
+    <div class="info-image">
+      <img src="490864692_1744075596408937_7455295333853470391_n.jpg" alt="Vice's greeting" />
+    </div>
+    <div class="info-text">
+      <h2>Vice's Greeting</h2>
+      <p>
+        Our organization is dedicated to providing high-quality education and holistic development for students. Founded with a vision to inspire curiosity, creativity, and critical thinking, we focus on nurturing both academic excellence and personal growth. Our experienced educators employ innovative teaching methods, integrating technology and hands-on learning to make education engaging and effective. Beyond the classroom, we emphasize values such as integrity, responsibility, and collaboration. We strive to create an environment where students feel safe, supported, and motivated to achieve their goals.
+      </p>
+    </div>
+  </section>
 
-    <section id="community" class="info-section reverse">
-      <div class="info-text">
-        <h2>Community</h2>
-        <p>Explain your school community, events, or programs here.</p>
-      </div>
-      <div class="info-image">
-        <img src="community-photo.png" alt="Community activities" />
-      </div>
-    </section>
+  <!-- About Us (image right, text left) -->
+  <section id="about" class="info-section reverse">
+    <div class="info-image">
+      <img src="571503490_1915855625897599_4718750882316522579_n.jpg" alt="About our school" />
+    </div>
+    <div class="info-text">
+      <h2>About Us</h2>
+      <p>
+        We are committed to fostering curiosity, creativity, and critical thinking. Our programs emphasize both academic excellence and personal growth, integrating innovative teaching methods and hands-on experiences. Beyond academics, we nurture values like integrity, collaboration, and responsibility. Our goal is to create an environment where students feel supported and motivated to achieve their full potential.
+      </p>
+    </div>
+  </section>
 
-    <section id="info" class="info-section">
-      <div class="info-image">
-        <img src="info-photo.png" alt="Information" />
-      </div>
-      <div class="info-text">
-        <h2>Information</h2>
-        <p>Provide additional information, notices, or resources here.</p>
-      </div>
-    </section>
+  <!-- Community (image left, text right) -->
+  <section id="community" class="info-section">
+    <div class="info-image">
+      <img src="556981901_1889760831840412_9179320815925247158_n.jpg" alt="Community activities" />
+    </div>
+    <div class="info-text">
+      <h2>Community</h2>
+      <p>
+        Our community is at the heart of everything we do. Students, educators, and families come together to create learning, growth, and collaboration opportunities. We celebrate diversity and inclusion, host workshops and cultural events, and encourage active participation. By fostering strong relationships and open communication, every member can develop skills, contribute meaningfully, and build lasting connections that extend beyond the classroom.
+      </p>
+    </div>
+  </section>
+
+  <!-- Information (image right, text left) -->
+  <section id="info" class="info-section reverse">
+    <div class="info-image">
+      <img src="61KtSkxKBU3lkn8e4PLKs.JPG" alt="Information" />
+    </div>
+    <div class="info-text">
+      <h2>Information</h2>
+      <p>
+        We provide clear and up-to-date information for students, parents, and visitors. This includes courses, programs, schedules, and upcoming events. Our resources cover academic requirements, extracurricular opportunities, and community initiatives. We also guide admissions, policies, and support services to help navigate challenges. By sharing information transparently, we aim to foster trust and ensure everyone can fully participate in the school community.
+      </p>
+    </div>
+  </section>
+</main>
+
   </main>
 
   <!-- ===== Footer ===== -->
@@ -179,38 +199,6 @@
       <p>© 2025 Mongolian International School. All rights reserved.</p>
     </div>
   </footer>
-
-  <!-- ===== JavaScript (inlined for single-file version) ===== -->
-  <script>
-    // Navbar Toggle (mobile)
-    const menuToggle = document.getElementById("menu-toggle");
-    const navbar = document.querySelector(".navbar");
-    menuToggle.addEventListener("click", () => navbar.classList.toggle("active"));
-
-    // Hero Section Text Animation
-    
-    const heroSection= document.querySelectorAll(".hero-section h1.hidden");
-    const sectionObserver1 = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          entry.target.classList.toggle("visible", entry.isIntersecting);
-        });
-      },
-      { threshold: 0.3 }
-    );
-    
-
-    // Info Sections Fade-In
-    const infoSections = document.querySelectorAll(".info-section");
-    const sectionObserver = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          entry.target.classList.toggle("visible", entry.isIntersecting);
-        });
-      },
-      { threshold: 0.3 }
-    );
-    infoSections.forEach(section => sectionObserver.observe(section));
-  </script>
+<script src="script.js"></script>
 </body>
 </html>
