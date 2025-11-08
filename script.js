@@ -1,22 +1,5 @@
-    document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle = document.getElementById("menu-toggle");
-  const navbar = document.querySelector(".navbar");
-
-  menuToggle.addEventListener("click", () => {
-    navbar.classList.toggle("active");
-  });
-});
-const currentPage = window.location.pathname.split("/").pop();
-const links = document.querySelectorAll(".navbar a");
-
-links.forEach(link => {
-  if (link.getAttribute("href") === currentPage) {
-    link.style.color = "#4B3EAC"; // highlight color
-  }
-});
-
 const texts = [
-  "Welcome to Mongolian International School",
+  "academic excellence is just the start.",
   "Empowering Students Every Day",
   "Learn, Grow, Succeed",
   "Join Our Amazing Community"
@@ -36,11 +19,58 @@ setInterval(() => {
 
     // fade in
     heroText.style.opacity = 1;
-  }, 400); // fade duration in ms (matches CSS transition)
-}, 1500);
+  }, 400); // fade duration in ms
+}, 2500); // change text every 2.5s
 
 
-    // Navbar Toggle (mobile)
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const slides = document.querySelectorAll('.slide');
+  if (!slides.length) {
+    console.warn('No slides found. Check that .slide elements exist in the HTML.');
+    return;
+  }
+
+  let index = 0;
+
+  // Ensure exactly one slide is active at start
+  slides.forEach(s => s.classList.remove('active'));
+  slides[index].classList.add('active');
+
+  setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, 3000); // 3000 ms = 3 s
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Navbar Toggle (mobile)
     const menuToggle = document.getElementById("menu-toggle");
     const navbar = document.querySelector(".navbar");
     menuToggle.addEventListener("click", () => navbar.classList.toggle("active"));
@@ -69,5 +99,6 @@ setInterval(() => {
       { threshold: 0.3 }
     );
     infoSections.forEach(section => sectionObserver.observe(section));
+
 
 
