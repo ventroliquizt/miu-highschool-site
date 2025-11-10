@@ -1,3 +1,4 @@
+
 /* Basic Reset */
 * {
   margin: 0;
@@ -6,16 +7,14 @@
 }
 body {
   position: relative;
-  background-color: #f5f5f5; /* fallback if logo doesn’t load */
-}
-
-body {
+  background-color: #ffffff; /* global site background */
   font-family: "Times New Roman", Times, serif;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+
 
 
 
@@ -173,32 +172,105 @@ margin-left: 225px;
   margin-bottom: 0.3rem;
   text-align: left;
 }
+
+
+.pre-hero{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #dd3434; /* red background */
+  padding: 2rem; /* keeps some red border around blackboard */
+  box-sizing: border-box;
+
+}
+
+.blackboard{
+  background-color: black;
+  width: 100%;       
+  max-width: none;  
+  height: 98%;      
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  box-sizing: border-box; 
+  overflow: hidden;  
+}
+.grey-logo {
+  position: relative;
+  top: -80px;       /* slightly off top */
+  left: -100px;     /* slightly off left */
+  width: 500px;
+  height: 500px;
+  background: url("ChatGPT_Image_Nov_8__2025__04_54_58_AM-removebg-preview.png") no-repeat center center;
+  background-size: contain;
+  filter: blur(0px) opacity(0.2);
+  transform: rotate(-360deg);
+  pointer-events: none;
+  z-index: 0; /* behind content */
+}
+
+.prehero-image {
+  flex: 5;            /* left column takes half width */
+  display: flex;
+  align-items: center;
+  position: absolute;
+  margin-left: 560px;
+  margin-top: 20px;
+}
+
+.prehero-image img {
+  width: 95%;
+  height: 95%;
+  object-fit: cover;
+}
+
+
+.prehero-text{
+  font: bold;
+  font-family: 'Times New Roman', Times, serif;
+  color: #f0f0f0;
+}
+
+.prehero-text h1 {
+  text-align: center;
+  margin-top: 350px;
+  margin-left: -500px;
+}
+
+.red-line {
+    border: 0;
+    height: 2px;       /* thickness of the line */
+    background-color: red;
+    margin-left: -495px;   /* space above and below the line */
+}
+
+
+.prehero-text-p {
+  font: bold;
+  font-family: 'Times New Roman', Times, serif;
+  color: #f0f0f0;
+}
+
+.prehero-text-p{
+  text-align: center;
+  margin-top: 550px;
+  margin-left: -415px;
+
+}
+
+
 .glance-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 60px;
   min-height: 100vh;
-  background: linear-gradient(90deg, #595555, #685f5f, #000000);
-}
-.glance-section {
-  position: relative;
-  overflow: hidden; /* hide logo overflow */
+  background-color: #000;     /* black background just for this section */
+  background-image: none;     /* prevent unwanted gradient */
+  color: #fff;                /* white text for visibility */
 }
 
-.logo-bg {
-  position: absolute;
-  top: -80px;       /* slightly off top */
-  left: -100px;     /* slightly off left */
-  width: 500px;
-  height: 500px;
-  background: url("mis_logo_001-copy-removebg-preview.png") no-repeat center center;
-  background-size: contain;
-  filter: blur(10px) opacity(0.7);
-  transform: rotate(-25deg);
-  pointer-events: none;
-  z-index: 0; /* behind content */
-}
 
 
 .glance-text {
@@ -210,24 +282,9 @@ margin-left: 225px;
   font-size: 2.5em;
   margin-bottom: 20px;
 }
-.glance-section {
-  position: relative;
-  overflow: hidden; /* hide logo overflow */
-}
 
-.logo-bg {
-  position: absolute;
-  top: -80px;       /* slightly off top */
-  left: -100px;     /* slightly off left */
-  width: 500px;
-  height: 500px;
-  background: url("E967E039-0A61-478E-8AB4-C2881063FAF2_1_201_a-removebg-preview.png") no-repeat center center;
-  background-size: contain;
-  filter: blur(10px) opacity(0.7);
-  transform: rotate(-360deg);
-  pointer-events: none;
-  z-index: 0; /* behind content */
-}
+
+
 
 .glance-text hr {
   border: none;
@@ -305,7 +362,7 @@ margin-left: 225px;
 .auto-rotate {
   width: 200px;
   margin-top: 0%;
-  margin-left: 750px;
+  margin-left: 850px;
 }
 
 .auto-rotate {
@@ -466,132 +523,6 @@ html {
   transform: translateY(0);
 }
 
-.glance-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 60px;
-  min-height: 100vh;
-  background: linear-gradient(90deg, #595555, #685f5f, #000000);
-}
-.glance-section {
-  position: relative;
-  overflow: hidden; /* hide logo overflow */
-}
-
-.logo-bg {
-  position: absolute;
-  top: -80px;       /* slightly off top */
-  left: -100px;     /* slightly off left */
-  width: 500px;
-  height: 500px;
-  background: url("mis_logo_001-copy-removebg-preview.png") no-repeat center center;
-  background-size: contain;
-  filter: blur(10px) opacity(0.7);
-  transform: rotate(-25deg);
-  pointer-events: none;
-  z-index: 0; /* behind content */
-}
-
-
-.glance-text {
-  width: 30%;
-  color: white;
-}
-
-.glance-text h1 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
-}
-.glance-section {
-  position: relative;
-  overflow: hidden; /* hide logo overflow */
-}
-
-.logo-bg {
-  position: absolute;
-  top: -80px;       /* slightly off top */
-  left: -100px;     /* slightly off left */
-  width: 500px;
-  height: 500px;
-  background: url("E967E039-0A61-478E-8AB4-C2881063FAF2_1_201_a-removebg-preview.png") no-repeat center center;
-  background-size: contain;
-  filter: blur(10px) opacity(0.7);
-  transform: rotate(-360deg);
-  pointer-events: none;
-  z-index: 0; /* behind content */
-}
-
-.glance-text hr {
-  border: none;
-  height: 2px;
-  background: #ffffff;
-  margin-bottom: 20px;
-}
-
-.glance-text p {
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.glance-text a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  border-bottom: 1px solid #fff;
-}
-
-.glance-slides {
-  position: relative;
-  width: 65%;
-  height: 500px;
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-.slide {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.slide.active {
-  display: flex;
-  animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.slide .info {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 30px;
-  border-radius: 10px;
-}
-
-.slide .info h2 {
-  font-size: 5em;
-  margin-bottom: 10px;
-  border-top: 2px solid red;
-  border-bottom: 2px solid red;
-  display: inline-block;
-  padding: 10px 0;
-  color: white;
-}
-
-.slide .info p {
-  font-size: 1.2em;
-  letter-spacing: 1px;
-  margin-top: 15px;
-  color: white;
-}
 
 
 .footer {
