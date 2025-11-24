@@ -100,5 +100,25 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     infoSections.forEach(section => sectionObserver.observe(section));
 
+// testing
+import { createClient } from "https://esm.sh/@supabase/supabase-js";
 
+const supabase = createClient(
+  "https://gqijcqlcbxjdomnxdgqo.supabase.co",
+  "sb_publishable_De6Dm-ymyjooI42AxTrkzA_XpujVxrn"
+);
 
+async function loadText() {
+  const { data, error } = await supabase
+    .from('MIS-school-website')
+    .select('*')
+    .eq('section', 'hero')
+    .single();
+  
+  console.log("Data:", data);
+  console.log("Error:", error);
+
+  if(data) document.getElementById('heroText').innerText = data.content;
+}
+
+loadText();
