@@ -7,9 +7,22 @@
   <link rel="icon" href="mis_logo_001-copy-removebg-preview.png" type="image/png" />
   <link rel="stylesheet" href="style.css" />
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.90/build/spline-viewer.js"></script>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
+  integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
+<script type="module">
+  import { createClient } from "https://esm.sh/@supabase/supabase-js";
+
+  // Replace these with your Supabase project info
+  const supabase = createClient(
+    "https://gqijcqlcbxjdomnxdgqo.supabase.co",
+    "sb_publishable_De6Dm-ymyjooI42AxTrkzA_XpujVxrn"
+  );
+</script>
 
  
   <!-- ===== Navbar ===== -->
@@ -29,6 +42,7 @@
           <li><a href="#">Environment</a></li>
         </ul>
       </li>
+
 
       <li class="dropdown">
         <a href="programms.html">Programs</a>
@@ -50,7 +64,7 @@
     </ul>
 
     <div class="logo">
-      <a href="#home">MIS</a>
+      <a href="#">MIS</a>
     </div>
 
     <ul class="nav-right">
@@ -79,6 +93,7 @@
         </ul>
       </li>
     </ul>
+
   </header>
 
 
@@ -89,11 +104,14 @@
   <div class="whiteboard">
     <!-- Left side: hero image -->
     <div class="hero-image">
-      <img src="571824159_1915855125897649_9209040587861907538_n.jpg" alt="students">
+      <img src="568292496_1908326693317159_3626035863105372190_n.jpg" alt="students">
     </div>
     
     <!-- Right side: hero text -->
     <div class="hero-text">
+      <div class="logo2"> 
+      <img src="assets/mis_logo_001-copy-2-removebg-preview.png" alt="school logo">
+    </div>
       <h1>We believe</h1>
       <h2 id="hero-text"> academic excellence is just the start.</h2>
     </div>
@@ -101,6 +119,7 @@
 </section>
 <!--pre-hero section-->
 <!-- pre-hero section -->
+
 <section id="home" class="pre-hero">
   <div class="blackboard">
     <div class="grey-logo">
@@ -120,7 +139,89 @@
 
 
 
-<section class="glance-section">
+
+
+
+  <section class="logo-rotate-section">
+      <img src="assets/mis_logo_001-copy-2-removebg-preview.png" alt="School Logo" class="auto-rotate" />
+  </section>
+
+
+  
+
+
+
+    <!-- ===== Info Sections ===== -->
+<main>
+  <!-- Vice's greeting (image left, text right) -->
+  <section id="vice-greeting" class="info-section1">
+    <div class="info-image1">
+      <img src="Screenshot 2025-11-18 090014president.png" alt="Vice's greeting" />
+    </div>
+    <div class="info-text1">
+      <h2>Vice's Greeting</h2>
+      <p>
+        Our organization is dedicated to providing high-quality education and holistic development for students. Founded with a vision to inspire curiosity, creativity, and critical thinking, we focus on nurturing both academic excellence and personal growth. Our experienced educators employ innovative teaching methods, integrating technology and hands-on learning to make education engaging and effective. Beyond the classroom, we emphasize values such as integrity, responsibility, and collaboration. We strive to create an environment where students feel safe, supported, and motivated to achieve their goals.
+      </p>
+
+
+    </div>
+  </section>
+
+  <div class="seperator">
+    <hr>
+  </div>
+
+<!--level section-->
+<section id="levels" class="levels-section">
+  <div class="levels-container">
+    <!-- LEFT: 3 BIG PICTURES SIDE BY SIDE -->
+    <div class="levels-images">
+      <a href="lower-school.html" class="level-card">
+        <img src="497537379_1768540893962407_7532981151105264191_n.jpg" alt="Lower School" />
+        <h2>Start your journey <p>from here</p> </h2>
+        <h1>Lower School</h1>
+      </a>
+      <hr>
+
+      <a href="middle-school.html" class="level-card">
+        <img src="571824159_1915855125897649_9209040587861907538_n.jpg" alt="Middle School" />
+        <h2>Make your own <p>path</p> </h2>
+        <h1>Middle School</h1>
+      </a>
+      <hr>
+
+      <a href="high-school.html" class="level-card">
+        <img src="558469511_1889761551840340_5939963616839737402_n.jpg" alt="High School" />
+        <h2>Make a first walk <p>to the life</p> </h2>
+        <h1>High School</h1>
+      </a>
+    </div>
+
+    <!-- RIGHT SIDE INTRO TEXT -->
+    <div class="levels-text">
+      <h1>Make it happen</h1>
+      <hr class="red-line2">
+      <p>
+        Our school offers a complete educational journey designed to help students develop 
+        academically, socially, and emotionally. Each level—Lower School, Middle School, and 
+        High School—provides a supportive environment with experienced teachers and strong 
+        programs. We guide every student to discover their strengths, grow with confidence, 
+        and prepare for future success in a rapidly changing world.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+  <section class="glance-section">
   <div class="glance-text">
     <h1>MIS at a Glance</h1>
     <hr>
@@ -147,76 +248,6 @@
     </div>
   </div>
 </section>
-
-
-
-
-
-  <section class="logo-rotate-section">
-      <img src="mis_logo_001-copy-2-removebg-preview.png" alt="School Logo" class="auto-rotate" />
-  </section>
- 
-
-
-    <!-- ===== Info Sections ===== -->
-<main>
-  <!-- Vice's greeting (image left, text right) -->
-  <section id="vice-greeting" class="info-section">
-    <div class="info-image">
-      <img src="490864692_1744075596408937_7455295333853470391_n.jpg" alt="Vice's greeting" />
-      <img src="490864692_1744075596408937_7455295333853470391_n.jpg" alt="photo2">
-    </div>
-    <div class="info-text">
-      <h2>Vice's Greeting</h2>
-      <p>
-        Our organization is dedicated to providing high-quality education and holistic development for students. Founded with a vision to inspire curiosity, creativity, and critical thinking, we focus on nurturing both academic excellence and personal growth. Our experienced educators employ innovative teaching methods, integrating technology and hands-on learning to make education engaging and effective. Beyond the classroom, we emphasize values such as integrity, responsibility, and collaboration. We strive to create an environment where students feel safe, supported, and motivated to achieve their goals.
-      </p>
-    </div>
-  </section>
-
-  <!-- About Us (image right, text left) -->
-  <section id="about" class="info-section reverse">
-    <div class="info-image">
-      <img src="571503490_1915855625897599_4718750882316522579_n.jpg" alt="About our school" />
-      <img src="571503490_1915855625897599_4718750882316522579_n.jpg" alt="photo2">
-      <img src="571503490_1915855625897599_4718750882316522579_n.jpg" alt="photo3">
-    </div>
-    <div class="info-text">
-      <h2>About Us</h2>
-      <p>
-        We are committed to fostering curiosity, creativity, and critical thinking. Our programs emphasize both academic excellence and personal growth, integrating innovative teaching methods and hands-on experiences. Beyond academics, we nurture values like integrity, collaboration, and responsibility. Our goal is to create an environment where students feel supported and motivated to achieve their full potential.
-      </p>
-    </div>
-  </section>
-
-  <!-- Community (image left, text right) -->
-  <section id="community" class="info-section">
-    <div class="info-image">
-      <img src="556981901_1889760831840412_9179320815925247158_n.jpg" alt="Community activities" />
-      <img src="556981901_1889760831840412_9179320815925247158_n.jpg" alt="photo2">
-      <img src="556981901_1889760831840412_9179320815925247158_n.jpg" alt="photo3">
-    </div>
-    <div class="info-text">
-      <h2>Community</h2>
-      <p>
-        Our community is at the heart of everything we do. Students, educators, and families come together to create learning, growth, and collaboration opportunities. We celebrate diversity and inclusion, host workshops and cultural events, and encourage active participation. By fostering strong relationships and open communication, every member can develop skills, contribute meaningfully, and build lasting connections that extend beyond the classroom.
-      </p>
-    </div>
-  </section>
-
-  <!-- Information (image right, text left) -->
-  <section id="info" class="info-section reverse">
-    <div class="info-image">
-      <img src="61KtSkxKBU3lkn8e4PLKs.JPG" alt="Information" />
-    </div>
-    <div class="info-text">
-      <h2>Information</h2>
-      <p>
-        We provide clear and up-to-date information for students, parents, and visitors. This includes courses, programs, schedules, and upcoming events. Our resources cover academic requirements, extracurricular opportunities, and community initiatives. We also guide admissions, policies, and support services to help navigate challenges. By sharing information transparently, we aim to foster trust and ensure everyone can fully participate in the school community.
-      </p>
-    </div>
-  </section>
-
 
 
 </main>
@@ -261,9 +292,7 @@
         <p>Mongolian International School</p>
         <div class="iso-box">ISO <span>n/a</span></div>
         <div class="social-icons">
-          <a href="#"><img src="facebook-icon.svg" alt="Facebook" /></a>
-          <a href="#"><img src="instagram-icon.svg" alt="Instagram" /></a>
-          <a href="#"><img src="youtube-icon.svg" alt="YouTube" /></a>
+          <a href="https://www.facebook.com/miusecondaryschool2020"><i class="fa-brands fa-facebook"></i></a>
         </div>
       </div>
     </div>
@@ -273,5 +302,9 @@
     </div>
   </footer>
 <script src="script.js"></script>
+    
+
+
+
 </body>
 </html>
