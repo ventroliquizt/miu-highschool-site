@@ -40,8 +40,10 @@ main {
   position: sticky;                /* Stays on top */
   top: 0;
   z-index: 1000;
-  font-size: large;
+  font-size: 25px;
 }
+
+
 
 
 .nav-left, .nav-right {
@@ -70,11 +72,11 @@ main {
 }
 
 .nav-left  {
-margin-left: 225px;
+margin-left: 275px;
 }
 
 .nav-right {
-  margin-right: 225px;
+  margin-right: 275px;
 }
 
 
@@ -83,12 +85,19 @@ margin-left: 225px;
   text-align: center;
   font-weight: bold;
   color: #fff;
-  font-size: 40px;
+  font-size: 50px;
 
 }
 
 
 
+
+.fa-facebook{
+  color: #000;
+  font-size: 45px;
+
+  
+}
 
 
 /* Hero Section */
@@ -153,6 +162,7 @@ margin-left: 225px;
   font-size: xxx-large;
   color: #000;
   line-height: 1.8;
+   ;
 }
 
 #hero-text {
@@ -160,6 +170,15 @@ margin-left: 225px;
   opacity: 1;
 }
 
+.logo2{
+  position: relative;
+  display: flex;
+  height: 25%;
+  width: 25%;
+  margin-left: 125px;
+  margin-bottom: px;
+  
+}
 
 
 
@@ -215,13 +234,16 @@ margin-left: 225px;
   display: flex;
   align-items: center;
   position: absolute;
-  margin-left: 560px;
+  margin-left: 570px;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
+
+
 .prehero-image img {
-  width: 95%;
-  height: 95%;
+  width: 90%;
+  height: 88%;
   object-fit: cover;
 }
 
@@ -258,6 +280,95 @@ margin-left: 225px;
   margin-left: -415px;
 
 }
+
+
+.levels-section {
+  padding: 50px 20px;
+}
+
+.levels-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+/* LEFT SIDE: 3 pictures side-by-side */
+.levels-images {
+  display: flex;
+  gap: 20px;
+}
+
+hr{
+  height: 700px;
+}
+
+
+.level-card h2 {
+  color: grey !important;
+}
+
+.level-card h1 {
+  color: black !important;
+}
+
+.level-card:hover h2 {
+  color: grey !important;
+}
+
+.level-card:hover h1 {
+  color: black !important;
+}
+
+.level-card,
+.level-card:hover {
+  color: inherit !important;
+}
+
+
+.red-line2{
+  border: 0;
+  height: 2px;
+  background-color: red;
+  
+}
+
+
+
+.level-card {
+  width: 420px;     /* make images wider */
+  text-decoration: none;
+  color: black;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.level-card img {
+  width: 100%;
+  height: 500px;     /* make images taller */
+  object-fit: cover;
+}
+
+.level-card h3 {
+  background: #fff;
+  padding: 10px 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.level-card:hover {
+  transform: scale(1.05);
+}
+
+/* RIGHT TEXT SIDE */
+.levels-text {
+  max-width: 400px;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  margin-left: 25px;
+}
+
+
 
 
 .glance-section {
@@ -380,57 +491,30 @@ margin-left: 225px;
 
 /* Info Sections */
 /* Main info section styling */
-.info-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap; /* allows wrapping on smaller screens */
-  padding: 50px 10%;
-  gap: 30px;
-
-  /* Fade-up base style */
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 2s ease-out;
-}
-.info-image{
-  display: flex;
-  gap: 20px;
+.info-section1{
+  padding: 0px 50px;
 }
 
-/* Reverse layout for zig-zag */
-.info-section.reverse {
-  flex-direction: row-reverse;
+.info-image1{
+  margin-left: 45px;
 }
 
-/* When section becomes visible */
-.info-section.visible {
-  opacity: 1;
-  transform: translateY(0);
+.info-text1{
+  font-weight: bold;
+  padding: 0px 80px;
 }
 
-/* Image styling */
-.info-image img {
-  width: 250px; /* adjust size as needed */
-  height: auto;
-  border-radius: 15px;
-  object-fit: cover;
+.info-text1 h2{
+  color:rgb(8, 8, 8);
+  margin-left: 1250px;
+  margin-top: -500px;
 }
 
-/* Text styling */
-.info-text {
-  max-width: 900px;
+.info-text1 p{
+  font-size: large;
+  text-align: center;
+  margin-left: 1000px;
 }
-
-.info-text h2 {
-  margin-bottom: 20px;
-  font-size: 28px;
-}
-
-.info-text p {
-  font-size: 18px;
-}
-
 
 /* Smooth Scroll */
 html {
@@ -440,6 +524,14 @@ html {
 /* --- Dropdown Menu --- */
 .dropdown {
   position: relative;
+}
+
+.seperator{
+ border: 0;
+ margin-top: 250px;
+ height: 1px;
+ background-color: #000000;
+  
 }
 
 .dropdown-menu {
