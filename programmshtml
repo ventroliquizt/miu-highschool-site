@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs - Mongolian International School</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Programs Page Specific Styles */
+    :root {
+      --primary-color: #d82a2a;
+      --secondary-color: #2c6bb8;
+      --accent-color: #e6effc;
+      --light-color: #f8fafc;
+      --dark-color: #0f2d56;
+      --grey-color: #6b7280;
+      --dark-grey: #374151;
+      --text-color: #1f2937;
+      --text-light: #6b7280;
+      --success-color: #059669;
+      --warning-color: #d97706;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    /* Programs Header */
+    
+    .programs-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 100px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .programs-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+      background-size: cover;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .programs-header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .header-subtitle {
+      font-size: 1.3rem;
+      max-width: 600px;
+      margin: 0 auto 50px;
+      opacity: 0.9;
+    }
+
+    .header-stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 50px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Section Navigation */
+    .section-nav {
+      position: sticky;
+      top: 0;
+      background: white;
+      padding: 1.5rem 0;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      border-bottom: 3px solid var(--primary-color);
+    }
+
+    .section-nav .nav-link {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 2px solid transparent;
+    }
+
+    .section-nav .nav-link:hover {
+      background: var(--accent-color);
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    .section-nav .nav-link.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--dark-color);
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .section-header p {
+      font-size: 1.2rem;
+      color: var(--grey-color);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Schedules Section */
+    .schedules-section {
+      padding: 80px 0;
+      background: white;
+    }
+
+    .schedule-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .schedule-tab {
+      padding: 15px 30px;
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--grey-color);
+      cursor: pointer;
+      transition: var(--transition);
+      border-bottom: 3px solid transparent;
+    }
+
+    .schedule-tab.active {
+      color: var(--primary-color);
+      border-bottom-color: var(--primary-color);
+    }
+
+    .schedule-tab:hover {
+      color: var(--primary-color);
+    }
+
+    .schedule-content {
+      display: none;
+    }
+
+    .schedule-content.active {
+      display: block;
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      box-shadow: var(--shadow);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    .schedule-table th {
+      background: var(--primary-color);
+      color: white;
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .schedule-table td {
+      padding: 15px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .schedule-table tr:nth-child(even) {
+      background: var(--light-color);
+    }
+
+    .schedule-table tr:hover {
+      background: var(--accent-color);
+    }
+
+    .period-time {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .break-row {
+      background: #fef3cd !important;
+      font-weight: 600;
+    }
+
+    .break-row td {
+      color: #92400e;
+    }
+
+    /* Activities Section */
+    .activities-section {
+      padding: 80px 0;
+      background: var(--light-color);
+    }
+
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .activity-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .activity-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .activity-image {
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+
+    .activity-content {
+      padding: 25px;
+    }
+
+    .activity-content h3 {
+      color: var(--text-color);
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .activity-content p {
+      color: var(--grey-color);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .activity-details {
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .activity-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .activity-btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    /* Volunteer Section */
+    .volunteer-section {
+      padding: 80px 0;
+      background: white;
+    }
+
+    .volunteer-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .volunteer-text h2 {
+      font-size: 2.2rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .volunteer-text p {
+      color: var(--grey-color);
+      margin-bottom: 25px;
+      line-height: 1.7;
+    }
+
+    .volunteer-benefits {
+      margin: 30px 0;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .benefit-item i {
+      color: var(--success-color);
+      font-size: 1.2rem;
+    }
+
+    .volunteer-form {
+      background: var(--light-color);
+      padding: 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .volunteer-form h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--primary-color);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(26, 75, 140, 0.3);
+    }
+
+    /* Special Programs */
+    .special-programs {
+      padding: 60px 0;
+      background: var(--light-color);
+    }
+
+    .program-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .program-card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: var(--transition);
+      border-top: 4px solid var(--primary-color);
+    }
+
+    .program-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .program-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--accent-color);
+      color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+    }
+
+    .program-card h3 {
+      margin-bottom: 15px;
+      color: var(--text-color);
+    }
+
+    .program-card p {
+      color: var(--grey-color);
+      margin-bottom: 20px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .programs-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .header-stats {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .volunteer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .schedule-tabs {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .section-nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .section-nav .nav-link {
+        padding: 0.8rem 1rem;
+        justify-content: center;
+      }
+
+      .schedule-table {
+        font-size: 0.9rem;
+      }
+
+      .schedule-table th,
+      .schedule-table td {
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .programs-header {
+        padding: 60px 0 40px;
+      }
+      
+      .programs-header h1 {
+        font-size: 2rem;
+      }
+      
+      .section-header h2 {
+        font-size: 2rem;
+      }
+      
+      .volunteer-form {
+        padding: 25px 20px;
+      }
+
+      .activities-grid,
+      .program-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .activity-card, .program-card {
+      animation: fadeIn 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+    <ul class="nav-left">
+      <li class="dropdown">
+        <a href="index.html">About Us</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Vice's greeting</a></li>
+          <li><a href="#">Mission & Vision</a></li>
+          <li><a href="#">Our Success</a></li>
+          <li><a href="#">Staff</a></li>
+          <li><a href="#">Enviroment</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="programms.html">Programms</a>
+        <ul class="dropdown-menu">
+          <li><a href="#schedules">Schedules</a></li>
+          <li><a href="#activities">Extracurricular Activities</a></li>
+          <li><a href="#volunteer">Volunteer</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="admissions.html">Admissions</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Admissions Process</a></li>
+          <li><a href="#">Online Admissions</a></li>
+          <li><a href="#">Tuition & Fees</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="logo">
+      <a href="#home"><img src="mis_logo_001-copy-removebg-preview.png" alt="School Logo"></a>
+    </div>
+
+    <ul class="nav-right">
+      <li class="dropdown">
+        <a href="#info">Information</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="student.html">About Student</a>
+        <ul class="dropdown-menu">
+          <li><a href="#Cafeteria">Cafeteria</a></li>
+          <li><a href="#Uniform">Uniform</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#contact">Contact Us</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Email</a></li>
+          <li><a href="#">Location</a></li>
+          <li><a href="#">Phone</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Programs Header -->
+  <section class="programs-header">
+    <div class="container">
+      <div class="header-content">
+        <h1>Our Programs</h1>
+        <p class="header-subtitle">Comprehensive education with diverse opportunities for growth and development</p>
+        <div class="header-stats">
+          <div class="stat">
+            <span class="stat-number">15+</span>
+            <span class="stat-label">Academic Programs</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">8</span>
+            <span class="stat-label">Extracurricular Activities</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">College Acceptance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Navigation -->
+  <nav class="section-nav">
+    <a href="#schedules" class="nav-link">
+      <i class="fas fa-calendar-alt"></i>
+      Schedules
+    </a>
+    <a href="#activities" class="nav-link">
+      <i class="fas fa-basketball-ball"></i>
+      Activities
+    </a>
+    <a href="#volunteer" class="nav-link">
+      <i class="fas fa-hands-helping"></i>
+      Volunteer
+    </a>
+  </nav>
+
+  <!-- Schedules Section -->
+  <section class="schedules-section" id="schedules">
+    <div class="container">
+      <div class="section-header">
+        <h2>Academic Schedules</h2>
+        <p>Structured learning periods designed for optimal student development</p>
+      </div>
+
+      <div class="schedule-tabs">
+        <button class="schedule-tab active" data-target="high-school">High School</button>
+        <button class="schedule-tab" data-target="middle-school">Middle School</button>
+        <button class="schedule-tab" data-target="elementary">Elementary</button>
+      </div>
+
+      <!-- High School Schedule -->
+      <div class="schedule-content active" id="high-school">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Period</th>
+              <th>Time</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Morning Assembly</td>
+              <td class="period-time">8:00 AM - 8:15 AM</td>
+              <td>15 min</td>
+            </tr>
+            <tr>
+              <td>Period 1</td>
+              <td class="period-time">8:15 AM - 9:15 AM</td>
+              <td>60 min</td>
+            </tr>
+            <tr>
+              <td>Period 2</td>
+              <td class="period-time">9:20 AM - 10:20 AM</td>
+              <td>60 min</td>
+            </tr>
+            <tr class="break-row">
+              <td>Break</td>
+              <td class="period-time">10:20 AM - 10:35 AM</td>
+              <td>15 min</td>
+            </tr>
+            <tr>
+              <td>Period 3</td>
+              <td class="period-time">10:35 AM - 11:35 AM</td>
+              <td>60 min</td>
+            </tr>
+            <tr>
+              <td>Period 4</td>
+              <td class="period-time">11:40 AM - 12:40 PM</td>
+              <td>60 min</td>
+            </tr>
+            <tr class="break-row">
+              <td>Lunch Break</td>
+              <td class="period-time">12:40 PM - 1:30 PM</td>
+              <td>50 min</td>
+            </tr>
+            <tr>
+              <td>Period 5</td>
+              <td class="period-time">1:30 PM - 2:30 PM</td>
+              <td>60 min</td>
+            </tr>
+            <tr>
+              <td>Period 6</td>
+              <td class="period-time">2:35 PM - 3:35 PM</td>
+              <td>60 min</td>
+            </tr>
+            <tr>
+              <td>Extracurricular Activities</td>
+              <td class="period-time">3:40 PM - 4:40 PM</td>
+              <td>60 min</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Middle School Schedule -->
+      <div class="schedule-content" id="middle-school">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Period</th>
+              <th>Time</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Morning Assembly</td>
+              <td class="period-time">8:00 AM - 8:15 AM</td>
+              <td>15 min</td>
+            </tr>
+            <tr>
+              <td>Period 1</td>
+              <td class="period-time">8:15 AM - 9:00 AM</td>
+              <td>45 min</td>
+            </tr>
+            <tr>
+              <td>Period 2</td>
+              <td class="period-time">9:05 AM - 9:50 AM</td>
+              <td>45 min</td>
+            </tr>
+            <tr class="break-row">
+              <td>Break</td>
+              <td class="period-time">9:50 AM - 10:05 AM</td>
+              <td>15 min</td>
+            </tr>
+            <tr>
+              <td>Period 3</td>
+              <td class="period-time">10:05 AM - 10:50 AM</td>
+              <td>45 min</td>
+            </tr>
+            <tr>
+              <td>Period 4</td>
+              <td class="period-time">10:55 AM - 11:40 AM</td>
+              <td>45 min</td>
+            </tr>
+            <tr class="break-row">
+              <td>Lunch Break</td>
+              <td class="period-time">11:40 AM - 12:20 PM</td>
+              <td>40 min</td>
+            </tr>
+            <tr>
+              <td>Period 5</td>
+              <td class="period-time">12:20 PM - 1:05 PM</td>
+              <td>45 min</td>
+            </tr>
+            <tr>
+              <td>Period 6</td>
+              <td class="period-time">1:10 PM - 1:55 PM</td>
+              <td>45 min</td>
+            </tr>
+            <tr>
+              <td>Activity Time</td>
+              <td class="period-time">2:00 PM - 2:45 PM</td>
+              <td>45 min</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Academic Calendar Section -->
+  <section class="academic-calendar">
+    <div class="container">
+      <h2>Academic Calendar 2025-2026</h2>
+      <p class="calendar-subtitle">Important dates and events for the academic year</p>
+
+      <!-- Calendar Navigation -->
+      <div class="calendar-navigation">
+        <button class="nav-btn prev-btn">‹</button>
+        <h3 class="current-month">July 2025</h3>
+        <button class="nav-btn next-btn">›</button>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      <!-- Calendar Grid -->
+      <div class="calendar-grid">
+        <!-- July 2025 -->
+        <div class="month-calendar active" data-month="july-2025">
+          <div class="weekdays">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div class="days-grid">
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day">1</div>
+            <div class="day">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day orientation">18</div>
+            <div class="day academic">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day">25</div>
+            <div class="day">26</div>
+            <div class="day event">27</div>
+            <div class="day">28</div>
+            <div class="day">29</div>
+            <div class="day">30</div>
+            <div class="day">31</div>
+          </div>
+          
+          <!-- Events List -->
+          <div class="month-events">
+            <div class="event-item" data-date="18" data-type="orientation">
+              <span class="event-date">18</span>
+              <span class="event-title">New Family Orientation</span>
+            </div>
+            <div class="event-item" data-date="19" data-type="academic">
+              <span class="event-date">19</span>
+              <span class="event-title">Classes Start - Fall Semester</span>
+            </div>
+            <div class="event-item" data-date="27" data-type="event">
+              <span class="event-date">27</span>
+              <span class="event-title">Back to School Night</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- August 2025 -->
+        <div class="month-calendar" data-month="august-2025">
+          <div class="weekdays">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div class="days-grid">
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty">1</div>
+            <div class="day empty">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day">18</div>
+            <div class="day">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day event">25</div>
+            <div class="day">26</div>
+            <div class="day event">27</div>
+            <div class="day">28</div>
+            <div class="day">29</div>
+            <div class="day">30</div>
+            <div class="day">31</div>
+          </div>
+          
+          <div class="month-events">
+            <div class="event-item" data-date="25" data-type="event">
+              <span class="event-date">25</span>
+              <span class="event-title">Parent-Teacher Conference</span>
+            </div>
+            <div class="event-item" data-date="27" data-type="event">
+              <span class="event-date">27</span>
+              <span class="event-title">Sports Day</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- September 2025 -->
+        <div class="month-calendar" data-month="september-2025">
+          <div class="weekdays">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div class="days-grid">
+            <div class="day">1</div>
+            <div class="day">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day conference">8</div>
+            <div class="day conference">9</div>
+            <div class="day">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day academic">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day">18</div>
+            <div class="day">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day holiday">25</div>
+            <div class="day holiday">26</div>
+            <div class="day">27</div>
+            <div class="day">28</div>
+            <div class="day academic">29</div>
+            <div class="day academic">30</div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+          </div>
+          
+          <div class="month-events">
+            <div class="event-item" data-date="8" data-type="conference">
+              <span class="event-date">8</span>
+              <span class="event-title">Listening Conferences (PM)</span>
+            </div>
+            <div class="event-item" data-date="9" data-type="conference">
+              <span class="event-date">9</span>
+              <span class="event-title">Listening Conferences (AM)</span>
+            </div>
+            <div class="event-item" data-date="15" data-type="academic">
+              <span class="event-date">15</span>
+              <span class="event-title">CCA1 Begins</span>
+            </div>
+            <div class="event-item" data-date="25" data-type="holiday">
+              <span class="event-date">25</span>
+              <span class="event-title">Professional Development Day</span>
+            </div>
+            <div class="event-item" data-date="26" data-type="holiday">
+              <span class="event-date">26</span>
+              <span class="event-title">Professional Development Day</span>
+            </div>
+            <div class="event-item" data-date="29" data-type="academic">
+              <span class="event-date">29</span>
+              <span class="event-title">Fall MAP Testing Begins</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- October 2025 -->
+        <div class="month-calendar" data-month="october-2025">
+          <div class="weekdays">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div class="days-grid">
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day academic">1</div>
+            <div class="day academic">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day event">9</div>
+            <div class="day">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day holiday">13</div>
+            <div class="day holiday">14</div>
+            <div class="day holiday">15</div>
+            <div class="day holiday">16</div>
+            <div class="day holiday">17</div>
+            <div class="day holiday">18</div>
+            <div class="day">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day academic">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day event">25</div>
+            <div class="day event">26</div>
+            <div class="day academic">27</div>
+            <div class="day">28</div>
+            <div class="day academic">29</div>
+            <div class="day">30</div>
+            <div class="day">31</div>
+          </div>
+          
+          <div class="month-events">
+            <div class="event-item" data-date="1" data-type="academic">
+              <span class="event-date">1</span>
+              <span class="event-title">Fall MAP Testing (Make Ups)</span>
+            </div>
+            <div class="event-item" data-date="9" data-type="event">
+              <span class="event-date">9</span>
+              <span class="event-title">TEDx Youth Event</span>
+            </div>
+            <div class="event-item" data-date="13" data-type="holiday">
+              <span class="event-date">13</span>
+              <span class="event-title">Autumn Break Begins</span>
+            </div>
+            <div class="event-item" data-date="22" data-type="academic">
+              <span class="event-date">22</span>
+              <span class="event-title">PSAT Exams</span>
+            </div>
+            <div class="event-item" data-date="25" data-type="event">
+              <span class="event-date">25</span>
+              <span class="event-title">Global University Fair</span>
+            </div>
+            <div class="event-item" data-date="27" data-type="academic">
+              <span class="event-date">27</span>
+              <span class="event-title">Early Closure for PD</span>
+            </div>
+            <div class="event-item" data-date="29" data-type="academic">
+              <span class="event-date">29</span>
+              <span class="event-title">End of First Quarter</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- November 2025 -->
+        <div class="month-calendar" data-month="november-2025">
+          <div class="weekdays">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div class="days-grid">
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty">1</div>
+            <div class="day">2</div>
+            <div class="day academic">3</div>
+            <div class="day academic">4</div>
+            <div class="day academic">5</div>
+            <div class="day academic">6</div>
+            <div class="day academic">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day academic">13</div>
+            <div class="day conference">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day">18</div>
+            <div class="day event">19</div>
+            <div class="day event">20</div>
+            <div class="day">21</div>
+            <div class="day holiday">22</div>
+            <div class="day holiday">23</div>
+            <div class="day event">24</div>
+            <div class="day event">25</div>
+            <div class="day holiday">26</div>
+            <div class="day event">27</div>
+            <div class="day event">28</div>
+            <div class="day">29</div>
+            <div class="day">30</div>
+          </div>
+          
+          <div class="month-events">
+            <div class="event-item" data-date="3" data-type="academic">
+              <span class="event-date">3</span>
+              <span class="event-title">CGC Week Begins</span>
+            </div>
+            <div class="event-item" data-date="7" data-type="academic">
+              <span class="event-date">7</span>
+              <span class="event-title">Progress Reports Issued</span>
+            </div>
+            <div class="event-item" data-date="13" data-type="academic">
+              <span class="event-date">13</span>
+              <span class="event-title">CCA1 Ends</span>
+            </div>
+            <div class="event-item" data-date="14" data-type="conference">
+              <span class="event-date">14</span>
+              <span class="event-title">3-Way Conferences</span>
+            </div>
+            <div class="event-item" data-date="19" data-type="event">
+              <span class="event-date">19</span>
+              <span class="event-title">Winter Concert Series</span>
+            </div>
+            <div class="event-item" data-date="22" data-type="holiday">
+              <span class="event-date">22</span>
+              <span class="event-title">Chinggis Khan's Birthday</span>
+            </div>
+            <div class="event-item" data-date="26" data-type="holiday">
+              <span class="event-date">26</span>
+              <span class="event-title">Republic Day</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- December 2025 -->
+        <div class="month-calendar" data-month="december-2025">
+          <div class="weekdays">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div class="days-grid">
+            <div class="day">1</div>
+            <div class="day">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day academic">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day">10</div>
+            <div class="day event">11</div>
+            <div class="day event">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day">18</div>
+            <div class="day academic">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day holiday">22</div>
+            <div class="day holiday">23</div>
+            <div class="day holiday">24</div>
+            <div class="day holiday">25</div>
+            <div class="day holiday">26</div>
+            <div class="day holiday">27</div>
+            <div class="day holiday">28</div>
+            <div class="day holiday">29</div>
+            <div class="day holiday">30</div>
+            <div class="day holiday">31</div>
+          </div>
+          
+          <div class="month-events">
+            <div class="event-item" data-date="1" data-type="academic">
+              <span class="event-date">1</span>
+              <span class="event-title">CCA2 Begins</span>
+            </div>
+            <div class="event-item" data-date="6" data-type="academic">
+              <span class="event-date">6</span>
+              <span class="event-title">SAT Exams</span>
+            </div>
+            <div class="event-item" data-date="11" data-type="event">
+              <span class="event-date">11</span>
+              <span class="event-title">Secondary Production</span>
+            </div>
+            <div class="event-item" data-date="19" data-type="academic">
+              <span class="event-date">19</span>
+              <span class="event-title">Students dismissed at noon</span>
+            </div>
+            <div class="event-item" data-date="22" data-type="holiday">
+              <span class="event-date">22</span>
+              <span class="event-title">Winter Break Begins</span>
+            </div>
+            <div class="event-item" data-date="29" data-type="holiday">
+              <span class="event-date">29</span>
+              <span class="event-title">Independence Day</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- January 2026 -->
+        <div class="month-calendar" data-month="january-2026">
+          <div class="weekdays">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div class="days-grid">
+            <div class="day holiday">1</div>
+            <div class="day holiday">2</div>
+            <div class="day holiday">3</div>
+            <div class="day holiday">4</div>
+            <div class="day holiday">5</div>
+            <div class="day holiday">6</div>
+            <div class="day holiday">7</div>
+            <div class="day holiday">8</div>
+            <div class="day holiday">9</div>
+            <div class="day">10</div>
+            <div class="day">11</div>
+            <div class="day academic">12</div>
+            <div class="day conference">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day">18</div>
+            <div class="day holiday">19</div>
+            <div class="day holiday">20</div>
+            <div class="day holiday">21</div>
+            <div class="day">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day">25</div>
+            <div class="day academic">26</div>
+            <div class="day academic">27</div>
+            <div class="day academic">28</div>
+            <div class="day academic">29</div>
+            <div class="day academic">30</div>
+            <div class="day">31</div>
+          </div>
+          
+          <div class="month-events">
+            <div class="event-item" data-date="1" data-type="holiday">
+              <span class="event-date">1</span>
+              <span class="event-title">New Year's Day</span>
+            </div>
+            <div class="event-item" data-date="12" data-type="academic">
+              <span class="event-date">12</span>
+              <span class="event-title">CCA2 Ends</span>
+            </div>
+            <div class="event-item" data-date="13" data-type="conference">
+              <span class="event-date">13</span>
+              <span class="event-title">3-Way Conferences</span>
+            </div>
+            <div class="event-item" data-date="19" data-type="holiday">
+              <span class="event-date">19</span>
+              <span class="event-title">Tsagaan Sar Begins</span>
+            </div>
+            <div class="event-item" data-date="26" data-type="academic">
+              <span class="event-date">26</span>
+              <span class="event-title">DP2 Mock Exams Begin</span>
+            </div>
+            <div class="event-item" data-date="30" data-type="event">
+              <span class="event-date">30</span>
+              <span class="event-title">EAISAC Festival of Arts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- February 2026 -->
+        <div class="month-calendar" data-month="february-2026">
+          <div class="weekdays">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div class="days-grid">
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty">1</div>
+            <div class="day event">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day">18</div>
+            <div class="day">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day">25</div>
+            <div class="day">26</div>
+            <div class="day">27</div>
+            <div class="day">28</div>
+          </div>
+          
+          <div class="month-events">
+            <div class="event-item" data-date="2" data-type="event">
+              <span class="event-date">2</span>
+              <span class="event-title">S2 New Family Orientation</span>
+            </div>
+            <div class="event-item" data-date="14" data-type="event">
+              <span class="event-date">14</span>
+              <span class="event-title">Valentine's Day Celebration</span>
+            </div>
+            <div class="event-item" data-date="27" data-type="academic">
+              <span class="event-date">27</span>
+              <span class="event-title">End of Third Quarter</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- March 2026 -->
+        <div class="month-calendar" data-month="march-2026">
+          <div class="weekdays">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div class="days-grid">
+            <div class="day">1</div>
+            <div class="day">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day holiday">17</div>
+            <div class="day holiday">18</div>
+            <div class="day holiday">19</div>
+            <div class="day holiday">20</div>
+            <div class="day holiday">21</div>
+            <div class="day">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day">25</div>
+            <div class="day">26</div>
+            <div class="day">27</div>
+            <div class="day">28</div>
+            <div class="day">29</div>
+            <div class="day">30</div>
+            <div class="day">31</div>
+          </div>
+          
+          <div class="month-events">
+            <div class="event-item" data-date="8" data-type="event">
+              <span class="event-date">8</span>
+              <span class="event-title">International Women's Day</span>
+            </div>
+            <div class="event-item" data-date="17" data-type="holiday">
+              <span class="event-date">17</span>
+              <span class="event-title">Spring Break Begins</span>
+            </div>
+            <div class="event-item" data-date="30" data-type="academic">
+              <span class="event-date">30</span>
+              <span class="event-title">Spring MAP Testing Begins</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- April 2026 -->
+        <div class="month-calendar" data-month="april-2026">
+          <div class="weekdays">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div class="days-grid">
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day academic">1</div>
+            <div class="day academic">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day">18</div>
+            <div class="day">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day">25</div>
+            <div class="day">26</div>
+            <div class="day">27</div>
+            <div class="day">28</div>
+            <div class="day">29</div>
+            <div class="day">30</div>
+          </div>
+          
+          <div class="month-events">
+            <div class="event-item" data-date="1" data-type="academic">
+              <span class="event-date">1</span>
+              <span class="event-title">Spring MAP Testing</span>
+            </div>
+            <div class="event-item" data-date="15" data-type="event">
+              <span class="event-date">15</span>
+              <span class="event-title">Science Fair</span>
+            </div>
+            <div class="event-item" data-date="24" data-type="academic">
+              <span class="event-date">24</span>
+              <span class="event-title">End of Fourth Quarter</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- May 2026 -->
+        <div class="month-calendar" data-month="may-2026">
+          <div class="weekdays">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div class="days-grid">
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty">1</div>
+            <div class="day">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day">18</div>
+            <div class="day">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day holiday">25</div>
+            <div class="day">26</div>
+            <div class="day">27</div>
+            <div class="day">28</div>
+            <div class="day">29</div>
+            <div class="day academic">30</div>
+            <div class="day">31</div>
+          </div>
+          
+          <div class="month-events">
+            <div class="event-item" data-date="15" data-type="event">
+              <span class="event-date">15</span>
+              <span class="event-title">Art Exhibition</span>
+            </div>
+            <div class="event-item" data-date="25" data-type="holiday">
+              <span class="event-date">25</span>
+              <span class="event-title">Memorial Day - No School</span>
+            </div>
+            <div class="event-item" data-date="30" data-type="academic">
+              <span class="event-date">30</span>
+              <span class="event-title">Final Exams Begin</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- June 2026 -->
+        <div class="month-calendar" data-month="june-2026">
+          <div class="weekdays">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+          </div>
+          <div class="days-grid">
+            <div class="day academic">1</div>
+            <div class="day academic">2</div>
+            <div class="day academic">3</div>
+            <div class="day academic">4</div>
+            <div class="day academic">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day academic">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day">18</div>
+            <div class="day">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day">25</div>
+            <div class="day">26</div>
+            <div class="day">27</div>
+            <div class="day">28</div>
+            <div class="day">29</div>
+            <div class="day">30</div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+          </div>
+          
+          <div class="month-events">
+            <div class="event-item" data-date="1" data-type="academic">
+              <span class="event-date">1</span>
+              <span class="event-title">Final Exams Continue</span>
+            </div>
+            <div class="event-item" data-date="10" data-type="academic">
+              <span class="event-date">10</span>
+              <span class="event-title">Last Day of School / Graduation</span>
+            </div>
+            <div class="event-item" data-date="15" data-type="event">
+              <span class="event-date">15</span>
+              <span class="event-title">Graduation Ceremony</span>
+            </div>
+            <div class="event-item" data-date="20" data-type="event">
+              <span class="event-date">20</span>
+              <span class="event-title">Summer Programs Begin</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="calendar-legend">
+        <h4>Legend</h4>
+        <div class="legend-items">
+          <div class="legend-item">
+            <span class="color-box holiday"></span>
+            <span>Holiday / Break</span>
+          </div>
+          <div class="legend-item">
+            <span class="color-box academic"></span>
+            <span>Academic Event</span>
+          </div>
+          <div class="legend-item">
+            <span class="color-box event"></span>
+            <span>School Event</span>
+          </div>
+          <div class="legend-item">
+            <span class="color-box orientation"></span>
+            <span>Orientation</span>
+          </div>
+          <div class="legend-item">
+            <span class="color-box conference"></span>
+            <span>Conference</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="academic-calendar.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Activities Section -->
+  <section class="activities-section" id="activities">
+    <div class="container">
+      <div class="section-header">
+        <h2>Extracurricular Activities</h2>
+        <p>Enriching experiences beyond the classroom to develop well-rounded individuals</p>
+      </div>
+
+      <div class="activities-grid">
+        <div class="activity-card">
+          <div class="activity-image">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="activity-content">
+            <h3>Robotics Club</h3>
+            <p>Design, build, and program robots while learning engineering principles and teamwork skills.</p>
+            <div class="activity-details">
+              <span><i class="fas fa-clock"></i> Wed 3:40-5:00 PM</span>
+              <span><i class="fas fa-user"></i> Grades 9-12</span>
+            </div>
+            <button class="activity-btn">Join Club</button>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <i class="fas fa-basketball-ball"></i>
+          </div>
+          <div class="activity-content">
+            <h3>Basketball Team</h3>
+            <p>Develop athletic skills, sportsmanship, and teamwork through competitive basketball.</p>
+            <div class="activity-details">
+              <span><i class="fas fa-clock"></i> Mon/Wed 4:00-5:30 PM</span>
+              <span><i class="fas fa-user"></i> Grades 7-12</span>
+            </div>
+            <button class="activity-btn">Join Team</button>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <i class="fas fa-paint-brush"></i>
+          </div>
+          <div class="activity-content">
+            <h3>Art Club</h3>
+            <p>Explore various art forms including painting, drawing, and sculpture in a creative environment.</p>
+            <div class="activity-details">
+              <span><i class="fas fa-clock"></i> Tue 3:40-5:00 PM</span>
+              <span><i class="fas fa-user"></i> All Grades</span>
+            </div>
+            <button class="activity-btn">Join Club</button>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <i class="fas fa-music"></i>
+          </div>
+          <div class="activity-content">
+            <h3>School Band</h3>
+            <p>Learn to play musical instruments and perform at school events and competitions.</p>
+            <div class="activity-details">
+              <span><i class="fas fa-clock"></i> Thu 3:40-5:00 PM</span>
+              <span><i class="fas fa-user"></i> Grades 6-12</span>
+            </div>
+            <button class="activity-btn">Join Band</button>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <i class="fas fa-theater-masks"></i>
+          </div>
+          <div class="activity-content">
+            <h3>Drama Club</h3>
+            <p>Develop acting skills, confidence, and creativity through theater productions and workshops.</p>
+            <div class="activity-details">
+              <span><i class="fas fa-clock"></i> Fri 3:40-5:00 PM</span>
+              <span><i class="fas fa-user"></i> All Grades</span>
+            </div>
+            <button class="activity-btn">Join Club</button>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <div class="activity-content">
+            <h3>Environmental Club</h3>
+            <p>Promote environmental awareness and sustainability through projects and community initiatives.</p>
+            <div class="activity-details">
+              <span><i class="fas fa-clock"></i> Mon 3:40-4:30 PM</span>
+              <span><i class="fas fa-user"></i> All Grades</span>
+            </div>
+            <button class="activity-btn">Join Club</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Programs -->
+  <section class="special-programs">
+    <div class="container">
+      <div class="section-header">
+        <h2>Special Programs</h2>
+        <p>Unique opportunities for specialized learning and development</p>
+      </div>
+
+      <div class="program-cards">
+        <div class="program-card">
+          <div class="program-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3>College Prep Program</h3>
+          <p>Comprehensive guidance for university applications, test preparation, and career planning.</p>
+        </div>
+
+        <div class="program-card">
+          <div class="program-icon">
+            <i class="fas fa-language"></i>
+          </div>
+          <h3>Language Immersion</h3>
+          <p>Intensive language programs in English, Mandarin, and Russian with native speakers.</p>
+        </div>
+
+        <div class="program-card">
+          <div class="program-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3>STEM Program</h3>
+          <p>Advanced courses and projects in Science, Technology, Engineering, and Mathematics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Volunteer Section -->
+  <section class="volunteer-section" id="volunteer">
+    <div class="container">
+      <div class="section-header">
+        <h2>Volunteer Opportunities</h2>
+        <p>Make a difference in our community through meaningful service projects</p>
+      </div>
+
+      <div class="volunteer-content">
+        <div class="volunteer-text">
+          <h2>Give Back to the Community</h2>
+          <p>At MIS, we believe in the importance of community service and developing socially responsible citizens. Our volunteer programs provide students with opportunities to make a positive impact while developing leadership skills and empathy.</p>
+          
+          <div class="volunteer-benefits">
+            <div class="benefit-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Develop leadership and teamwork skills</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Gain valuable experience for college applications</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Make meaningful connections in the community</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Fulfill community service requirements</span>
+            </div>
+          </div>
+
+          <h3>Current Volunteer Opportunities</h3>
+          <ul>
+            <li>Community clean-up projects</li>
+            <li>Tutoring younger students</li>
+            <li>Assisting at local charity events</li>
+            <li>Environmental conservation projects</li>
+            <li>Elderly care facility visits</li>
+          </ul>
+        </div>
+
+        <div class="volunteer-form">
+          <h3>Volunteer Interest Form</h3>
+          <form class="interest-form">
+            <div class="form-group">
+              <label for="volunteer-name">Full Name</label>
+              <input type="text" id="volunteer-name" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+              <label for="volunteer-grade">Grade Level</label>
+              <select id="volunteer-grade">
+                <option value="">Select Grade</option>
+                <option value="9">Grade 9</option>
+                <option value="10">Grade 10</option>
+                <option value="11">Grade 11</option>
+                <option value="12">Grade 12</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="volunteer-email">Email Address</label>
+              <input type="email" id="volunteer-email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+              <label for="volunteer-interest">Area of Interest</label>
+              <select id="volunteer-interest">
+                <option value="">Select Interest</option>
+                <option value="tutoring">Tutoring</option>
+                <option value="environment">Environmental Projects</option>
+                <option value="community">Community Events</option>
+                <option value="elderly">Elderly Care</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="volunteer-message">Additional Information</label>
+              <textarea id="volunteer-message" rows="4" placeholder="Tell us about your interests or experience"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-paper-plane"></i>
+              Submit Interest Form
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="contact">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>School</h3>
+        <ul>
+          <li>About Us</li>
+          <li>Programms</li>
+          <li>Admissions</li>
+          <li>Information</li>
+          <li>About Student</li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>n/a</p>
+        <p>Email: <a href="mailto:n/a">n/a</a></p>
+        <p>Email: <a href="mailto:n/a">n/a</a></p>
+        <p>Утас: n/a</p>
+        <p>Факс: n/a</p>
+      </div>
+
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCcINCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn"
+         width="600"
+         height="450" 
+         style="border:0;" 
+         allowfullscreen="" 
+         loading="lazy" 
+         referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div class="footer-section footer-right">
+        <img src="cambridge-logo.png" alt="n/a" class="logo">
+        <p>Mongolian International School</p>
+        <div class="iso-box">ISO <span>n/a</span></div>
+
+        <div class="social-icons">
+          <a href="#"><img src="facebook-icon.svg" alt="Facebook"></a>
+          <a href="#"><img src="instagram-icon.svg" alt="Instagram"></a>
+          <a href="#"><img src="youtube-icon.svg" alt="YouTube"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025. Mongolian International School. All rights reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for section navigation
+    document.querySelectorAll('.section-nav .nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+          const offsetTop = targetSection.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Highlight active section in navigation
+    function updateActiveNav() {
+      const sections = document.querySelectorAll('#schedules, #activities, #volunteer');
+      const navLinks = document.querySelectorAll('.section-nav .nav-link');
+      
+      let currentSection = '';
+      const scrollPos = window.scrollY + 100;
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+          currentSection = section.id;
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    // Update nav on scroll
+    window.addEventListener('scroll', updateActiveNav);
+
+    // Schedule tabs functionality
+    document.querySelectorAll('.schedule-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        // Remove active class from all tabs
+        document.querySelectorAll('.schedule-tab').forEach(t => {
+          t.classList.remove('active');
+        });
+        
+        // Add active class to clicked tab
+        this.classList.add('active');
+        
+        // Hide all schedule contents
+        document.querySelectorAll('.schedule-content').forEach(content => {
+          content.classList.remove('active');
+        });
+        
+        // Show target schedule content
+        const targetId = this.getAttribute('data-target');
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+
+    // Activity button functionality
+    document.querySelectorAll('.activity-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const activityName = this.closest('.activity-card').querySelector('h3').textContent;
+        alert(`Thank you for your interest in ${activityName}! A club advisor will contact you soon.`);
+      });
+    });
+
+    // Volunteer form submission
+    const volunteerForm = document.querySelector('.interest-form');
+    if (volunteerForm) {
+      volunteerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = {
+          name: document.getElementById('volunteer-name').value,
+          grade: document.getElementById('volunteer-grade').value,
+          email: document.getElementById('volunteer-email').value,
+          interest: document.getElementById('volunteer-interest').value,
+          message: document.getElementById('volunteer-message').value
+        };
+        
+        // Simple validation
+        if (formData.name && formData.grade && formData.email && formData.interest) {
+          alert('Thank you for your interest in volunteering! We will contact you soon with opportunities.');
+          volunteerForm.reset();
+        } else {
+          alert('Please fill in all required fields.');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
