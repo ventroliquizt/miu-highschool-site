@@ -1,0 +1,104 @@
+/* ===== Global Reset ===== */
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== Page Background ===== */
+body {
+  margin: 0;
+  background: #f4f4f4;
+  color: #222;
+}
+
+/* ===== Top Bar ===== */
+.admin-navbar {
+  background: #b30000; /* MIS red */
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-navbar h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.admin-navbar a,
+.admin-navbar button {
+  background: white;
+  color: #b30000;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.admin-navbar a:hover,
+.admin-navbar button:hover {
+  background: #ffe5e5;
+}
+
+/* ===== Main Container ===== */
+.admin-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+/* ===== Headings ===== */
+h2 {
+  margin-top: 0;
+  color: #b30000;
+}
+
+/* ===== Forms ===== */
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* ===== Buttons ===== */
+button {
+  padding: 10px 18px;
+  background: #b30000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #900000;
+}
+
+/* ===== Article Card ===== */
+.article-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+}
+
+.article-card h3 {
+  margin: 0 0 10px;
+}
+
+/* ===== Utility ===== */
+.actions {
+  display: flex;
+  gap: 10px;
+}

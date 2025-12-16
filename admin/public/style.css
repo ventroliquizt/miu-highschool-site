@@ -1,0 +1,687 @@
+
+/* =========================================
+   1. RESET & GLOBAL
+========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  font-family: "Times New Roman", Times, serif;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* =========================================
+   2. NAVBAR
+========================================= */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background-color: #dd3434;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-size: 20px;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav-left a,
+.nav-right a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 15px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+  background-color: #ffffff;
+  color: #b50e0e;
+}
+
+.logo a {
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  font-size: 32px;
+}
+
+
+.login-btn {
+  padding: 8px 16px;
+  border: 2px solid white;
+  border-radius: 6px;
+}
+
+.login-btn:hover {
+  background-color: white;
+  color: #d93636;
+}
+
+
+/* Dropdown menus */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f0f0f0;
+  min-width: 180px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  z-index: 1001;
+  padding: 10px 0;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-menu a:hover {
+  background-color: #b50e0e;
+  color: #fff;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile navbar toggle */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-left,
+  .nav-right {
+    display: none;
+    flex-direction: column;
+    background-color: #dd3434;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navbar.active .nav-left,
+  .navbar.active .nav-right {
+    display: flex;
+  }
+
+  .nav-left a,
+  .nav-right a {
+    justify-content: flex-start;
+  }
+}
+
+/* =========================================
+   3. HERO SECTION
+========================================= */
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #dd3434;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.whiteboard {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 1400px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.hero-image {
+  flex: 7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  width: 95%;
+  height: 95%;
+  object-fit: cover;
+}
+
+.hero-text {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.hero-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #e31e24;
+  margin-bottom: 1rem;
+}
+
+.hero-text h2 {
+  font-size: 2.4rem;
+  color: #000;
+  line-height: 1.6;
+}
+
+#hero-text {
+  transition: opacity 0.4s ease;
+  opacity: 1;
+}
+
+.logo2 {
+  height: 80px;
+  margin-bottom: 1rem;
+}
+
+.logo2 img {
+  height: 100%;
+}
+
+/* Responsive hero */
+@media (max-width: 900px) {
+  .whiteboard {
+    flex-direction: column;
+  }
+}
+
+/* =========================================
+   4. PRE-HERO (BLACKBOARD)
+========================================= */
+.pre-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #dd3434;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.blackboard {
+  background-color: #000;
+  width: 100%;
+  max-width: 1400px;
+  min-height: 60vh;
+  display: flex;
+  position: relative;
+  padding: 2rem;
+  overflow: hidden;
+  color: #f0f0f0;
+}
+
+.grey-logo {
+  position: absolute;
+  top: -80px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: url("ChatGPT_Image_Nov_8__2025__04_54_58_AM-removebg-preview.png") no-repeat center center;
+  background-size: contain;
+  filter: blur(0px) opacity(0.2);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.prehero-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.prehero-image img {
+  width: 90%;
+  height: auto;
+  object-fit: cover;
+}
+
+.prehero-text-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+
+.prehero-text h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.red-line {
+  border: 0;
+  height: 2px;
+  background-color: red;
+  margin: 10px 0;
+}
+
+.prehero-text-p p {
+  margin-top: 0.5rem;
+}
+
+/* Responsive pre-hero */
+@media (max-width: 900px) {
+  .blackboard {
+    flex-direction: column;
+  }
+}
+
+/* =========================================
+   5. ROTATING LOGO SECTION
+========================================= */
+.logo-rotate-section {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.auto-rotate {
+  width: 200px;
+  animation: none;
+}
+
+@keyframes auto-rotateanimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   6. INFO SECTIONS (generic)
+========================================= */
+.info-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 60px 40px;
+}
+
+.info-section.reverse {
+  flex-direction: row-reverse;
+}
+
+.info-image,
+.info-text {
+  flex: 1;
+}
+
+.info-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: cover;
+}
+
+.info-text h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.info-text p {
+  font-size: 1rem;
+}
+
+/* Simple fade-in helper (if you want to use IntersectionObserver) */
+.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease-out;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Special info-section1 on home page (vice greeting) */
+.info-section1 {
+  padding: 60px 40px;
+}
+
+.info-image1 {
+  margin-left: 45px;
+}
+
+.info-text1 {
+  font-weight: bold;
+  padding: 0 80px;
+}
+
+.info-text1 h2 {
+  color: rgb(8, 8, 8);
+  margin-top: 20px;
+}
+
+.info-text1 p {
+  font-size: large;
+  text-align: justify;
+  margin-top: 10px;
+}
+
+/* Horizontal separator */
+.seperator {
+  border: 0;
+  height: 1px;
+  background-color: #000000;
+  margin: 40px 0;
+}
+
+/* =========================================
+   7. LEVELS SECTION
+========================================= */
+.levels-section {
+  padding: 50px 20px;
+}
+
+.levels-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.levels-images {
+  display: flex;
+  gap: 20px;
+}
+
+.level-card {
+  width: 280px;
+  text-decoration: none;
+  color: black;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.level-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+
+.level-card h1,
+.level-card h2 {
+  background: #fff;
+  padding: 6px 0;
+}
+
+.level-card h2 {
+  color: grey;
+}
+
+.level-card:hover {
+  transform: scale(1.05);
+}
+
+.levels-text {
+  max-width: 400px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.red-line2 {
+  border: 0;
+  height: 2px;
+  background-color: red;
+  margin: 10px 0 20px;
+}
+
+/* =========================================
+   8. "AT A GLANCE" SLIDER
+========================================= */
+.glance-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px;
+  min-height: 100vh;
+  background-color: #000;
+  color: #fff;
+}
+
+.glance-text {
+  width: 30%;
+}
+
+.glance-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.glance-text hr {
+  border: none;
+  height: 2px;
+  background: #ffffff;
+  margin-bottom: 20px;
+}
+
+.glance-slides {
+  position: relative;
+  width: 65%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.slide.active {
+  display: flex;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide .info {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.slide .info h2 {
+  font-size: 5rem;
+  margin-bottom: 10px;
+  border-top: 2px solid red;
+  border-bottom: 2px solid red;
+  display: inline-block;
+  padding: 10px 0;
+  color: white;
+}
+
+.slide .info p {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  margin-top: 15px;
+  color: white;
+}
+
+/* =========================================
+   9. FOOTER
+========================================= */
+.footer {
+  background: linear-gradient(25deg, #e31e24, #c91e24, #802427);
+  color: #fff;
+  padding: 40px 60px 20px;
+  width: 100%;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin: 10px;
+}
+
+.footer-section h3 {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section li {
+  margin: 6px 0;
+}
+
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer .logo {
+  max-width: 160px;
+}
+
+.iso-box {
+  background: #fff;
+  color: #000000;
+  display: inline-block;
+  font-weight: bold;
+  padding: 5px 10px;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+
+.iso-box span {
+  background: #ffffff;
+  color: #000000;
+  padding: 2px 6px;
+  margin-left: 4px;
+  border-radius: 2px;
+}
+
+.social-icons {
+  margin-top: 15px;
+}
+
+.social-icons a img {
+  width: 25px;
+  margin-left: 10px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 13px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 10px;
+}
+
+/* Small footer responsive tweak */
+@media (max-width: 900px) {
+  .glance-section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .glance-text,
+  .glance-slides {
+    width: 100%;
+  }
+
+  .footer-right {
+    text-align: left;
+  }
+}
+
+
+.admin-edit-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  padding: 6px 10px;
+  font-size: 12px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
