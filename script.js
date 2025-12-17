@@ -121,4 +121,70 @@ async function loadText() {
   if(data) document.getElementById('heroText').innerText = data.content;
 }
 
+
 loadText();
+
+
+
+
+
+
+
+
+
+
+    // Calendar Navigation
+document.addEventListener('DOMContentLoaded', function() {
+  const months = document.querySelectorAll('.month-calendar');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  const currentMonth = document.querySelector('.current-month');
+  let currentIndex = 0;
+
+  // Month names for display
+  const monthNames = {
+    'september-2025': 'September 2025',
+    'october-2025': 'October 2025',
+    'november-2025': 'November 2025',
+    'december-2025': 'December 2025',
+    'january-2026': 'January 2026',
+    'february-2026': 'February 2026',
+    'march-2026': 'March 2026',
+    'april-2026': 'April 2026',
+    'may-2026': 'May 2026',
+    'june-2026': 'June 2026'
+  };
+
+  function showMonth(index) {
+    months.forEach(month => month.classList.remove('active'));
+    months[index].classList.add('active');
+    
+    const monthKey = months[index].getAttribute('data-month');
+    currentMonth.textContent = monthNames[monthKey] || monthKey.replace('-', ' ');
+  }
+
+  prevBtn.addEventListener('click', function() {
+    currentIndex = (currentIndex - 1 + months.length) % months.length;
+    showMonth(currentIndex);
+  });
+
+  nextBtn.addEventListener('click', function() {
+    currentIndex = (currentIndex + 1) % months.length;
+    showMonth(currentIndex);
+  });
+
+  const days = document.querySelectorAll('.day:not(.empty)');
+  days.forEach(day => {
+    day.addEventListener('click', function() {
+      const date = this.textContent;
+      const month = document.querySelector('.month-calendar.active').getAttribute('data-month');
+      const eventType = Array.from(this.classList).find(cls => 
+        ['holiday', 'academic', 'event', 'orientation', 'conference'].includes(cls)
+      );
+      
+      console.log(`Clicked on ${date} ${month} - ${eventType || 'Regular Day'}`);
+    });
+  });
+
+  showMonth(currentIndex);
+});
