@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Mongolian International School</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Contact Page Specific Styles */
+    :root {
+      --primary-color: #d82a2a;
+      --secondary-color: #2c6bb8;
+      --accent-color: #f5f5f5;
+      --light-color: #f8fafc;
+      --dark-color: #0f2d56;
+      --grey-color: #6b7280;
+      --dark-grey: #374151;
+      --text-color: #1f2937;
+      --text-light: #6b7280;
+      --success-color: #059669;
+      --warning-color: #d97706;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    /* Contact Header */
+    .contact-header {
+      background-image: url("https://github.com/ventroliquizt/miu-highschool-site/blob/main/556981901_1889760831840412_9179320815925247158_n.jpg?raw=true");
+      background-size: cover;
+      background-position: 50% 65%;
+      background-repeat: no-repeat;
+      padding: 120px 0 420px;
+      text-align: center;
+      color: rgb(255, 255, 255);
+      position: relative;
+    }
+
+
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      color: var(--dark-color);
+      margin-bottom: 15px;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    /* Contact Info Section */
+    .contact-info-section {
+      padding: 80px 0;
+      background: white;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .contact-card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-align: center;
+      border-top: 4px solid var(--primary-color);
+    }
+
+    .contact-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .contact-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, #e74c4c 100%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      font-size: 2rem;
+      box-shadow: 0 8px 25px rgba(216, 42, 42, 0.3);
+    }
+
+    .contact-card h3 {
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .contact-card p {
+      color: var(--grey-color);
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    /* Office Hours */
+    .office-hours {
+      background: #f8fafc;
+      padding: 40px;
+      border-radius: var(--border-radius);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .office-hours h3 {
+      color: var(--dark-color);
+      margin-bottom: 25px;
+      text-align: center;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .hour-item {
+      background: white;
+      padding: 20px;
+      border-radius: var(--border-radius);
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .hour-item .day {
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .hour-item .time {
+      color: var(--dark-color);
+      font-weight: 500;
+    }
+
+    /* Location Section */
+    .location-section {
+      padding: 80px 0;
+      background: #f8fafc;
+    }
+
+    .location-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .map-container {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-hover);
+      height: 500px;
+      margin-top: 40px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .location-details {
+      background: white;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .location-details h4 {
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+
+    .location-details p {
+      color: var(--grey-color);
+      margin-bottom: 15px;
+      line-height: 1.7;
+    }
+
+    /* Social Media */
+    .social-media-section {
+      padding: 80px 0;
+      background: white;
+      text-align: center;
+    }
+
+    .social-media-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .social-media-section h3 {
+      color: var(--dark-color);
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+    }
+
+    .social-icons-large {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .social-icon-large {
+      width: 70px;
+      height: 70px;
+      background: var(--accent-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-icon-large:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-5px);
+    }
+
+    .social-icon-large.facebook:hover {
+      background: #1877F2;
+    }
+
+    .social-icon-large.instagram:hover {
+      background: #E4405F;
+    }
+
+    .social-icon-large.youtube:hover {
+      background: #FF0000;
+    }
+
+    /* Footer from previous pages */
+    .footer {
+      background: linear-gradient(25deg, #e31e24, #c91e24, #802427);
+      color: white;
+      padding: 60px 0 20px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+
+    .footer-section h3 {
+      color: white;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--primary-color);
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+      color: #cbd5e0;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .footer-section ul li:hover {
+      color: white;
+    }
+
+    .footer-section p {
+      color: #cbd5e0;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .footer-section a {
+      color: #cbd5e0;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .map-container-footer {
+      grid-column: span 2;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .map-container-footer iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      display: block;
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-right img.logo {
+      max-width: 200px;
+      margin-bottom: 20px;
+      filter: brightness(0) invert(1);
+    }
+
+    .iso-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 1.1rem;
+    }
+
+    .iso-box span {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    .social-icons img {
+      width: 20px;
+      height: 20px;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #a0aec0;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .map-container {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .office-hours {
+        padding: 30px 20px;
+      }
+
+      .hours-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .map-container {
+        height: 300px;
+      }
+
+      .social-icon-large {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-header {
+        padding: 80px 0 60px;
+      }
+
+      .contact-header h1 {
+        font-size: 2rem;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
+      }
+
+      .contact-section,
+      .location-section {
+        padding: 60px 0;
+      }
+
+      .social-icons-large {
+        gap: 20px;
+      }
+
+      .social-icon-large {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .contact-card,
+    .hour-item {
+      animation: fadeInUp 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar (Same as Other Pages) -->
+  <nav class="navbar">
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+    <ul class="nav-left">
+      <li class="dropdown">
+        <a href="index.html">About Us</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Vice's greeting</a></li>
+          <li><a href="#">Mission & Vision</a></li>
+          <li><a href="#">Our Success</a></li>
+          <li><a href="#">Staff</a></li>
+          <li><a href="#">Enviroment</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="programms.html">Programms</a>
+        <ul class="dropdown-menu">
+          <li><a href="#academic-calendar">Academic Calendar</a></li>
+          <li><a href="#activities">Extracurricular Activities</a></li>
+          <li><a href="#volunteer">Volunteer</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="admissions.html">Admissions</a>
+        <ul class="dropdown-menu">
+          <li><a href="#process">Admissions Process</a></li>
+          <li><a href="#online">Online Admissions</a></li>
+          <li><a href="#tuition">Tuition & Fees</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="logo">
+      <a href="index.html">
+        <img src="mis_logo.png" alt="">
+      </a>
+    </div>
+
+    <ul class="nav-right">
+      <li class="dropdown">
+        <a href="info.html">Information</a>
+        <ul class="dropdown-menu">
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="student.html">About Student</a>
+        <ul class="dropdown-menu">
+          <li><a href="#cafeteria">Cafeteria</a></li>
+          <li><a href="#uniform">Uniform</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="contact.html">Contact Us</a>
+        <ul class="dropdown-menu">
+          <li><a href="#contact">Email</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#contact">Phone</a></li>
+          <li><a href="#social">Facebook</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Contact Header -->
+  <section class="contact-header">
+    <div class="container">
+    </div>
+  </section>
+
+  <!-- Contact Information Section -->
+  <section class="contact-info-section" id="contact">
+    <div class="contact-container">
+      <div class="contact-grid">
+        <!-- Address Card -->
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3>Address</h3>
+          <p>Mongolian International School</p>
+          <p>Peace Avenue, Khan-Uul District</p>
+          <p>Ulaanbaatar, Mongolia</p>
+        </div>
+
+        <!-- Phone Card -->
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h3>Phone</h3>
+          <p>Main Office: +976 (11) 123-4567</p>
+          <p>Admissions: +976 (11) 123-4568</p>
+          <p>Fax: +976 (11) 123-4569</p>
+        </div>
+
+        <!-- Email Card -->
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Email</h3>
+          <p>General: info@mis.edu.mn</p>
+          <p>Admissions: admissions@mis.edu.mn</p>
+          <p>Registrar: registrar@mis.edu.mn</p>
+        </div>
+      </div>
+
+      <!-- Office Hours -->
+      <div class="office-hours">
+        <h3><i class="fas fa-clock"></i> Office Hours</h3>
+        <div class="hours-grid">
+          <div class="hour-item">
+            <div class="day">Monday - Friday</div>
+            <div class="time">8:00 AM - 5:00 PM</div>
+          </div>
+          <div class="hour-item">
+            <div class="day">Saturday</div>
+            <div class="time">9:00 AM - 1:00 PM</div>
+          </div>
+          <div class="hour-item">
+            <div class="day">Sunday</div>
+            <div class="time">Closed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section class="location-section" id="location">
+    <div class="location-container">
+      <div class="section-header">
+        <h2>Location</h2>
+      </div>
+
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCcINCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn"
+         width="600"
+         height="450" 
+         style="border:0;" 
+         allowfullscreen="" 
+         loading="lazy" 
+         referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div class="location-details">
+        <h4>Campus Address</h4>
+        <p>Mongolian International School. BZ District 13 khoroo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Media Section -->
+  <section class="social-media-section" id="social">
+    <div class="social-media-container">
+      <div class="section-header">
+        <h2>Connect With Us</h2>
+        <p>Follow us on social media for the latest updates</p>
+      </div>
+
+      <div class="social-icons-large">
+        <a href="#" class="social-icon-large facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="social-icon-large instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="social-icon-large youtube">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact-bottom">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>School</h3>
+        <ul>
+          <li>About Us</li>
+          <li>Programms</li>
+          <li>Admissions</li>
+          <li>Information</li>
+          <li>About Student</li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Mongolian International School</p>
+        <p>Peace Avenue, Khan-Uul District</p>
+        <p>Ulaanbaatar, Mongolia</p>
+        <p>Phone: +976 (11) 123-4567</p>
+        <p>Email: info@mis.edu.mn</p>
+      </div>
+
+      <div class="map-container-footer">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCcINCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn"
+         style="border:0;" 
+         allowfullscreen="" 
+         loading="lazy" 
+         referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div class="footer-section footer-right">
+        <img src="cambridge-logo.png" alt="n/a" class="logo">
+        <p>Mongolian International School</p>
+        <div class="iso-box">ISO <span>n/a</span></div>
+
+        <div class="social-icons">
+          <a href="#"><img src="facebook-icon.svg" alt="Facebook"></a>
+          <a href="#"><img src="instagram-icon.svg" alt="Instagram"></a>
+          <a href="#"><img src="youtube-icon.svg" alt="YouTube"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025. Mongolian International School. All rights reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Add animation to contact cards on scroll
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.5s ease forwards';
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements for animation
+    document.querySelectorAll('.contact-card, .hour-item').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
