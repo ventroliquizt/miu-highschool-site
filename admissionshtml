@@ -12,7 +12,7 @@
     :root {
       --primary-color: #d82a2a;
       --secondary-color: #2c6bb8;
-      --accent-color: #e6effc;
+      --accent-color: #f5f5f5;
       --light-color: #f8fafc;
       --dark-color: #0f2d56;
       --grey-color: #6b7280;
@@ -29,104 +29,59 @@
 
     /* Admissions Header */
     .admissions-header {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
-      padding: 100px 0 80px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .admissions-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+      background-image: url("https://github.com/ventroliquizt/miu-highschool-site/blob/main/556981901_1889760831840412_9179320815925247158_n.jpg?raw=true");
       background-size: cover;
-    }
-
-    .header-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .admissions-header h1 {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      font-weight: 700;
-      text-shadow: 2px 2px 4px rgba(244, 10, 10, 0.3);
-    }
-
-    .header-subtitle {
-      font-size: 1.3rem;
-      max-width: 600px;
-      margin: 0 auto 50px;
-      opacity: 0.9;
-    }
-
-    .header-stats {
-      display: flex;
-      justify-content: center;
-      gap: 60px;
-      margin-top: 50px;
-    }
-
-    .stat {
+      background-position: 50% 65%;
+      background-repeat: no-repeat;
+      padding: 120px 0 420px;
       text-align: center;
+      color: rgb(255, 255, 255);
+      position: relative;
     }
 
-    .stat-number {
-      display: block;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 5px;
-    }
-
-    .stat-label {
-      font-size: 1rem;
-      opacity: 0.9;
-    }
 
     /* Section Navigation */
     .section-nav {
       position: sticky;
       top: 0;
-      background: white;
-      padding: 1.5rem 0;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+      background: var(--primary-color);
+      padding: 1.2rem 0;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.416);
       z-index: 1000;
       display: flex;
       justify-content: center;
-      gap: 3rem;
-      border-bottom: 3px solid var(--primary-color);
+      gap: 2rem;
+      border-bottom: 3px solid #d82a2a;
     }
 
     .section-nav .nav-link {
       text-decoration: none;
-      color: var(--text-color);
+      color: white;
       font-weight: 600;
-      padding: 1rem 2rem;
-      border-radius: 8px;
+      padding: 0.8rem 2.5rem;
+      border-radius: 50px;
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
       gap: 0.5rem;
       border: 2px solid transparent;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
     }
 
     .section-nav .nav-link:hover {
-      background: var(--accent-color);
-      color: var(--primary-color);
-      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(216, 42, 42, 0.3);
     }
 
     .section-nav .nav-link.active {
-      background: var(--primary-color);
+      background: linear-gradient(135deg, #d82a2a 0%, #e74c4c 100%);
       color: white;
-      border-color: var(--dark-color);
+      border-color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(216, 42, 42, 0.4);
     }
 
     /* Section Headers */
@@ -137,744 +92,472 @@
 
     .section-header h2 {
       font-size: 2.5rem;
-      color: var(--primary-color);
+      color: var(--dark-color);
       margin-bottom: 15px;
       font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
     }
 
     .section-header p {
       font-size: 1.2rem;
       color: var(--grey-color);
       max-width: 600px;
-      margin: 0 auto;
+      margin: 20px auto 0;
     }
 
-    /* Admissions Process */
-    .admissions-process {
+    /* Admissions Process Section */
+    .process-section {
       padding: 80px 0;
       background: white;
     }
 
     .process-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-bottom: 60px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Timeline connector */
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      left: 50px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+      transform: translateX(-50%);
     }
 
     .process-step {
-      background: white;
-      padding: 40px 30px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      text-align: center;
-      transition: var(--transition);
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 60px;
       position: relative;
-      border-top: 4px solid var(--primary-color);
-    }
-
-    .process-step:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-hover);
     }
 
     .step-number {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 40px;
-      background: var(--primary-color);
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, #e74c4c 100%);
       color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .step-icon {
-      width: 80px;
-      height: 80px;
-      background: var(--accent-color);
-      color: var(--primary-color);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
       font-size: 2rem;
-    }
-
-    .process-step h3 {
-      font-size: 1.3rem;
-      margin-bottom: 15px;
-      color: var(--text-color);
-    }
-
-    .process-step > p {
-      color: var(--grey-color);
-      margin-bottom: 20px;
-    }
-
-    .step-details ul {
-      list-style: none;
-      text-align: left;
-    }
-
-    .step-details li {
-      padding: 8px 0;
-      color: var(--text-light);
-      position: relative;
-      padding-left: 20px;
-    }
-
-    .step-details li::before {
-      content: '•';
-      color: var(--primary-color);
-      font-weight: bold;
-      position: absolute;
-      left: 0;
-    }
-
-    /* Process Timeline */
-    .process-timeline {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .timeline-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 30px;
-      padding: 25px;
-      background: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    .timeline-item:hover {
-      transform: translateX(5px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .timeline-date {
-      background: var(--primary-color);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 25px;
-      font-weight: 600;
-      margin-right: 30px;
-      min-width: 150px;
-      text-align: center;
-    }
-
-    .timeline-content h4 {
-      color: var(--text-color);
-      margin-bottom: 5px;
-      font-size: 1.1rem;
-    }
-
-    .timeline-content p {
-      color: var(--grey-color);
-      margin: 0;
-    }
-
-    /* Online Admissions */
-    .online-admissions {
-      padding: 80px 0;
-      background: var(--light-color);
-    }
-
-    .online-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
-    }
-
-    .online-text h2 {
-      font-size: 2.2rem;
-      color: var(--primary-color);
-      margin-bottom: 15px;
-    }
-
-    .subtitle {
-      font-size: 1.2rem;
-      color: var(--grey-color);
-      margin-bottom: 40px;
-    }
-
-    .portal-features {
-      margin-bottom: 40px;
-    }
-
-    .feature {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 25px;
-      padding: 20px;
-      background: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    .feature:hover {
-      transform: translateX(5px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .feature i {
-      width: 50px;
-      height: 50px;
-      background: var(--accent-color);
-      color: var(--primary-color);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-    }
-
-    .feature h4 {
-      color: var(--text-color);
-      margin-bottom: 5px;
-    }
-
-    .feature p {
-      color: var(--grey-color);
-      margin: 0;
-    }
-
-    .application-types {
-      margin-top: 40px;
-    }
-
-    .application-types h4 {
-      margin-bottom: 20px;
-      color: var(--text-color);
-    }
-
-    .type-cards {
-      display: grid;
-      gap: 20px;
-    }
-
-    .type-card {
-      background: white;
-      padding: 25px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      text-align: center;
-      transition: var(--transition);
-      border-left: 4px solid var(--primary-color);
-    }
-
-    .type-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .type-card i {
-      font-size: 2rem;
-      color: var(--primary-color);
-      margin-bottom: 15px;
-    }
-
-    .type-card h5 {
-      margin-bottom: 10px;
-      color: var(--text-color);
-    }
-
-    .type-card p {
-      color: var(--grey-color);
-      margin-bottom: 15px;
-    }
-
-    .fee {
-      background: var(--accent-color);
-      color: var(--primary-color);
-      padding: 5px 15px;
-      border-radius: 20px;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    /* Online Form */
-    .online-form {
-      position: sticky;
-      top: 20px;
-    }
-
-    .form-container {
-      background: white;
-      padding: 40px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-    }
-
-    .form-container h3 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: var(--primary-color);
-      font-size: 1.5rem;
-    }
-
-    .admission-form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .form-group label {
-      margin-bottom: 8px;
-      font-weight: 500;
-      color: var(--text-color);
-    }
-
-    .form-group input,
-    .form-group select {
-      padding: 12px 15px;
-      border: 2px solid #e5e7eb;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: var(--transition);
-    }
-
-    .form-group input:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
-    }
-
-    .submit-btn {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(26, 75, 140, 0.3);
-    }
-
-    .form-note {
-      text-align: center;
-      color: var(--grey-color);
-      font-size: 0.9rem;
-      margin-top: 15px;
-    }
-
-    /* Tuition & Fees */
-    .tuition-fees {
-      padding: 80px 0;
-      background: white;
-    }
-
-    .tuition-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-bottom: 60px;
-    }
-
-    .tuition-card {
-      background: white;
-      padding: 40px 30px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      text-align: center;
-      transition: var(--transition);
-      position: relative;
-      border: 2px solid #e5e7eb;
-    }
-
-    .tuition-card.featured {
-      border-color: var(--primary-color);
-      transform: scale(1.05);
-    }
-
-    .popular-badge {
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--primary-color);
-      color: white;
-      padding: 5px 20px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .card-header h3 {
-      font-size: 1.5rem;
-      margin-bottom: 5px;
-      color: var(--text-color);
-    }
-
-    .card-header p {
-      color: var(--grey-color);
-      margin-bottom: 25px;
-    }
-
-    .card-price {
-      margin-bottom: 30px;
-    }
-
-    .amount {
-      font-size: 2.5rem;
       font-weight: 700;
-      color: var(--primary-color);
+      margin-right: 40px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 8px 25px rgba(216, 42, 42, 0.3);
     }
 
-    .period {
-      color: var(--grey-color);
-      font-size: 1rem;
-    }
-
-    .card-features {
-      margin-bottom: 30px;
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      color: var(--text-color);
-    }
-
-    .feature-item i {
-      color: var(--success-color);
-    }
-
-    .card-btn {
-      width: 100%;
-      padding: 12px;
-      border: 2px solid var(--primary-color);
-      background: transparent;
-      color: var(--primary-color);
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .card-btn.primary {
-      background: var(--primary-color);
-      color: white;
-    }
-
-    .card-btn:hover {
-      background: var(--primary-color);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    /* Additional Fees */
-    .additional-fees {
-      margin-bottom: 50px;
-    }
-
-    .additional-fees h3 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: var(--text-color);
-    }
-
-    .fees-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .fee-item {
-      background: white;
-      padding: 25px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      text-align: center;
-      transition: var(--transition);
-    }
-
-    .fee-item:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .fee-name {
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: var(--text-color);
-    }
-
-    .fee-amount {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary-color);
-      margin-bottom: 5px;
-    }
-
-    .fee-description {
-      color: var(--grey-color);
-      font-size: 0.9rem;
-    }
-
-    /* Payment Options */
-    .payment-options {
-      margin-bottom: 50px;
-    }
-
-    .payment-options h3 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: var(--text-color);
-    }
-
-    .payment-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .payment-card {
+    .step-content {
+      flex: 1;
       background: white;
       padding: 30px;
       border-radius: var(--border-radius);
       box-shadow: var(--shadow);
-      text-align: center;
-      transition: var(--transition);
+      border-left: 4px solid var(--primary-color);
     }
 
-    .payment-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .payment-card i {
-      font-size: 2.5rem;
-      color: var(--primary-color);
+    .step-content h3 {
+      color: var(--dark-color);
       margin-bottom: 15px;
-    }
-
-    .payment-card h4 {
-      margin-bottom: 10px;
-      color: var(--text-color);
-    }
-
-    .payment-card .discount {
-      color: var(--success-color);
+      font-size: 1.5rem;
       font-weight: 600;
-      margin-bottom: 10px;
     }
 
-    .payment-card p {
+    .step-content p {
       color: var(--grey-color);
-      margin: 5px 0;
+      line-height: 1.7;
+      margin-bottom: 20px;
     }
 
-    /* Financial Aid */
-    .financial-aid {
-      background: linear-gradient(135deg, var(--light-color), #e2e8f0);
-      padding: 40px;
-      border-radius: var(--border-radius);
-      text-align: center;
+    .step-details {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
     }
 
-    .aid-content {
+    .step-details li {
+      margin-bottom: 10px;
+      color: var(--dark-color);
       display: flex;
-      align-items: center;
-      gap: 30px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .aid-content i {
-      font-size: 3rem;
-      color: var(--primary-color);
-    }
-
-    .aid-content h3 {
-      margin-bottom: 10px;
-      color: var(--text-color);
-    }
-
-    .aid-content p {
-      color: var(--grey-color);
-      margin-bottom: 15px;
-    }
-
-    .aid-link {
-      color: var(--primary-color);
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: var(--transition);
-    }
-
-    .aid-link:hover {
+      align-items: flex-start;
       gap: 10px;
     }
 
-    /* CTA Section */
-    .admissions-cta {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
+    .step-details li i {
+      color: var(--success-color);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    /* Online Admissions Section */
+    .online-admissions {
       padding: 80px 0;
-      text-align: center;
+      background: #f8fafc;
     }
 
-    .cta-content h2 {
-      font-size: 2.5rem;
+    .admissions-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .admissions-info {
+      padding-right: 30px;
+    }
+
+    .admissions-info h2 {
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    .admissions-info p {
+      color: var(--grey-color);
+      margin-bottom: 25px;
+      line-height: 1.7;
+    }
+
+    .requirements-list {
+      background: white;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      margin-top: 30px;
+    }
+
+    .requirements-list h4 {
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .requirements-list h4 i {
+      color: var(--primary-color);
+    }
+
+    .requirements-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .requirements-list li {
       margin-bottom: 15px;
-      font-weight: 700;
+      color: var(--dark-color);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
     }
 
-    .cta-content p {
-      font-size: 1.2rem;
-      margin-bottom: 40px;
+    .requirements-list li:last-child {
+      border-bottom: none;
+    }
+
+    .requirements-list li i {
+      color: var(--success-color);
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .admissions-cta {
+      text-align: center;
+      margin-top: 40px;
+      padding: 50px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, #e74c4c 100%);
+      border-radius: var(--border-radius);
+      color: white;
+    }
+
+    .admissions-cta h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .admissions-cta p {
+      margin-bottom: 30px;
       opacity: 0.9;
     }
 
-    .cta-buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
+    .cta-button {
+      display: inline-block;
+      background: white;
+      color: var(--primary-color);
+      padding: 15px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      border: 2px solid white;
     }
 
-    .cta-btn {
-      padding: 15px 30px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
+    .cta-button:hover {
+      background: transparent;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Tuition & Fees Section */
+      .tuition-section {
+      padding: 100px 0;
+      background: linear-gradient(to right, #000000 0%, #000000 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .tuition-section::before {
+      
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://github.com/ventroliquizt/miu-highschool-site/blob/main/ChatGPT_Image_Nov_8__2025__04_54_58_AM-removebg-preview.png?raw=true') no-repeat center center;
+      background-position: left top;
+      background-size: 50%;
+      opacity: 0.4;
+    }
+    .tuition-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tuition-tables {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .tuition-table {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
       transition: var(--transition);
+    }
+
+    .tuition-table:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .table-header {
+      background: linear-gradient(135deg, var(--dark-color) 0%, #1a3a6e 100%);
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .table-header h3 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    .table-header p {
+      opacity: 0.8;
+      margin: 10px 0 0;
+    }
+
+    .table-content {
+      padding: 30px;
+    }
+
+    .fee-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .fee-item:last-child {
+      border-bottom: none;
+    }
+
+    .fee-name {
+      color: var(--dark-color);
+      font-weight: 500;
+    }
+
+    .fee-amount {
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .note {
+      color: var(--grey-color);
+      font-size: 0.9rem;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .financial-aid {
+      background: #f0f9ff;
+      padding: 40px;
+      border-radius: var(--border-radius);
+      margin-top: 50px;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    .financial-aid h3 {
+      color: var(--dark-color);
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .cta-btn.primary {
-      background: white;
+    .financial-aid h3 i {
+      color: var(--secondary-color);
+    }
+
+    .financial-aid p {
+      color: var(--grey-color);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .contact-info {
+      background: #f8fafc;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .contact-info h4 {
+      color: var(--dark-color);
+      margin-bottom: 20px;
+    }
+
+    .contact-info p {
+      margin-bottom: 15px;
+      color: var(--grey-color);
+    }
+
+    .contact-info .email {
       color: var(--primary-color);
-    }
-
-    .cta-btn.secondary {
-      background: transparent;
-      color: white;
-      border: 2px solid white;
-    }
-
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      font-weight: 600;
+      text-decoration: none;
     }
 
     /* Responsive Design */
+    @media (max-width: 992px) {
+      .admissions-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .admissions-info {
+        padding-right: 0;
+      }
+    }
+
     @media (max-width: 768px) {
       .admissions-header h1 {
         font-size: 2.5rem;
       }
-      
-      .header-stats {
-        flex-direction: column;
-        gap: 30px;
-      }
-      
-      .online-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      
-      .process-steps {
-        grid-template-columns: 1fr;
-      }
-      
-      .timeline-item {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .timeline-date {
-        margin-right: 0;
-        margin-bottom: 15px;
-      }
-      
-      .aid-content {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .tuition-card.featured {
-        transform: none;
-      }
 
       .section-nav {
         flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
+        gap: 0.8rem;
+        padding: 0.8rem;
       }
 
       .section-nav .nav-link {
-        padding: 0.8rem 1rem;
+        padding: 0.8rem 1.5rem;
         justify-content: center;
+        font-size: 0.9rem;
+      }
+
+      .process-steps::before {
+        left: 30px;
+      }
+
+      .step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin-right: 20px;
+      }
+
+      .tuition-tables {
+        grid-template-columns: 1fr;
+      }
+
+      .step-content {
+        padding: 20px;
+      }
+
+      .admissions-cta {
+        padding: 30px;
       }
     }
 
     @media (max-width: 480px) {
       .admissions-header {
-        padding: 60px 0 40px;
+        padding: 80px 0 60px;
       }
-      
+
       .admissions-header h1 {
         font-size: 2rem;
       }
-      
+
       .section-header h2 {
         font-size: 2rem;
       }
-      
-      .form-container {
-        padding: 25px 20px;
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+
+      .step-content h3 {
+        font-size: 1.3rem;
+      }
+
+      .cta-button {
+        padding: 12px 30px;
+        font-size: 1rem;
       }
     }
 
-    /* Animation for FAQ items */
-    @keyframes fadeIn {
+    /* Animation */
+    @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
@@ -882,13 +565,15 @@
       }
     }
 
-    .process-step, .feature, .type-card, .tuition-card {
-      animation: fadeIn 0.5s ease;
+    .process-step,
+    .tuition-table,
+    .admissions-cta {
+      animation: fadeInUp 0.5s ease;
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
+  <!-- Navbar (Same as Programs Page) -->
   <nav class="navbar">
     <div class="menu-toggle" id="menu-toggle">☰</div>
     <ul class="nav-left">
@@ -903,30 +588,32 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="programms.html">Programms</a>
+        <a href="programms.html">Programs</a>
         <ul class="dropdown-menu">
-          <li><a href="#Schedules">Schedules</a></li>
-          <li><a href="#Extracrurricular activity">Extracrurricular activity</a></li>
-          <li><a href="#Volunteer">Volunteer</a></li>
+          <li><a href="#academic-calendar">Academic Calendar</a></li>
+          <li><a href="#activities">Extracurricular Activities</a></li>
+          <li><a href="#volunteer">Volunteer</a></li>
         </ul>
       </li>
       <li class="dropdown">
         <a href="admissions.html">Admissions</a>
         <ul class="dropdown-menu">
           <li><a href="#process">Admissions Process</a></li>
-          <li><a href="#apply">Online Admissions</a></li>
+          <li><a href="#online">Online Admissions</a></li>
           <li><a href="#tuition">Tuition & Fees</a></li>
         </ul>
       </li>
     </ul>
 
     <div class="logo">
-      <a href="#home"><img src="mis_logo_001-copy-removebg-preview.png" alt="School Logo"></a>
+      <a href="index.html">
+        <img src="mis_logo.png" alt="">
+      </a>
     </div>
 
     <ul class="nav-right">
       <li class="dropdown">
-        <a href="#info">Information</a>
+        <a href="info.html">Information</a>
         <ul class="dropdown-menu">
           <li><a href="#">FAQ</a></li>
         </ul>
@@ -939,7 +626,7 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#contact">Contact Us</a>
+        <a href="contact.html">Contact Us</a>
         <ul class="dropdown-menu">
           <li><a href="#">Email</a></li>
           <li><a href="#">Location</a></li>
@@ -952,166 +639,89 @@
 
   <!-- Admissions Header -->
   <section class="admissions-header">
-    <div class="container">
-      <div class="header-content">
-        <h1>Join Our School Community</h1>
-        <p class="header-subtitle">Begin your educational journey at MIS - Where excellence meets opportunity</p>
-        <div class="header-stats">
-          <div class="stat">
-            <span class="stat-number">98%</span>
-            <span class="stat-label">Graduation Rate</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">8:1</span>
-            <span class="stat-label">Student-Teacher Ratio</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">50+</span>
-            <span class="stat-label">Extracurricular Activities</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="container"></div>
   </section>
 
   <!-- Section Navigation -->
   <nav class="section-nav">
     <a href="#process" class="nav-link">
-      <i class="fas fa-list-ol"></i>
       Admissions Process
     </a>
-    <a href="#apply" class="nav-link">
-      <i class="fas fa-laptop"></i>
+    <a href="#online" class="nav-link">
       Online Admissions
     </a>
     <a href="#tuition" class="nav-link">
-      <i class="fas fa-dollar-sign"></i>
       Tuition & Fees
     </a>
   </nav>
 
   <!-- Admissions Process Section -->
-  <section class="admissions-process" id="process">
+  <section class="process-section" id="process">
     <div class="container">
       <div class="section-header">
         <h2>Admissions Process</h2>
-        <p>Our straightforward 5-step process makes joining MIS simple and transparent</p>
+        <p>A step-by-step guide to joining our community</p>
       </div>
 
       <div class="process-steps">
+        <!-- Step 1 -->
         <div class="process-step">
           <div class="step-number">1</div>
-          <div class="step-icon">
-            <i class="fas fa-file-alt"></i>
-          </div>
-          <h3>Submit Application</h3>
-          <p>Complete our online application form with student and family information</p>
-          <div class="step-details">
-            <ul>
-              <li>Online application form</li>
-              <li>Student information</li>
-              <li>Family background</li>
-              <li>Academic history</li>
+          <div class="step-content">
+            <h3>Inquiry & Information Gathering</h3>
+            <p>Start by learning about our school programs, curriculum, and community. We encourage prospective families to explore our website and attend our information sessions.</p>
+            <ul class="step-details">
+              <li>Attend an Open House or Information Session</li>
+              <li> Review our academic programs and curriculum</li>
+              <li> Contact our admissions office for any questions</li>
+              <li> Schedule a campus tour (optional)</li>
             </ul>
           </div>
         </div>
 
+        <!-- Step 2 -->
         <div class="process-step">
           <div class="step-number">2</div>
-          <div class="step-icon">
-            <i class="fas fa-clipboard-list"></i>
-          </div>
-          <h3>Provide Documents</h3>
-          <p>Upload required documents including academic records and recommendations</p>
-          <div class="step-details">
-            <ul>
-              <li>Previous school records</li>
-              <li>Birth certificate</li>
-              <li>Passport copies</li>
-              <li>Recommendation letters</li>
+          <div class="step-content">
+            <h3>Application Submission</h3>
+            <p>Submit the complete application package including all required documents. We accept applications year-round, but early application is recommended.</p>
+            <ul class="step-details">
+              <li>Complete the online application form</li>
+              <li> Submit student's academic records (last 2 years)</li>
+              <li> Provide birth certificate or passport copy</li>
+              <li> Submit 2 recent passport-sized photos</li>
+              <li> Include teacher recommendations (if applicable)</li>
             </ul>
           </div>
         </div>
 
+        <!-- Step 3 -->
         <div class="process-step">
           <div class="step-number">3</div>
-          <div class="step-icon">
-            <i class="fas fa-user-friends"></i>
-          </div>
-          <h3>Student Assessment</h3>
-          <p>Participate in age-appropriate assessments and family interview</p>
-          <div class="step-details">
-            <ul>
-              <li>Academic assessment</li>
-              <li>Family interview</li>
-              <li>Student observation</li>
-              <li>English proficiency test</li>
+          <div class="step-content">
+            <h3>Assessment & Interview</h3>
+            <p>Students are invited for an assessment and interview to ensure appropriate placement and to understand their educational needs.</p>
+            <ul class="step-details">
+              <li> Academic assessment (varies by grade level)</li>
+              <li> Student interview with academic staff</li>
+              <li> Parent interview with admissions team</li>
+              <li> English language proficiency test (if applicable)</li>
             </ul>
           </div>
         </div>
 
+        <!-- Step 4 -->
         <div class="process-step">
           <div class="step-number">4</div>
-          <div class="step-icon">
-            <i class="fas fa-envelope-open-text"></i>
-          </div>
-          <h3>Receive Decision</h3>
-          <p>Get admission decision within 10 business days after assessment</p>
-          <div class="step-details">
-            <ul>
-              <li>10-day processing</li>
-              <li>Official letter</li>
-              <li>Welcome package</li>
-              <li>Next steps guide</li>
+          <div class="step-content">
+            <h3>Admission Decision & Enrollment</h3>
+            <p>Receive admission decision and complete the enrollment process to secure your place at Mongolian International School.</p>
+            <ul class="step-details">
+              <li>Admission decision within 2 weeks</li>
+              <li>Submit enrollment agreement and fees</li>
+              <li> Complete health and medical forms</li>
+              <li> Attend new student orientation</li>
             </ul>
-          </div>
-        </div>
-
-        <div class="process-step">
-          <div class="step-number">5</div>
-          <div class="step-icon">
-            <i class="fas fa-user-check"></i>
-          </div>
-          <h3>Complete Enrollment</h3>
-          <p>Finalize enrollment with payment and complete orientation process</p>
-          <div class="step-details">
-            <ul>
-              <li>Tuition payment</li>
-              <li>Medical forms</li>
-              <li>Orientation session</li>
-              <li>Uniform ordering</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="process-timeline">
-        <div class="timeline-item">
-          <div class="timeline-date">Application Deadline</div>
-          <div class="timeline-content">
-            <h4>March 31, 2025</h4>
-            <p>Priority application deadline for the 2025-2026 academic year</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">Assessments</div>
-          <div class="timeline-content">
-            <h4>April 15-30, 2025</h4>
-            <p>Student assessments and family interviews scheduled</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">Decisions Sent</div>
-          <div class="timeline-content">
-            <h4>May 15, 2025</h4>
-            <p>Admission decisions communicated to all applicants</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">Enrollment Deadline</div>
-          <div class="timeline-content">
-            <h4>June 15, 2025</h4>
-            <p>Final deadline to complete enrollment process</p>
           </div>
         </div>
       </div>
@@ -1119,316 +729,170 @@
   </section>
 
   <!-- Online Admissions Section -->
-  <section class="online-admissions" id="apply">
+  <section class="online-admissions" id="online">
     <div class="container">
-      <div class="online-content">
-        <div class="online-text">
-          <h2>Online Admissions Portal</h2>
-          <p class="subtitle">Start your application today through our secure online portal</p>
-          
-          <div class="portal-features">
-            <div class="feature">
-              <i class="fas fa-shield-alt"></i>
-              <div>
-                <h4>Secure & Encrypted</h4>
-                <p>Your information is protected with bank-level security</p>
-              </div>
-            </div>
-            <div class="feature">
-              <i class="fas fa-save"></i>
-              <div>
-                <h4>Save & Continue</h4>
-                <p>Start your application and complete it at your own pace</p>
-              </div>
-            </div>
-            <div class="feature">
-              <i class="fas fa-mobile-alt"></i>
-              <div>
-                <h4>Mobile Friendly</h4>
-                <p>Access the portal from any device, anywhere</p>
-              </div>
-            </div>
-            <div class="feature">
-              <i class="fas fa-clock"></i>
-              <div>
-                <h4>24/7 Access</h4>
-                <p>Work on your application anytime that suits you</p>
-              </div>
-            </div>
-          </div>
+      <div class="section-header">
+        <h2>Online Admissions</h2>
+        <p>Streamlined digital application process for your convenience</p>
+      </div>
 
-          <div class="application-types">
-            <h4>Application Types</h4>
-            <div class="type-cards">
-              <div class="type-card">
-                <i class="fas fa-child"></i>
-                <h5>New Student</h5>
-                <p>First-time applicants joining MIS</p>
-                <span class="fee">$150 Application Fee</span>
-              </div>
-              <div class="type-card">
-                <i class="fas fa-exchange-alt"></i>
-                <h5>Transfer Student</h5>
-                <p>Students transferring from other schools</p>
-                <span class="fee">$150 Application Fee</span>
-              </div>
-              <div class="type-card">
-                <i class="fas fa-redo"></i>
-                <h5>Returning Student</h5>
-                <p>Previous MIS students re-enrolling</p>
-                <span class="fee">$75 Application Fee</span>
-              </div>
-            </div>
+      <div class="admissions-container">
+        <div class="admissions-info">
+          <h2>Apply Online</h2>
+          <p>Our online admissions portal makes it easy to apply from anywhere in the world. The secure platform allows you to track your application status and submit documents electronically.</p>
+          <p>The application process typically takes 20-30 minutes to complete. You can save your progress and return to complete it later.</p>
+
+          <div class="requirements-list">
+            <h4><i class="fas fa-file-alt"></i> Required Documents</h4>
+            <ul>
+              <li> Completed application form</li>
+              <li> Copy of student's birth certificate or passport</li>
+              <li> Academic transcripts from previous school (last 2 years)</li>
+              <li> Health and immunization records</li>
+              <li> Two passport-sized photographs</li>
+              <li> Copy of parent/guardian ID or passport</li>
+              <li> Teacher recommendations (for grades 6-12)</li>
+              <li> Any standardized test scores (if available)</li>
+            </ul>
           </div>
         </div>
 
-        <div class="online-form">
-          <div class="form-container">
-            <h3>Start Your Application</h3>
-            <form class="admission-form">
-              <div class="form-group">
-                <label for="student-name">Student's Full Name</label>
-                <input type="text" id="student-name" placeholder="Enter student's full name">
-              </div>
-              <div class="form-group">
-                <label for="grade-level">Grade Level Applying For</label>
-                <select id="grade-level">
-                  <option value="">Select Grade Level</option>
-                  <option value="pre-k">Pre-Kindergarten</option>
-                  <option value="k">Kindergarten</option>
-                  <option value="1">Grade 1</option>
-                  <option value="2">Grade 2</option>
-                  <option value="3">Grade 3</option>
-                  <option value="4">Grade 4</option>
-                  <option value="5">Grade 5</option>
-                  <option value="6">Grade 6</option>
-                  <option value="7">Grade 7</option>
-                  <option value="8">Grade 8</option>
-                  <option value="9">Grade 9</option>
-                  <option value="10">Grade 10</option>
-                  <option value="11">Grade 11</option>
-                  <option value="12">Grade 12</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="parent-name">Parent/Guardian Name</label>
-                <input type="text" id="parent-name" placeholder="Enter parent/guardian name">
-              </div>
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="Enter your email">
-              </div>
-              <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" placeholder="Enter your phone number">
-              </div>
-              <div class="form-group">
-                <label for="application-type">Application Type</label>
-                <select id="application-type">
-                  <option value="">Select Application Type</option>
-                  <option value="new">New Student</option>
-                  <option value="transfer">Transfer Student</option>
-                  <option value="returning">Returning Student</option>
-                </select>
-              </div>
-              <button type="submit" class="submit-btn">
-                <i class="fas fa-arrow-right"></i>
-                Start Application
-              </button>
-              <p class="form-note">By clicking "Start Application", you'll be redirected to our secure admissions portal</p>
-            </form>
-          </div>
+        <div class="admissions-cta">
+          <h3>Apply</h3>
+          <p>Start your online application today. Our admissions team is available to assist you throughout the process.</p>
+          <a href="https://your-application-portal-link.com" class="cta-button" target="_blank">
+            <i ></i> Start Application
+          </a>
+          <p style="margin-top: 20px; font-size: 0.9rem;">
+            <i class="fas fa-question-circle"></i> Need help? Contact admissions@mis.edu.mn
+          </p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Tuition & Fees Section -->
-  <section class="tuition-fees" id="tuition">
+  <section class="tuition-section" id="tuition">
     <div class="container">
       <div class="section-header">
         <h2>Tuition & Fees</h2>
-        <p>Transparent pricing with multiple payment options to fit your family's needs</p>
+        <p>Transparent pricing for quality international education</p>
       </div>
 
-      <div class="tuition-content">
-        <div class="tuition-cards">
-          <div class="tuition-card">
-            <div class="card-header">
-              <h3>Elementary School</h3>
+      <div class="tuition-container">
+        <div class="tuition-tables">
+          <!-- Primary School -->
+          <div class="tuition-table">
+            <div class="table-header">
+              <h3>Primary School</h3>
               <p>Grades 1-5</p>
             </div>
-            <div class="card-price">
-              <span class="amount">$18,500</span>
-              <span class="period">per year</span>
+            <div class="table-content">
+              <div class="fee-item">
+                <div class="fee-name">Annual Tuition</div>
+                <div class="fee-amount"></div>
+              </div>
+              <div class="fee-item">
+                <div class="fee-name">
+                  Registration Fee
+                  <div class="note">(One-time, non-refundable)</div>
+                </div>
+                <div class="fee-amount"></div>
+              </div>
+              <div class="fee-item">
+                <div class="fee-name">
+                  Technology Fee
+                  <div class="note">(Annual)</div>
+                </div>
+                <div class="fee-amount"></div>
+              </div>
+              <div class="fee-item">
+                <div class="fee-name">
+                  Activity Fee
+                  <div class="note">(Annual)</div>
+                </div>
+                <div class="fee-amount"></div>
+              </div>
             </div>
-            <div class="card-features">
-              <div class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>All academic materials</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>Standard technology access</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>Basic extracurricular activities</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>Library resources</span>
-              </div>
-            </div>
-            <button class="card-btn">View Details</button>
           </div>
 
-          <div class="tuition-card featured">
-            <div class="popular-badge">Most Popular</div>
-            <div class="card-header">
+          <!-- Middle School -->
+          <div class="tuition-table">
+            <div class="table-header">
               <h3>Middle School</h3>
               <p>Grades 6-8</p>
             </div>
-            <div class="card-price">
-              <span class="amount">$21,800</span>
-              <span class="period">per year</span>
+            <div class="table-content">
+              <div class="fee-item">
+                <div class="fee-name">Annual Tuition</div>
+                <div class="fee-amount"></div>
+              </div>
+              <div class="fee-item">
+                <div class="fee-name">
+                  Registration Fee
+                  <div class="note">(One-time, non-refundable)</div>
+                </div>
+                <div class="fee-amount"></div>
+              </div>
+              <div class="fee-item">
+                <div class="fee-name">
+                  Technology Fee
+                  <div class="note">(Annual)</div>
+                </div>
+                <div class="fee-amount"></div>
+              </div>
+              <div class="fee-item">
+                <div class="fee-name">
+                  Activity Fee
+                  <div class="note">(Annual)</div>
+                </div>
+                <div class="fee-amount"></div>
+              </div>
             </div>
-            <div class="card-features">
-              <div class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>All elementary features</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>Advanced technology resources</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>Sports team participation</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>Science lab access</span>
-              </div>
-            </div>
-            <button class="card-btn primary">View Details</button>
           </div>
 
-          <div class="tuition-card">
-            <div class="card-header">
+          <!-- High School -->
+          <div class="tuition-table">
+            <div class="table-header">
               <h3>High School</h3>
               <p>Grades 9-12</p>
             </div>
-            <div class="card-price">
-              <span class="amount">$25,300</span>
-              <span class="period">per year</span>
-            </div>
-            <div class="card-features">
-              <div class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>All middle school features</span>
+            <div class="table-content">
+              <div class="fee-item">
+                <div class="fee-name">Annual Tuition</div>
+                <div class="fee-amount"></div>
               </div>
-              <div class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>AP course materials</span>
+              <div class="fee-item">
+                <div class="fee-name">
+                  Registration Fee
+                  <div class="note">(One-time, non-refundable)</div>
+                </div>
+                <div class="fee-amount"></div>
               </div>
-              <div class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>College counseling</span>
+              <div class="fee-item">
+                <div class="fee-name">
+                  Technology Fee
+                  <div class="note">(Annual)</div>
+                </div>
+                <div class="fee-amount"></div>
               </div>
-              <div class="feature-item">
-                <i class="fas fa-check"></i>
-                <span>Leadership programs</span>
+              <div class="fee-item">
+                <div class="fee-name">
+                  Activity Fee
+                  <div class="note">(Annual)</div>
+                </div>
+                <div class="fee-amount"></div>
               </div>
-            </div>
-            <button class="card-btn">View Details</button>
-          </div>
-        </div>
-
-        <div class="additional-fees">
-          <h3>Additional Fees</h3>
-          <div class="fees-grid">
-            <div class="fee-item">
-              <div class="fee-name">Application Fee</div>
-              <div class="fee-amount">$150</div>
-              <div class="fee-description">One-time, non-refundable</div>
-            </div>
-            <div class="fee-item">
-              <div class="fee-name">Enrollment Deposit</div>
-              <div class="fee-amount">$1,000</div>
-              <div class="fee-description">Applied to tuition</div>
-            </div>
-            <div class="fee-item">
-              <div class="fee-name">Technology Fee</div>
-              <div class="fee-amount">$300/year</div>
-              <div class="fee-description">Grades 6-12 only</div>
-            </div>
-            <div class="fee-item">
-              <div class="fee-name">Activity Fee</div>
-              <div class="fee-amount">$200/year</div>
-              <div class="fee-description">All grades</div>
             </div>
           </div>
         </div>
 
-        <div class="payment-options">
-          <h3>Flexible Payment Plans</h3>
-          <div class="payment-cards">
-            <div class="payment-card">
-              <i class="fas fa-calendar-alt"></i>
-              <h4>Annual Payment</h4>
-              <p class="discount">Save 3%</p>
-              <p>Pay full year tuition by August 1st</p>
-            </div>
-            <div class="payment-card">
-              <i class="fas fa-calendar"></i>
-              <h4>Semi-Annual</h4>
-              <p>Two equal payments</p>
-              <p>August & January</p>
-            </div>
-            <div class="payment-card">
-              <i class="fas fa-calendar-day"></i>
-              <h4>Monthly</h4>
-              <p>10 monthly payments</p>
-              <p>August through May</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="financial-aid">
-          <div class="aid-content">
-            <i class="fas fa-hands-helping"></i>
-            <div>
-              <h3>Financial Aid Available</h3>
-              <p>We offer need-based financial aid and merit scholarships. Contact our admissions office to learn more about eligibility and application process.</p>
-              <a href="#" class="aid-link">Learn About Financial Aid <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
+ 
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="admissions-cta">
-    <div class="container">
-      <div class="cta-content">
-        <h2>Ready to Begin Your Journey?</h2>
-        <p>Join our community of learners and discover the MIS difference</p>
-        <div class="cta-buttons">
-          <button class="cta-btn primary">
-            <i class="fas fa-edit"></i>
-            Start Application
-          </button>
-          <button class="cta-btn secondary">
-            <i class="fas fa-calendar"></i>
-            Schedule Tour
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- Footer -->
   <footer class="footer" id="contact">
     <div class="footer-container">
       <div class="footer-section">
@@ -1489,7 +953,7 @@
         const targetSection = document.querySelector(targetId);
         
         if (targetSection) {
-          const offsetTop = targetSection.offsetTop - 80; // Adjust for sticky nav
+          const offsetTop = targetSection.offsetTop - 80;
           window.scrollTo({
             top: offsetTop,
             behavior: 'smooth'
@@ -1500,7 +964,7 @@
 
     // Highlight active section in navigation
     function updateActiveNav() {
-      const sections = document.querySelectorAll('#process, #apply, #tuition');
+      const sections = document.querySelectorAll('#process, #online, #tuition');
       const navLinks = document.querySelectorAll('.section-nav .nav-link');
       
       let currentSection = '';
@@ -1523,114 +987,26 @@
       });
     }
 
-    // Update nav on scroll
+    // Initialize
     window.addEventListener('scroll', updateActiveNav);
+    document.addEventListener('DOMContentLoaded', updateActiveNav);
 
-    // Form submission handling
-    const admissionForm = document.querySelector('.admission-form');
-    if (admissionForm) {
-      admissionForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = {
-          studentName: document.getElementById('student-name').value,
-          gradeLevel: document.getElementById('grade-level').value,
-          parentName: document.getElementById('parent-name').value,
-          email: document.getElementById('email').value,
-          phone: document.getElementById('phone').value,
-          applicationType: document.getElementById('application-type').value
-        };
-        
-        // Validate form
-        if (validateForm(formData)) {
-          // Show success message
-          showFormSuccess();
+    // Add animation on scroll
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.5s ease forwards';
         }
       });
-    }
+    }, observerOptions);
 
-    // Form validation
-    function validateForm(data) {
-      const required = ['studentName', 'gradeLevel', 'parentName', 'email', 'applicationType'];
-      let isValid = true;
-
-      required.forEach(field => {
-        if (!data[field]) {
-          isValid = false;
-          highlightError(field);
-        } else {
-          removeError(field);
-        }
-      });
-
-      // Email validation
-      if (data.email && !isValidEmail(data.email)) {
-        isValid = false;
-        highlightError('email');
-      }
-
-      return isValid;
-    }
-
-    function highlightError(fieldId) {
-      const field = document.getElementById(fieldId);
-      field.style.borderColor = '#dc2626';
-      field.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)';
-    }
-
-    function removeError(fieldId) {
-      const field = document.getElementById(fieldId);
-      field.style.borderColor = '#e5e7eb';
-      field.style.boxShadow = 'none';
-    }
-
-    function isValidEmail(email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    }
-
-    function showFormSuccess() {
-      const formContainer = document.querySelector('.form-container');
-      const originalContent = formContainer.innerHTML;
-      
-      formContainer.innerHTML = `
-        <div class="success-message" style="text-align: center; padding: 40px 20px;">
-          <i class="fas fa-check-circle" style="font-size: 4rem; color: #059669; margin-bottom: 20px;"></i>
-          <h3 style="color: var(--primary-color); margin-bottom: 15px;">Application Started!</h3>
-          <p style="color: var(--grey-color); margin-bottom: 25px;">
-            Thank you for starting your application. You will receive an email with further instructions shortly.
-          </p>
-          <button class="submit-btn" onclick="location.reload()">
-            <i class="fas fa-plus"></i>
-            Start Another Application
-          </button>
-        </div>
-      `;
-    }
-
-    // CTA button functionality
-    document.querySelectorAll('.cta-btn.primary').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelector('#apply').scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-
-    document.querySelectorAll('.cta-btn.secondary').forEach(btn => {
-      btn.addEventListener('click', function() {
-        alert('Tour scheduling feature would open here. In a real implementation, this would open a calendar modal.');
-      });
-    });
-
-    // Tuition card interactions
-    document.querySelectorAll('.card-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const card = this.closest('.tuition-card');
-        const level = card.querySelector('h3').textContent;
-        alert(`Detailed information for ${level} would open here.`);
-      });
+    // Observe elements for animation
+    document.querySelectorAll('.process-step, .tuition-table, .admissions-cta').forEach(el => {
+      observer.observe(el);
     });
   </script>
 </body>
