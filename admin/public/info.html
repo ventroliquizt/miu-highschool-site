@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - Mongolian International School</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* FAQ Page Specific Styles */
+    :root {
+      --primary-color: #d82a2a;
+      --secondary-color: #2c6bb8;
+      --accent-color: #f5f5f5;
+      --light-color: #f8fafc;
+      --dark-color: #0f2d56;
+      --grey-color: #6b7280;
+      --dark-grey: #374151;
+      --text-color: #1f2937;
+      --text-light: #6b7280;
+      --success-color: #059669;
+      --warning-color: #d97706;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    /* FAQ Header */
+    .faq-header {
+      background-image: url("https://github.com/ventroliquizt/miu-highschool-site/blob/main/556981901_1889760831840412_9179320815925247158_n.jpg?raw=true");
+      background-size: cover;
+      background-position: 50% 65%;
+      background-repeat: no-repeat;
+      padding: 120px 0 420px;
+      text-align: center;
+      color: rgb(255, 255, 255);
+      position: relative;
+    }
+
+    .faq-header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .faq-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      color: var(--dark-color);
+      margin-bottom: 15px;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 80px 0;
+      background: #f8fafc;
+    }
+
+    .faq-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .faq-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .faq-item:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .faq-question {
+      padding: 25px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      background: white;
+      border-left: 4px solid transparent;
+      transition: var(--transition);
+    }
+
+    .faq-item.active .faq-question {
+      background: #fef2f2;
+      border-left-color: var(--primary-color);
+    }
+
+    .faq-question h3 {
+      font-size: 1.2rem;
+      color: var(--dark-color);
+      margin: 0;
+      font-weight: 600;
+      flex: 1;
+      transition: var(--transition);
+    }
+
+    .faq-item.active .faq-question h3 {
+      color: var(--primary-color);
+    }
+
+    .faq-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-color);
+      font-size: 0.9rem;
+      transition: var(--transition);
+      flex-shrink: 0;
+      margin-left: 15px;
+    }
+
+    .faq-item.active .faq-icon {
+      background: var(--primary-color);
+      color: white;
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+    }
+
+    .faq-content {
+      padding: 0 30px 25px;
+    }
+
+    .faq-content p {
+      color: var(--grey-color);
+      line-height: 1.7;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar (Same as Other Pages) -->
+  <nav class="navbar">
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+    <ul class="nav-left">
+      <li class="dropdown">
+        <a href="home.html">About Us</a>
+        <ul class="dropdown-menu">
+          <li><a href="home.html#vice-greeting">Vice's greeting</a></li>
+          <li><a href="home.html#levels">Mission & Vision</a></li>
+          <li><a href="home.html#glance">Our Success</a></li>
+          <li><a href="home.html#vice-greeting">Staff</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="programms.html">Programs</a>
+        <ul class="dropdown-menu">
+          <li><a href="programms.html#schedules">Schedules</a></li>
+          <li><a href="programms.html#activities">Extracurricular Activities</a></li>
+          <li><a href="programms.html#volunteer">Volunteer</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="admissions.html">Admissions</a>
+        <ul class="dropdown-menu">
+          <li><a href="admissions.html#process">Progress</a></li>
+          <li><a href="admissions.html#apply">Online Admissions</a></li>
+          <li><a href="admissions.html#tuition">Tuition Information</a></li>
+        </ul>
+      </li>
+      </ul>
+    
+        <div class="logo">
+      <a href="home.html">MIS</a>
+      </div>
+
+      <ul class="nav-right"
+      <li class="dropdown">
+        <a href="info.html">Information</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="students.html">Student Life</a>
+        <ul class="dropdown-menu">
+          <li><a href="students.html#Cafeteria">Cafeteria</a></li>
+          <li><a href="students.html#Uniform">Uniform</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="#contact">Contact Us</a>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- FAQ Header -->
+  <section class="faq-header">
+    <div class="container"></div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="faq-container">
+      <div class="section-header">
+        <h2>Common Questions</h2>
+      </div>
+
+      <div class="faq-accordion">
+        <!-- Question 1 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What is the application deadline for the upcoming academic year?</h3>
+            <div class="faq-icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-content">
+              <p>Applications are accepted year-round, but we recommend applying by April 30th for the following academic year starting in August. Early applications receive priority consideration for admissions and scholarship opportunities.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What documents are required for admission?</h3>
+            <div class="faq-icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-content">
+              <p>Required documents include:
+                <br>1. Completed application form
+                <br>2. Previous two years of academic transcripts
+                <br>3. Birth certificate or passport copy
+                <br>4. Health and immunization records
+                <br>5. Two passport-sized photographs
+                <br>6. Teacher recommendations (for grades 6-12)
+                <br>7. Any standardized test scores (if available)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Is there an entrance exam for admission?</h3>
+            <div class="faq-icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-content">
+              <p>Yes, students in grades 3-12 are required to take an entrance assessment that includes English language proficiency and mathematics. For younger students (grades 1-2), a developmental assessment is conducted through observation and interactive activities.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What curriculum does the school follow?</h3>
+            <div class="faq-icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-content">
+              <p>We follow an international curriculum that combines the best practices of American and British educational systems, while also incorporating Mongolian language and culture studies. Our high school program offers Advanced Placement (AP) courses and prepares students for the International Baccalaureate (IB) Diploma Programme.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What languages are taught at the school?</h3>
+            <div class="faq-icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-content">
+              <p>English is the primary language of instruction. We also offer comprehensive Mongolian language and literature classes. Additional language options include Mandarin Chinese, Russian, and Korean from middle school onwards. Spanish and French are available as electives in high school.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Do you offer Advanced Placement (AP) courses?</h3>
+            <div class="faq-icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-content">
+              <p>Yes, we offer 12 Advanced Placement courses including AP Calculus, AP Biology, AP Chemistry, AP Physics, AP World History, AP English Literature, and AP Computer Science. Our AP pass rate consistently exceeds the global average, with 85% of our students scoring 3 or higher.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What payment options are available for tuition?</h3>
+            <div class="faq-icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-content">
+              <p>We offer several payment options:
+                <br>1. Full payment by August 1st (2% discount)
+                <br>2. Two-installment plan (August and January)
+                <br>3. Ten-month payment plan (August through May)
+                <br>4. Credit card payments with additional processing fee
+                <br>Payments can be made via bank transfer, cash, or credit card.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Do you offer sibling discounts?</h3>
+            <div class="faq-icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-content">
+              <p>Yes, we offer sibling discounts:
+                <br>• 10% discount for the second child
+                <br>• 15% discount for the third child
+                <br>• 20% discount for the fourth and subsequent children
+                <br>Discounts apply to tuition only, not to other fees.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Are scholarships available?</h3>
+            <div class="faq-icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-content">
+              <p>Yes, we offer merit-based scholarships for outstanding academic achievement, as well as need-based financial aid. Scholarship applications must be submitted by March 31st for the following academic year. Awards range from 25% to full tuition coverage based on demonstrated need and merit.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 20 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How does the school communicate with parents?</h3>
+            <div class="faq-icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-content">
+              <p>We use multiple communication channels:
+                <br>• Parent portal for grades, attendance, and announcements
+                <br>• Weekly email newsletters
+                <br>• Regular parent-teacher conferences
+                <br>• School mobile app for updates and notifications
+                <br>• Emergency alerts via SMS
+                <br>• Social media updates on Facebook and Instagram
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>School</h3>
+        <ul>
+          <li><a href="home.html">About Us</a></li>
+          <li><a href="programms.html">Programs</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+          <li><a href="info.html">Information</a></li>
+          <li><a href="students.html">Student Life</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Email: <a href="mailto:n/a">n/a</a></p>
+        <p>Утас: n/a</p>
+        
+      </div>
+
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCcINCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn"
+         width="600"
+         height="450" 
+         style="border:0;" 
+         allowfullscreen="" 
+         loading="lazy" 
+         referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div class="footer-section footer-right">
+        <img src="cambridge-logo.png" alt="n/a" class="logo">
+        <p>Mongolian International School</p>
+        <div class="iso-box">ISO <span>n/a</span></div>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/miusecondaryschool2020">
+            <i class="fa-brands fa-facebook"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025. Mongolian International School. All rights reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', function() {
+        const faqItem = this.parentElement;
+        
+        // Close all other FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+          if (item !== faqItem && item.classList.contains('active')) {
+            item.classList.remove('active');
+          }
+        });
+        
+        // Toggle current FAQ item
+        faqItem.classList.toggle('active');
+      });
+    });
+
+    // Open first FAQ item by default
+    document.querySelector('.faq-item').classList.add('active');
+  </script>
+</body>
+</html>

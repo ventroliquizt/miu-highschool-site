@@ -1,45 +1,15 @@
-export default function Dashboard() {
+import { Outlet } from "react-router-dom";
+import Sidebar from "./components/Sidebar"; // adjust if needed
 
-  function logout() {
-    localStorage.removeItem("token");
-    window.location.href = "/login";
-  }
-
+function Dashboard() {
   return (
-    <div>
-      <h2>Admin Dashboard</h2>
-
-      <button onClick={() => window.location.href = "/new"}>
-        New Article
-      </button>
-
-      <br /><br />
-
-      <button onClick={() => window.location.href = "/articles"}>
-        View Articles
-      </button>
-
-      <br /><br />
-
-      <button onClick={logout}>
-        Logout
-      </button>
-
-      {/* ✅ THIS MUST BE INSIDE return */}
-      <a
-        href="/home.html"
-        style={{
-          position: "fixed",
-          top: "15px",
-          right: "15px",
-          padding: "8px 12px",
-          border: "1px solid #ccc",
-          textDecoration: "none",
-          background: "#fff"
-        }}
-      >
-        ← Back to Website
-      </a>
+    <div className="dashboard-layout">
+      <Sidebar />
+      <div className="dashboard-content">
+        <Outlet />
+      </div>
     </div>
   );
 }
+
+export default Dashboard;
