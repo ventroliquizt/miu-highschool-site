@@ -102,35 +102,3 @@ button:hover {
   display: flex;
   gap: 10px;
 }
-
-.dashboard-layout {
-  display: flex;
-  height: 100vh;
-}
-
-.dashboard-content {
-  flex: 1;
-  padding: 24px;
-  overflow-y: auto;
-  background: #fff;
-}
-.sidebar {
-  width: 260px;
-  min-width: 260px;
-  height: 100vh;
-  background: #a52a2a;
-  color: white;
-  display: flex;
-  flex-direction: column;
-}
-.banner-page {
-  width: 100%;
-  max-width: 100%;
-}
-
-.dashboard-page {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  position: static;
-}

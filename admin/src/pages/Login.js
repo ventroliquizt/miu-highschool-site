@@ -21,7 +21,7 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
 
       // 🔥 IMPORTANT: navigate AFTER saving token
-      navigate("/", { replace: true });
+      navigate("/dashboard", { replace: true });
     } catch (err) {
       alert("Login failed");
       console.error(err);

@@ -17,182 +17,13 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
-        <style>
-    /* FAQ Page Specific Styles */
-    :root {
-      --primary-color: #d82a2a;
-      --secondary-color: #2c6bb8;
-      --accent-color: #f5f5f5;
-      --light-color: #f8fafc;
-      --dark-color: #0f2d56;
-      --grey-color: #6b7280;
-      --dark-grey: #374151;
-      --text-color: #1f2937;
-      --text-light: #6b7280;
-      --success-color: #059669;
-      --warning-color: #d97706;
-      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
-      --border-radius: 12px;
-      --transition: all 0.3s ease;
-    }
-
-    /* FAQ Header */
-    .faq-header {
-      background-image: url("https://github.com/ventroliquizt/miu-highschool-site/blob/main/556981901_1889760831840412_9179320815925247158_n.jpg?raw=true");
-      background-size: cover;
-      background-position: 50% 65%;
-      background-repeat: no-repeat;
-      padding: 120px 0 420px;
-      text-align: center;
-      color: rgb(255, 255, 255);
-      position: relative;
-    }
-
-    .faq-header h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    .faq-header p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    /* Section Header */
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-header h2 {
-      font-size: 2.5rem;
-      color: var(--dark-color);
-      margin-bottom: 15px;
-      font-weight: 600;
-      position: relative;
-      display: inline-block;
-    }
-
-    .section-header h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 4px;
-      background: var(--primary-color);
-      border-radius: 2px;
-    }
-
-    /* FAQ Section */
-    .faq-section {
-      padding: 80px 0;
-      background: #f8fafc;
-    }
-
-    .faq-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .faq-accordion {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .faq-item {
-      background: white;
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    .faq-item:hover {
-      box-shadow: var(--shadow-hover);
-    }
-
-    .faq-question {
-      padding: 25px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      background: white;
-      border-left: 4px solid transparent;
-      transition: var(--transition);
-    }
-
-    .faq-item.active .faq-question {
-      background: #fef2f2;
-      border-left-color: var(--primary-color);
-    }
-
-    .faq-question h3 {
-      font-size: 1.2rem;
-      color: var(--dark-color);
-      margin: 0;
-      font-weight: 600;
-      flex: 1;
-      transition: var(--transition);
-    }
-
-    .faq-item.active .faq-question h3 {
-      color: var(--primary-color);
-    }
-
-    .faq-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--accent-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary-color);
-      font-size: 0.9rem;
-      transition: var(--transition);
-      flex-shrink: 0;
-      margin-left: 15px;
-    }
-
-    .faq-item.active .faq-icon {
-      background: var(--primary-color);
-      color: white;
-      transform: rotate(180deg);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-    }
-
-    .faq-item.active .faq-answer {
-      max-height: 500px;
-    }
-
-    .faq-content {
-      padding: 0 30px 25px;
-    }
-
-    .faq-content p {
-      color: var(--grey-color);
-      line-height: 1.7;
-      margin: 0;
-    }
-  </style>
 </head>
-
 <body>
+  <div id="home-articles"></div>
+
+<script>
+  loadArticles("home", "home-articles");
+</script>
 
 
   <!-- ===== NAVBAR ===== -->
@@ -200,6 +31,10 @@
     <div class="menu-toggle" id="menu-toggle">☰</div>
 
     <ul class="nav-left">
+      <div class="logo">
+      <a href="home.html">MIS</a>
+    </div>
+
       <li class="dropdown">
         <a href="home.html">About Us</a>
         <ul class="dropdown-menu">
@@ -227,15 +62,11 @@
           <li><a href="admissions.html#tuition">Tuition Information</a></li>
         </ul>
       </li>
-      </ul>
     
-        <div class="logo">
-      <a href="home.html">MIS</a>
-      </div>
 
-      <ul class="nav-right">
+
       <li class="dropdown">
-        <a href="info.html">Information</a>
+        <a href="#info">Information</a>
         <ul class="dropdown-menu">
           <li><a href="#">FAQ</a></li>
         </ul>
@@ -252,43 +83,33 @@
       <li class="dropdown">
         <a href="#contact">Contact Us</a>
         </ul>
-      
-    
+      </li>
+    </ul>
 <!-- ===== LOGIN IMPORTANT===== -->
-    
-      <a href="http://localhost:3000">Admin</a>
-    
+    <div class="nav-right">
+    <a href="http://localhost:3000">Administration</a>
+  </div>
   </header>
-  <!-- FAQ Header -->
-  <section class="faq-header">
-    <div class="container"></div>
-  </section>
 
   <!-- ===== MAIN CONTENT ===== -->
   <main>
 
     <!-- HERO -->
-    <!-- HERO -->
-<section id="home" class="hero-section">
+    <section id="home" class="hero-section">
+      <div class="whiteboard">
+        <div class="hero-image">
+          <img src="/images/568292496_1908326693317159_3626035863105372190_n.jpg" alt="students">
+        </div>
 
-  <div class="whiteboard">
-  <!-- <button id="prev" class="arrow left">‹</button> -->
-
-  <div class="hero-image">
-    <img id="banner-image" alt="students">
-  </div>
-
-  <div class="hero-text">
-
-    <h1 id="banner-title"></h1>
-    <h2 id="banner-subtitle"></h2>
-  </div>
-
-  <!-- <button id="next" class="arrow right">›</button> -->
-</div>
-
-</section>
-
+        <div class="hero-text">
+          <div class="logo2">
+            <img src="/images/mis_logo_001-copy-2.jpg" alt="school logo">
+          </div>
+          <h1>We believe</h1>
+          <h2 id="hero-text">academic excellence is just the start.</h2>
+        </div>
+      </div>
+    </section>
 
     <!-- PRE-HERO -->
     <section class="pre-hero">
@@ -296,7 +117,7 @@
         <div class="grey-logo"></div>
 
         <div class="prehero-image">
-          <img src="http://localhost:3001/uploads/558038612_1895781397905022_7022513512528364565_n.jpg" alt="Korean traditional event">
+          <img src="/images/558038612_1895781397905022_7022513512528364565_n.jpg" alt="Korean traditional event">
         </div>
 
         <div class="prehero-text-wrap">
@@ -315,7 +136,7 @@
 
     <!-- ROTATING LOGO -->
     <section class="logo-rotate-section">
-      <img src="http://localhost:3001/uploads/mis_logo_001-copy-2.jpg"
+      <img src="/images/mis_logo_001-copy-2.jpg"
            alt="School Logo"
            class="auto-rotate" />
     </section>
@@ -323,7 +144,7 @@
     <!-- VICE'S GREETING -->
     <section id="vice-greeting" class="info-section1">
       <div class="info-image1">
-        <img src="http://localhost:3001/uploads/Screenshot 2025-11-18 090014president.png"
+        <img src="/images/Screenshot 2025-11-18 090014president.png"
              alt="Vice's greeting" />
       </div>
       <div class="info-text1">
@@ -347,23 +168,23 @@
     <section id="levels" class="levels-section">
       <div class="levels-container">
         <div class="levels-images">
-          <li href="lower-school.html" class="level-card">
-            <img src="http://localhost:3001/uploads/497537379_1768540893962407_7532981151105264191_n.jpg" alt="Lower School" />
+          <a href="lower-school.html" class="level-card">
+            <img src="/images/497537379_1768540893962407_7532981151105264191_n.jpg" alt="Lower School" />
             <h2>Start your journey from here</h2>
             <h1>Lower School</h1>
-          </li>
+          </a>
 
-          <li href="middle-school.html" class="level-card">
-            <img src="http://localhost:3001/uploads/571824159_1915855125897649_9209040587861907538_n.jpg" alt="Middle School" />
+          <a href="middle-school.html" class="level-card">
+            <img src="/images/571824159_1915855125897649_9209040587861907538_n.jpg" alt="Middle School" />
             <h2>Make your own path</h2>
             <h1>Middle School</h1>
-          </li>
+          </a>
 
-          <li href="high-school.html" class="level-card">
-            <img src="http://localhost:3001/uploads/558469511_1889761551840340_5939963616839737402_n.jpg" alt="High School" />
+          <a href="high-school.html" class="level-card">
+            <img src="/images/558469511_1889761551840340_5939963616839737402_n.jpg" alt="High School" />
             <h2>Make a first walk into life</h2>
             <h1>High School</h1>
-          </li>
+          </a>
         </div>
 
         <div class="levels-text">
@@ -390,19 +211,19 @@
       </div>
 
       <div class="glance-slides">
-        <div class="slide active" style="background-image: url('http://localhost:3001/uploads/blackandwhite1.png');">
+        <div class="slide active" style="background-image: url('/images/blackandwhite1.png');">
           <div class="info">
             <h2>20</h2>
             <p>MAINSTAGE AND DANCE PRODUCTIONS</p>
           </div>
         </div>
-        <div class="slide" style="background-image: url('http://localhost:3001/uploads/blackandwhite2.png');">
+        <div class="slide" style="background-image: url('/images/blackandwhite2.png');">
           <div class="info">
             <h2>18</h2>
             <p>SUMMER PROGRAMS</p>
           </div>
         </div>
-        <div class="slide" style="background-image: url('http://localhost:3001/uploads/blackwhite3.png');">
+        <div class="slide" style="background-image: url('/images/blackwhite3.png');">
           <div class="info">
             <h2>786</h2>
             <p>STUDENTS CURRENTLY ENROLLED</p>
@@ -419,10 +240,10 @@
       <div class="footer-section">
         <h3>School</h3>
         <ul>
-          <li><a href="home.html">About Us</a></li>
+          <li><a href="index.html">About Us</a></li>
           <li><a href="programms.html">Programs</a></li>
           <li><a href="admissions.html">Admissions</a></li>
-          <li><a href="info.html">Information</a></li>
+          <li><a href="#info">Information</a></li>
           <li><a href="students.html">Student Life</a></li>
         </ul>
       </div>
@@ -430,34 +251,46 @@
       <div class="footer-section">
         <h3>Contact</h3>
         <p>Email: <a href="mailto:n/a">n/a</a></p>
-        <p>Утас: n/a</p>
-        
+        <p>Phone: n/a</p>
+        <p>Fax: n/a</p>
       </div>
 
       <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCcINCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn"
-         width="600"
-         height="450" 
-         style="border:0;" 
-         allowfullscreen="" 
-         loading="lazy" 
-         referrerpolicy="no-referrer-when-downgrade">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCcINCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
 
       <div class="footer-section footer-right">
-        <img src="http://localhost:3001/uploads/mis_logo_001-copy-2" alt="MIS" class="logo">
-
-        <div class="iso-box">ISO <span>n/a</span></div>
+        <img src="/images/mis_logo_001-copy-2.png" alt="MIS" class="logo" />
+        <p>Mongolian International School</p>
         <div class="social-icons">
           <a href="https://www.facebook.com/miusecondaryschool2020">
             <i class="fa-brands fa-facebook"></i>
-        
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div class="footer-bottom">
       <p>© 2025 Mongolian International School. All rights reserved.</p>
     </div>
-  
+  </footer>
+
+  <script type="module" src="script.js"></script>
 
   <div id="students-articles"></div>
 
-<script src="script.js"></script>
+<script type="module">
+  import { loadArticles } from "./script.js";
+  loadArticles("students", "students-articles");
+</script>
+
+</body>
+</html>
