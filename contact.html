@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Mongolian International School</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .contact-card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+
+    .contact-icon {
+      width: 70px;
+      height: 70px;
+      background: #c52233;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.8rem;
+    }
+
+    .contact-card h3 {
+      color: #0f2d56;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .contact-card p {
+      color: #666;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      background: #0f2d56;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    .social-link:hover {
+      background: #c52233;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+      <div class="logo">
+        <a href="index.html">
+          <img src="mis_logo.png" alt="Mongolian Itgel School Logo">
+        </a>
+        <span class="school-name">Mongolian Itgel School</span>
+      </div>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="index.html">About Us</a>
+        <ul class="dropdown-menu">
+          <li><a href="index.html#vice-greeting">Vice's Greeting</a></li>
+          <li><a href="index.html#mission-vision">Mission & Vision</a></li>
+          <li><a href="index.html#our-success">Our Success</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="programs.html">Programs</a>
+        <ul class="dropdown-menu">
+          <li><a href="programs.html#academic-calendar">Academic Calendar</a></li>
+          <li><a href="programs.html#activities">Extracurricular Activities</a></li>
+          <li><a href="programs.html#special-programs">Special Programs</a></li>
+          <li><a href="programs.html#volunteer">Volunteer</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="admissions.html">Admissions</a>
+        <ul class="dropdown-menu">
+          <li><a href="admissions.html#process">Process</a></li>
+          <li><a href="admissions.html#online">Online Admissions</a></li>
+          <li><a href="admissions.html#tuition">Tuition & Fees</a></li>
+        </ul>
+      </li>
+      <li><a href="information.html">Information</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header  -->
+  <section class="page-header"></section>
+
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumb">
+    <div class="container breadcrumb-content">
+      <div class="breadcrumb-links">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Contact</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Information -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Contact Information</h2>
+        <p>Get in touch with us</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3>Address</h3>
+          <p>Mongolian Itgel School</p>
+          <p>Bayanzurkh District, 13khoroo</p>
+          <p>Ulaanbaatar, Mongolia</p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h3>Phone</h3>
+          <p><strong>Main Office:</strong> +976 123-4567</p>
+          <p><strong>Admissions:</strong> +976 123-4568</p>
+          <p><strong>sdasfa:</strong> +976 123-4569</p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Email</h3>
+          <p><strong>General:</strong> info@mis.edu.mn</p>
+          <p><strong>Admissions:</strong> admissions@mis.edu.mn</p>
+          <p><strong>Registrar:</strong> registrar@mis.edu.mn</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="section" style="background: #f0f2f5;">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 30px;">
+        <h2 style="color: #0f2d56; margin-bottom: 15px;">Our Location</h2>
+      </div>
+
+      <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCc INCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn" 
+                style="width:100%; height:400px; border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <h3 style="color: #0f2d56; margin-bottom: 20px;">Connect With Us Online</h3>
+        <div class="social-links">
+          <a href="#" class="social-link">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+          <li><a href="information.html">Information</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-map-marker-alt"></i> BZ district, 13khoroo</p>
+        <p><i class="fas fa-phone"></i> +976 123-4567</p>
+        <p><i class="fas fa-envelope"></i> info@mis.edu.mn</p>
+      </div>
+
+      <div class="footer-section map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCc INCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn"></iframe>
+      </div>
+
+      <div class="footer-section">
+        <h3>Connect With Us</h3>
+        <p>Follow us on social media for updates</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Mongolian Itgel School. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
