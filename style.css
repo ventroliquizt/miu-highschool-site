@@ -1,0 +1,868 @@
+/* ================= BASE STYLES ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #c52233;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 50px;
+  min-height: 90px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo a {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 50%;
+  padding: 1px;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.school-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+/* ================= MENU ================= */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ================= MOBILE MENU ================= */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 15px 25px;
+  }
+
+  .school-name {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    background: #c52233;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 240px;
+  border-radius: 5px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  z-index: 1001;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu a:hover {
+  background: #f5f5f5;
+  color: #c52233;
+}
+
+.dropdown-menu li:last-child a {
+  border-bottom: none;
+}
+
+/* ================= PAGE HEADERS ================= */
+.page-header {
+  background-image: url('https://github.com/ventroliquizt/miu-highschool-site/blob/main/556981901_1889760831840412_9179320815925247158_n.jpg?raw=true');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 120px 0;
+  text-align: center;
+  color: white;
+  position: relative;
+  min-height: 500px;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+  background: #c52233;
+  padding: 15px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.breadcrumb-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.breadcrumb a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* ================= SECTION STYLES ================= */
+.section {
+  padding: 60px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-header h2 {
+  font-size: 2.2rem;
+  color: #0f2d56;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: #c52233;
+  border-radius: 2px;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 25px auto 0;
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+  display: inline-block;
+  background: #c52233;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  border: 2px solid #c52233;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background: transparent;
+  color: #c52233;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================= IMPROVED CALENDAR BUTTONS ================= */
+.calendar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.calendar-nav h3 {
+  color: #0f2d56;
+  font-size: 1.5rem;
+  margin: 0;
+  min-width: 180px;
+  text-align: center;
+}
+
+.calendar-nav button {
+  background: #c52233;
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 26px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Calendar Days Grid */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #0f2d56;
+  text-align: center;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day {
+  height: 65px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 5px;
+  font-weight: 500;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.day:hover {
+  background: #e9ecef;
+}
+
+.day.event {
+  background: #ffebee;
+  border: 2px solid #c52233;
+}
+
+.day.holiday {
+  background: #ffebee;
+  border: 2px solid #c52233;
+}
+
+.day.academic {
+  background: #ffebee;
+  border: 2px solid #c52233;
+}
+
+.event-dot {
+  width: 8px;
+  height: 8px;
+  background: #c52233;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+/* Calendar Explanation */
+.calendar-explanation {
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  margin-top: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.explanation-title {
+  color: #0f2d56;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.explanation-list {
+  list-style: none;
+  padding: 0;
+}
+
+.explanation-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.explanation-item:last-child {
+  border-bottom: none;
+}
+
+.event-date {
+  min-width: 80px;
+  font-weight: 600;
+  color: #0f2d56;
+}
+
+.event-desc {
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ================= RED FOOTER ================= */
+.footer {
+  background: #c52233;
+  color: white;
+  padding: 50px 0 20px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section li {
+  margin-bottom: 8px;
+  color: rgba(255,255,255,0.9);
+  cursor: pointer;
+}
+
+.footer-section li:hover {
+  color: white;
+}
+
+.footer-section p {
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 8px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.footer-section a {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* Map container adjusted */
+.map-container {
+  grid-column: span 2;
+  position: relative;
+  left: -20px;
+  width: calc(100% + 40px);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  border-radius: 5px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  color: white;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.social-icons a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.8);
+  font-size: 0.85rem;
+}
+
+/* ================= REMOVE HOVER MOVEMENTS ================= */
+.tuition-card:hover,
+.contact-card:hover,
+.activity-card:hover,
+.program-card:hover,
+.volunteer-card:hover,
+.faq-item:hover {
+  transform: none;
+}
+
+/* Keep hover effects without movement */
+.tuition-card:hover,
+.contact-card:hover {
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+/* ================= NEWS SECTION STYLES ================= */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.news-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s;
+}
+
+.news-card:hover {
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.news-image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.news-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.news-card:hover .news-image img {
+  transform: scale(1.05);
+}
+
+.news-content {
+  padding: 25px;
+}
+
+.news-content h3 {
+  color: #0f2d56;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+.news-date {
+  color: #c52233;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.news-excerpt {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.news-more {
+  color: #666;
+  line-height: 1.6;
+  display: none; /* Changed from max-height: 0 to display: none */
+}
+
+.news-card.expanded .news-more {
+  display: block; /* Changed from max-height to display */
+  margin-top: 20px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.news-toggle {
+  background: #0f2d56;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.news-toggle:hover {
+  background: #c52233;
+}
+
+/* ================= FAQ STYLES ================= */
+.faq-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: #0f2d56;
+  font-size: 1.1rem;
+  background: #f8f9fa;
+}
+
+.faq-question:hover {
+  background: #e9ecef;
+}
+
+.faq-question i {
+  transition: transform 0.2s;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  padding: 20px;
+}
+
+.faq-answer p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.faq-answer ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.faq-answer li {
+  margin-bottom: 8px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ================= UTILITY CLASSES ================= */
+.text-center { text-align: center; }
+.mt-20 { margin-top: 20px; }
+.mt-40 { margin-top: 40px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-40 { margin-bottom: 40px; }
+
+@media (max-width: 992px) {
+  .navbar {
+    padding: 15px 25px;
+  }
+
+  .logo {
+    margin-right: 30px;
+  }
+
+  .school-name {
+    font-size: 20px;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+    padding: 5px 10px;
+  }
+
+  .dropdown-menu a {
+    font-size: 14px;
+  }
+
+  .page-header {
+    padding: 80px 0;
+  }
+
+  .map-container {
+    grid-column: span 1;
+    width: 100%;
+    left: 0;
+  }
+
+  .days-grid .day {
+    height: 50px;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Tablets & mobile ---------- */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #c52233;
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .school-name {
+    font-size: 18px;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .dropdown-menu a {
+    color: white;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .section {
+    padding: 40px 0;
+  }
+
+  .section-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .page-header {
+    padding: 60px 0;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .calendar-nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .calendar-nav h3 {
+    min-width: auto;
+  }
+
+  .calendar-buttons button {
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+  }
+}
+
+/* ---------- Small phones ---------- */
+@media (max-width: 480px) {
+  .navbar {
+    min-height: 80px;
+  }
+
+  .logo a {
+    width: 70px;
+    height: 70px;
+  }
+
+  .page-header {
+    padding: 50px 0;
+  }
+
+  .section-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .footer {
+    padding: 40px 0 15px;
+  }
+
+  .days-grid .day {
+    height: 45px;
+    font-size: 0.9rem;
+  }
+
+  .calendar-buttons button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
