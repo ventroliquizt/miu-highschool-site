@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs - Mongolian International School</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    
+    /* Activities Styles */
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .activity-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+
+    .activity-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .activity-content {
+      padding: 20px;
+    }
+
+    .activity-content h3 {
+      color: #0f2d56;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .activity-content p {
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .activity-details {
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      font-size: 0.9rem;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+
+    .activity-details i {
+      color: #c52233;
+      margin-right: 5px;
+    }
+
+    /* Special Programs Styles */
+    .special-programs {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .special-programs::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://github.com/ventroliquizt/miu-highschool-site/blob/main/ChatGPT_Image_Nov_8__2025__04_54_58_AM-removebg-preview.png?raw=true') no-repeat center left;
+      background-size: 25%;
+      opacity: 0.3;
+    }
+
+    .special-programs .section-header h2,
+    .special-programs .section-header p {
+      color: white;
+    }
+
+    .special-programs .section-header h2::after {
+      background: white;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .program-card {
+      background: rgba(255,255,255,0.9);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .program-icon {
+      font-size: 40px;
+      color: #c52233;
+      margin-bottom: 15px;
+    }
+
+    /* Volunteer Programs */
+    .volunteer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .volunteer-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+
+    .volunteer-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .volunteer-content {
+      padding: 20px;
+    }
+
+    .volunteer-content h3 {
+      color: #0f2d56;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .volunteer-content p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .days-grid .day {
+        height: 55px;
+        font-size: 0.9rem;
+      }
+      
+      .calendar-nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .calendar-nav h3 {
+        min-width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+      <div class="logo">
+        <a href="index.html">
+          <img src="mis_logo.png" alt="Mongolian Itgel School Logo">
+        </a>
+        <span class="school-name">Mongolian Itgel School</span>
+      </div>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="index.html">About Us</a>
+        <ul class="dropdown-menu">
+          <li><a href="index.html#vice-greeting">Vice's Greeting</a></li>
+          <li><a href="index.html#mission-vision">Mission & Vision</a></li>
+          <li><a href="index.html#our-success">Our Success</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="programs.html">Programs</a>
+        <ul class="dropdown-menu">
+          <li><a href="#academic-calendar">Academic Calendar</a></li>
+          <li><a href="#activities">Extracurricular Activities</a></li>
+          <li><a href="#special-programs">Special Programs</a></li>
+          <li><a href="#volunteer">Volunteer</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="admissions.html">Admissions</a>
+        <ul class="dropdown-menu">
+          <li><a href="admissions.html#process">Process</a></li>
+          <li><a href="admissions.html#online">Online Admissions</a></li>
+          <li><a href="admissions.html#tuition">Tuition & Fees</a></li>
+        </ul>
+      </li>
+      <li><a href="information.html">Information</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header"></section>
+
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumb">
+    <div class="container breadcrumb-content">
+      <div class="breadcrumb-links">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Programs</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Academic Calendar -->
+  <section id="academic-calendar" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Academic Calendar 2025-2026</h2>
+        <p>Important dates and events for the academic year</p>
+      </div>
+
+      <div class="calendar-container">
+        <div class="calendar-nav">
+          <button id="prev-month">&lt;</button>
+          <h3 id="current-month">September 2025</h3>
+          <button id="next-month">&gt;</button>
+        </div>
+
+        <div class="weekdays">
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+          <div>Sun</div>
+        </div>
+
+        <div class="days-grid" id="calendar-days">
+          <!-- Calendar-JavaScript -->
+        </div>
+      </div>
+
+      <!-- Calendar Explanation -->
+      <div class="calendar-explanation">
+        <h3 class="explanation-title">
+          <i class="fas fa-calendar-alt"></i>
+          <span id="month-explanation-title">September Important Dates</span>
+        </h3>
+        <ul class="explanation-list" id="explanation-list">
+          <!-- Explanation-JavaScript -->
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Extracurricular Activities -->
+  <section id="activities" class="section" style="background: #f0f2f5;">
+    <div class="container">
+      <div class="section-header">
+        <h2>Extracurricular Activities</h2>
+        <p>Enriching experiences beyond the classroom</p>
+      </div>
+
+      <div class="activities-grid">
+        <div class="activity-card">
+          <div class="activity-image" style="background-image: url('https://github.com/ventroliquizt/miu-highschool-site/blob/main/568292496_1908326693317159_3626035863105372190_n.jpg?raw=true');"></div>
+          <div class="activity-content">
+            <h3>Basketball Team</h3>
+            <p>Develop athletic skills and teamwork.</p>
+            <div class="activity-details">
+              <span><i class="fas fa-clock"></i> Wed 3:40-5:00 PM</span>
+              <span><i class="fas fa-user"></i> Grades 9-12</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image" style="background-image: url('https://github.com/ventroliquizt/miu-highschool-site/blob/main/559235804_1895783727904789_3739476468778142488_n.jpg?raw=true');"></div>
+          <div class="activity-content">
+            <h3>Taekwondo Club</h3>
+            <p>Develop athletic skills and teamwork.</p>
+            <div class="activity-details">
+              <span><i class="fas fa-clock"></i> Mon/Wed 4:00-5:30 PM</span>
+              <span><i class="fas fa-user"></i> Grades 7-12</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image" style="background-image: url('https://github.com/ventroliquizt/miu-highschool-site/blob/main/497537379_1768540893962407_7532981151105264191_n.jpg?raw=true');"></div>
+          <div class="activity-content">
+            <h3>Music & Arts</h3>
+            <p>Explore creativity through various art forms and musical instruments.</p>
+            <div class="activity-details">
+              <span><i class="fas fa-clock"></i> Tue 3:40-5:00 PM</span>
+              <span><i class="fas fa-user"></i> All Grades</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Programs -->
+  <section id="special-programs" class="special-programs section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Special Programs</h2>
+        <p>Unique opportunities for specialized learning</p>
+      </div>
+
+      <div class="programs-grid">
+        <div class="program-card">
+          <div class="program-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3 style="color: #0f2d56;">College Prep</h3>
+          <p>Comprehensive guidance for university applications and career planning.</p>
+        </div>
+
+        <div class="program-card">
+          <div class="program-icon">
+            <i class="fas fa-language"></i>
+          </div>
+          <h3 style="color: #0f2d56;">Language Immersion</h3>
+          <p>Intensive language programs in English, Korean.</p>
+        </div>
+
+        <div class="program-card">
+          <div class="program-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3 style="color: #0f2d56;">STEM Program</h3>
+          <p>Advanced courses in Science, Technology, Engineering, and Mathematics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Volunteer Programs -->
+  <section id="volunteer" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Volunteer Programs</h2>
+        <p>Make a difference in your community</p>
+      </div>
+
+      <div class="volunteer-grid">
+        <div class="volunteer-card">
+          <div class="volunteer-image" style="background-image: url('https://github.com/ventroliquizt/miu-highschool-site/blob/main/571824159_1915855125897649_9209040587861907538_n.jpg?raw=true');"></div>
+          <div class="volunteer-content">
+            <h3>Tutoring Program</h3>
+            <p>Help elementary school students with reading and math skills. Training provided for all volunteers.</p>
+          </div>
+        </div>
+
+        <div class="volunteer-card">
+          <div class="volunteer-image" style="background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+          <div class="volunteer-content">
+            <h3>Environmental Club</h3>
+            <p>Participate in tree planting, recycling campaigns, and community cleanups.</p>
+          </div>
+        </div>
+
+        <div class="volunteer-card">
+          <div class="volunteer-image" style="background-image: url('https://github.com/ventroliquizt/miu-highschool-site/blob/main/566387587_1908325923317236_7524284606729972988_n.jpg?raw=true');"></div>
+          <div class="volunteer-content">
+            <h3>Community Service</h3>
+            <p>Work with local organizations to support community development projects.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+          <li><a href="information.html">Information</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-map-marker-alt"></i> BZ district 13khoroo</p>
+        <p><i class="fas fa-phone"></i> +976 123-4567</p>
+        <p><i class="fas fa-envelope"></i> info@mis.edu.mn</p>
+      </div>
+
+      <div class="footer-section map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCc INCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn"></iframe>
+      </div>
+
+      <div class="footer-section">
+        <h3>Connect With Us</h3>
+        <p>Follow us on social media for updates</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Mongolian Itgel School. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Calendar functionality
+    const months = [
+      {
+        name: 'September 2025',
+        days: 30,
+        startDay: 1,
+        events: {
+          29: { type: 'academic', title: 'Academic Event - Beginning of new semester', fullDesc: 'September 29: Academic Event - Beginning of new semester' }
+        }
+      },
+      {
+        name: 'October 2025',
+        days: 31,
+        startDay: 3,
+        events: {
+          13: { type: 'holiday', title: 'Autumn Break Begins', fullDesc: 'October 13-17: Autumn Break - School holiday for students and teachers' },
+          27: { type: 'academic', title: 'Mid-term Exams', fullDesc: 'October 27-31: Mid-term examinations for all grades' }
+        }
+      },
+      {
+        name: 'November 2025',
+        days: 30,
+        startDay: 6,
+        events: {
+          26: { type: 'holiday', title: 'Republic Day', fullDesc: 'November 26: Republic Day - National holiday' }
+        }
+      },
+      {
+        name: 'December 2025',
+        days: 31,
+        startDay: 1,
+        events: {
+          6: { type: 'academic', title: 'SAT Exams', fullDesc: 'December 6: SAT Exams for college-bound students' },
+          23: { type: 'holiday', title: 'Winter Break', fullDesc: 'December 23-January 5: Winter Break - No classes' },
+          31: { type: 'holiday', title: 'New Year\'s Eve', fullDesc: 'December 31: New Year\'s Eve - School closed' }
+        }
+      },
+      {
+        name: 'January 2026',
+        days: 31,
+        startDay: 4,
+        events: {
+          1: { type: 'holiday', title: 'New Year\'s Day', fullDesc: 'January 1: New Year\'s Day - National holiday' },
+          6: { type: 'academic', title: 'Classes Resume', fullDesc: 'January 6: Classes resume after Winter Break' },
+          23: { type: 'academic', title: 'Course Registration', fullDesc: 'January 23-25: Spring semester course registration' }
+        }
+      },
+      {
+        name: 'February 2026',
+        days: 28,
+        startDay: 0,
+        events: {
+          18: { type: 'holiday', title: 'Tsagaan Sar', fullDesc: 'February 18-20: Tsagaan Sar (Lunar New Year) - Tentative (floating days in lieu)' },
+          25: { type: 'academic', title: 'Parent-Teacher', fullDesc: 'February 25-27: Parent-Teacher conferences' }
+        }
+      }
+    ];
+
+    let currentMonthIndex = 0;
+    let activeButton = null;
+
+    function renderCalendar() {
+      const month = months[currentMonthIndex];
+      const calendarDays = document.getElementById('calendar-days');
+      const monthTitle = document.getElementById('current-month');
+      const explanationTitle = document.getElementById('month-explanation-title');
+      const explanationList = document.getElementById('explanation-list');
+      
+      monthTitle.textContent = month.name;
+      explanationTitle.textContent = `${month.name.split(' ')[0]} Important Dates`;
+      
+      let calendarHTML = '';
+      let explanationHTML = '';
+      
+      // Empty days at the start
+      for (let i = 0; i < month.startDay; i++) {
+        calendarHTML += '<div class="day"></div>';
+      }
+      
+      // Days of the month
+      for (let day = 1; day <= month.days; day++) {
+        let dayClass = 'day';
+        let dotHTML = '';
+        
+        if (month.events[day]) {
+          dayClass += ' ' + month.events[day].type;
+          dotHTML = '<div class="event-dot"></div>';
+        }
+        
+        calendarHTML += `<div class="${dayClass}" data-day="${day}">
+          <span>${day}</span>
+          ${dotHTML}
+        </div>`;
+      }
+      
+      calendarDays.innerHTML = calendarHTML;
+      
+      // explanation list
+      if (Object.keys(month.events).length === 0) {
+        explanationHTML = '<li class="explanation-item"><div class="event-desc">No scheduled events for this month</div></li>';
+      } else {
+        for (const [day, event] of Object.entries(month.events)) {
+          explanationHTML += `
+            <li class="explanation-item">
+              <div class="event-date">${month.name.split(' ')[0]} ${day}</div>
+              <div class="event-desc">${event.fullDesc}</div>
+            </li>
+          `;
+        }
+      }
+      
+      explanationList.innerHTML = explanationHTML;
+      
+      // Add click events to days 
+      document.querySelectorAll('.day[data-day]').forEach(day => {
+        day.addEventListener('click', function() {
+          const dayNum = this.getAttribute('data-day');
+          const event = month.events[dayNum];
+          if (event) {
+            // Highlight the event in the explanation list
+            highlightEventInList(dayNum, event);
+          }
+        });
+      });
+    }
+
+    function highlightEventInList(dayNum, event) {
+      const listItems = document.querySelectorAll('.explanation-item');
+      listItems.forEach(item => {
+        const dateText = item.querySelector('.event-date').textContent;
+        if (dateText.includes(`${months[currentMonthIndex].name.split(' ')[0]} ${dayNum}`)) {
+          item.style.backgroundColor = '#ffebee';
+          item.style.padding = '15px';
+          item.style.borderRadius = '5px';
+          item.style.transition = 'all 0.3s';
+          
+          // Remove highlight after 3 seconds
+          setTimeout(() => {
+            item.style.backgroundColor = '';
+            item.style.padding = '';
+            item.style.borderRadius = '';
+          }, 3000);
+        }
+      });
+    }
+
+    document.getElementById('prev-month').addEventListener('click', function() {
+      if (currentMonthIndex > 0) {
+        currentMonthIndex--;
+        renderCalendar();
+        // Add active state to button
+        this.classList.add('active');
+        setTimeout(() => this.classList.remove('active'), 300);
+      }
+    });
+
+    document.getElementById('next-month').addEventListener('click', function() {
+      if (currentMonthIndex < months.length - 1) {
+        currentMonthIndex++;
+        renderCalendar();
+        // Add active state to button
+        this.classList.add('active');
+        setTimeout(() => this.classList.remove('active'), 300);
+      }
+    });
+
+    // Add active state style for buttons
+    const style = document.createElement('style');
+    style.textContent = `
+      .calendar-buttons button.active {
+        background: #9d1c2a !important;
+        color: white !important;
+        transform: scale(0.95) !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Initialize calendar
+    renderCalendar();
+  </script>
+</body>
+</html>
