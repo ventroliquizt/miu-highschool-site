@@ -1,27 +1,22 @@
-// src/App.js
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import NewArticle from "./pages/NewArticle";
-import ArticleList from "./pages/ArticleList";
+import Banners from "./pages/Banners";
+import PrivateRoute from "./pages/PrivateRoute";
+import ArticleList from "./pages/ArticleList"; // example
 
-// Protect pages unless logged in
-function PrivateRoute({ children }) {
-  const token = localStorage.getItem("token");
-  if (!token) return <Navigate to="/" replace />;
-  return children;
-}
-
-export default function App() {
+function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
 
+        {/* Public route */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Dashboard */}
         <Route
-          path="/dashboard"
+          path="/"
           element={
             <PrivateRoute>
               <Dashboard />
@@ -29,11 +24,12 @@ export default function App() {
           }
         />
 
+        {/* Banners page */}
         <Route
-          path="/new"
+          path="/banners"
           element={
             <PrivateRoute>
-              <NewArticle />
+              <Banners />
             </PrivateRoute>
           }
         />
@@ -47,6 +43,9 @@ export default function App() {
           }
         />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
+
+export default App;
+

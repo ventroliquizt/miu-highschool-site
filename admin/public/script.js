@@ -7,7 +7,35 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js";
 const supabaseUrl = "https://gqijcqlcbxjdomnxdgqo.supabase.co";
 const supabaseAnonKey = "sb_publishable_De6Dm-ymyjooI42AxTrkzA_XpujVxrn";
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+document.addEventListener("DOMContentLoaded", () => {
+  loadHomeBanner();
+});
+
+async function loadHomeBanner() {
+  try {
+    const res = await fetch("http://localhost:3001/api/banner/home");
+    const data = await res.json();
+
+    console.log("Banner data:", data); // debug (important)
+
+    const titleEl = document.getElementById("banner-title");
+    const subtitleEl = document.getElementById("banner-subtitle");
+    const imageEl = document.getElementById("banner-image");
+
+    if (!titleEl || !subtitleEl || !imageEl) {
+      console.error("Banner DOM elements missing");
+      return;
+    }
+
+    titleEl.textContent = data.title;
+    subtitleEl.textContent = data.content;
+    imageEl.src = "http://localhost:3001" + data.imageUrl;
+  } catch (err) {
+    console.error("Failed to load home banner:", err);
+  }
+}
+
+
 
 // Rotating hero text values
 const heroMessages = [
@@ -130,4 +158,132 @@ async function loadArticles(page, containerId) {
   }
 
   document.getElementById(containerId).innerHTML = html;
+}
+
+/* ================================
+   HOME PAGE BANNER (CMS CONTROLLED)
+================================ */
+
+let bannerData = null;
+
+// =======================
+// CONFIG
+// =======================
+const API_BASE = "http://localhost:3001";
+
+// =======================
+// HOME BANNER
+// =======================
+ async function loadHomeBanner() {
+  try {
+    const res = await fetch(`${API_BASE}/api/banner/home`);
+    const banner = await res.json();
+
+    if (!banner) return;
+
+    document.getElementById("banner-image").src =
+      `${API_BASE}${banner.imageUrl}`;
+
+    document.getElementById("banner-title").textContent =
+      banner.title || "";
+
+    document.getElementById("banner-subtitle").textContent =
+      banner.content || "";
+
+  } catch (err) {
+    console.error("Failed to load home banner:", err);
+  }
+}
+
+// =======================
+// ARTICLES
+// =======================
+ async function loadArticles(section, containerId) {
+  try {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const res = await fetch(`${API_BASE}/api/articles?section=${section}`);
+    const articles = await res.json();
+
+    container.innerHTML = articles
+      .map(
+        a => `
+        <article>
+          <h3>${a.title}</h3>
+          <p>${a.content}</p>
+        </article>
+      `
+      )
+      .join("");
+
+  } catch (err) {
+    console.error("Failed to load articles:", err);
+  }
+}
+
+
+// =======================
+// HOME BANNER
+// =======================
+ async function loadHomeBanner() {
+  try {
+    const res = await fetch("http://localhost:3001/api/banner/home");
+    const banner = await res.json();
+
+    const img = document.getElementById("banner-image");
+    const title = document.getElementById("banner-title");
+    const subtitle = document.getElementById("banner-subtitle");
+
+    if (!img || !title || !subtitle) {
+      console.error("Banner elements missing");
+      return;
+    }
+
+    title.textContent = banner.title || "";
+    subtitle.textContent = banner.content || "";
+
+    if (banner.imageUrl) {
+      img.src = "http://localhost:3001" + banner.imageUrl;
+    }
+  } catch (err) {
+    console.error("Failed to load banner", err);
+  }
+}
+
+
+// =======================
+// ARTICLES
+// =======================
+ async function loadArticles(section, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const res = await fetch(`${API_BASE}/api/banner/home`);
+  const articles = await res.json();
+
+  container.innerHTML = articles
+    .map(a => `<h3>${a.title}</h3><p>${a.content}</p>`)
+    .join("");
+}
+
+console.log("script loaded");
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadHomeBanner();
+});
+
+async function loadHomeBanner() {
+  const res = await fetch(`${API_BASE}/api/banner/home`);
+  const banner = await res.json();
+
+  document.getElementById("banner-image").src =
+    API_BASE + banner.imageUrl;
+
+  document.getElementById("banner-title").textContent =
+    banner.title;
+
+  document.getElementById("banner-subtitle").textContent =
+    banner.content;
 }
