@@ -10,7 +10,7 @@ const fs = require("fs");
 
 const app = express();
 
-app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 const PORT = 3001;
 const JWT_SECRET = "supersecretkey";
@@ -33,11 +33,10 @@ function authenticateToken(req, res, next) {
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
 // ---------- FILE UPLOAD SETUP ----------
-app.use("/uploads", express.static("uploads"));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "public/uploads");
+    cb(null, "uploads");
   },
   filename: (req, file, cb) => {
     const uniqueName =
@@ -245,18 +244,6 @@ app.post("/api/upload", upload.single("image"), (req, res) => {
   });
 });
 
-app.post("/api/banner/home", (req, res) => {
-  const { title, content, imageUrl } = req.body;
-
-  const banner = { title, content, imageUrl };
-
-  fs.writeFileSync(
-    path.join(__dirname, "data/homeBanner.json"),
-    JSON.stringify(banner, null, 2)
-  );
-
-  res.json({ success: true });
-});
 
 // GET banner
 app.get("/api/banner", (req, res) => {
@@ -286,9 +273,3 @@ app.delete("/api/banner", (req, res) => {
 });
 
 
-
-// Serve uploaded images
-app.use(
-  "/uploads",
-  express.static(path.join(process.cwd(), "public/uploads"))
-);
