@@ -1,275 +1,710 @@
-const express = require("express");
-const cors = require("cors");
-const sqlite3 = require("sqlite3").verbose();
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const multer = require("multer");
-const path = require("path");
-const fs = require("fs");
+// server.js (ESM) - Mongo backend for MIU site
 
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import multer from "multer";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
+import mongoose from "mongoose";
+
+dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 3001;
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// ----- Paths (ESM __dirname fix)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const PORT = 3001;
-const JWT_SECRET = "supersecretkey";
+const uploadsDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
 
-function authenticateToken(req, res, next) {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+// ----- CORS
+app.use(
+  cors({
+    origin: (origin, cb) => {
+      if (!origin) return cb(null, true);
+      const ok =
+        /^http:\/\/localhost:\d+$/.test(origin) ||
+        /^http:\/\/127\.0\.0\.1:\d+$/.test(origin);
+      if (ok) return cb(null, true);
+      return cb(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+  })
+);
 
-  if (!token) return res.sendStatus(401);
+app.use(express.json({ limit: "5mb" }));
+app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static(uploadsDir));
 
-  jwt.verify(token, JWT_SECRET, (err, user) => {
-    if (err) return res.sendStatus(403);
-    req.user = user;
-    next();
-  });
-}
-
-
-
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
-app.use(express.json());
-// ---------- FILE UPLOAD SETUP ----------
-
+// ----- Multer (uploads to disk)
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads");
-  },
+  destination: (req, file, cb) => cb(null, uploadsDir),
   filename: (req, file, cb) => {
-    const uniqueName =
-      Date.now() + "-" + file.originalname.replace(/\s+/g, "_");
-    cb(null, uniqueName);
+    const safe = file.originalname.replace(/\s+/g, "_");
+    cb(null, `${Date.now()}-${safe}`);
   },
 });
+
 
 const upload = multer({ storage });
 
+// -------------------- MONGO --------------------
+if (!process.env.MONGODB_URI) {
+  console.error("❌ Missing MONGODB_URI in .env");
+  process.exit(1);
+}
 
+await mongoose.connect(process.env.MONGODB_URI);
+console.log("✅ Mongo connected. readyState =", mongoose.connection.readyState);
 
+// A generic “Section” store: key => data (any shape)
+const SectionSchema = new mongoose.Schema(
+  {
+    key: { type: String, unique: true, index: true },
+    data: { type: mongoose.Schema.Types.Mixed, default: {} },
+  },
+  { timestamps: true }
+);
+const Section = mongoose.model("Section", SectionSchema);
 
+// Optional: track uploads metadata in Mongo (NOT the file bytes)
+const UploadSchema = new mongoose.Schema(
+  {
+    url: String,
+    filename: String,
+    originalName: String,
+    mimetype: String,
+    size: Number,
+  },
+  { timestamps: true }
+);
+const Upload = mongoose.model("Upload", UploadSchema);
 
-// ---------- DATABASE ----------
-const db = new sqlite3.Database("./database.db", (err) => {
-  if (err) console.error(err);
-  console.log("Database opened.");
-});
-
-// ---------- ARTICLES TABLE ----------
-db.run(`
-  CREATE TABLE IF NOT EXISTS articles (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT,
-    content TEXT,
-    image TEXT,
-    page TEXT,
-    status TEXT DEFAULT 'draft',
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  )
-`);
-
-
-
-db.run(`
-  CREATE TABLE IF NOT EXISTS admins (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE,
-    password TEXT
-  )
-`);
-
-db.get(`SELECT * FROM admins LIMIT 1`, (err, row) => {
-  if (!row) {
-    const hash = bcrypt.hashSync("admin123", 10);
-    db.run(
-      `INSERT INTO admins (username, password) VALUES (?, ?)`,
-      ["admin", hash]
-    );
-    console.log("Default admin created: admin / admin123");
-  }
-});
-
-// ---------- LOGIN ----------
-app.post("/admin/login", (req, res) => {
-  const { username, password } = req.body;
-
-  db.get(
-    "SELECT * FROM admins WHERE username = ?",
-    [username],
-    async (err, admin) => {
-      if (err) return res.status(500).json({ error: "DB error" });
-      if (!admin) return res.status(401).json({ error: "Invalid credentials" });
-
-      const match = await bcrypt.compare(password, admin.password);
-      if (!match)
-        return res.status(401).json({ error: "Invalid credentials" });
-
-      const token = jwt.sign({ id: admin.id }, JWT_SECRET, {
-        expiresIn: "1h",
-      });
-
-      res.json({ token });
-    }
+// Helpers
+async function ensureSection(key, defaultData) {
+  await Section.findOneAndUpdate(
+    { key },
+    { $setOnInsert: { key, data: defaultData } },
+    { upsert: true }
   );
-});
+}
 
-// ---------- CREATE ARTICLE ----------
-app.post("/articles", upload.single("image"), (req, res) => {
-  const { title, content } = req.body;
-  const image = req.file ? req.file.filename : null;
+async function getSection(key, defaultData) {
+  const doc = await Section.findOne({ key }).lean();
+  return doc?.data ?? defaultData;
+}
 
-  if (!title || !content) {
-    return res.status(400).json({ error: "Missing fields" });
-  }
-
-  db.run(
-    "INSERT INTO articles (title, content, image) VALUES (?, ?, ?)",
-    [title, content, image],
-    function (err) {
-      if (err) return res.status(500).json({ error: "Database error" });
-      res.json({ success: true, id: this.lastID });
-    }
+async function setSection(key, data) {
+  await Section.findOneAndUpdate(
+    { key },
+    { key, data },
+    { upsert: true, new: true }
   );
+}
+
+// ----- Seed defaults (runs once because of $setOnInsert)
+await ensureSection("vice", {
+  imageUrl: "",
+  title: "Dear Students, Parents, and Community,",
+  p1: "Welcome to Mongolian International School.",
+  p2: "As the Vice Principal, ...",
+  signatureHtml: "Mr.<br/>Vice Principal",
 });
 
-// ---------- GET ARTICLES (PUBLIC) ----------
-app.get("/articles", (req, res) => {
-  db.all(
-    "SELECT * FROM articles ORDER BY created_at DESC",
-    (err, rows) => {
-      if (err) return res.status(500).json({ error: "Database error" });
-      res.json(rows);
+await ensureSection("missionVision", {
+  mission: "To provide a high-quality international education ...",
+  vision: "To be a leading international school ...",
+});
+
+await ensureSection("success", {
+  subtitle: "Celebrating achievements and milestones",
+  graduates: "123",
+  awards: "Recognized for excellence in education",
+  community: "Active participation in community service projects",
+});
+
+await ensureSection("cafeteria", {
+  title: "School Cafeteria",
+  subtitle: "Healthy and nutritious meals for our students",
+  heading: "Nutrition-Focused Meals",
+  text:
+    "Our cafeteria provides balanced meals prepared daily by professional chefs using fresh ingredients...",
+  imageUrl: "",
+});
+
+await ensureSection("banner", { imageUrl: "/uploads/1769599994787-556981901_1889760831840412_9179320815925247158_n.jpg" });
+
+// Calendar format: { events: { "YYYY-MM-DD": { type, title, fullDesc } } }
+await ensureSection("calendar", { events: {} });
+
+await ensureSection("activities", {
+  title: "Extracurricular Activities",
+  subtitle: "Enriching experiences beyond the classroom",
+  items: [
+    {
+      title: "Basketball Team",
+      description: "Develop athletic skills and teamwork.",
+      time: "Wed 3:40-5:00 PM",
+      grades: "Grades 9-12",
+      imageUrl: "/uploads/1769602115112-568292496_1908326693317159_3626035863105372190_n.jpg"
+    },
+    {
+      title: "Taekwondo Club",
+      description: "Develop athletic skills and teamwork.",
+      time: " Mon/Wed 4:00-5:30 PM",
+      grades: "Grades 7-12",
+      imageUrl: "/uploads/1769602004608-559235804_1895783727904789_3739476468778142488_n.jpg"
+    },
+    {
+      title: "Music & Arts",
+      description: "Explore creativity through various art forms and musical instruments.",
+      time: "Tue 3:40-5:00 PM",
+      grades: "All Grades",
+      imageUrl: "/uploads/1769602026305-497537379_1768540893962407_7532981151105264191_n.jpg"
+    }],
+},
+);
+
+await ensureSection("specialPrograms", {
+  title: "Special Programs",
+  subtitle: "Unique opportunities for specialized learning",
+  items: [
+    {
+      icon: "fas fa-graduation-cap",
+      title: "College Prep",
+      description:
+        "Comprehensive guidance for university applications and career planning.",
+    },
+    {
+      icon: "fas fa-language",
+      title: "Language Immersion",
+      description: "Intensive language programs in English, Korean.",
+    },
+    {
+      icon: "fas fa-laptop-code",
+      title: "STEM Program",
+      description:
+        "Advanced courses in Science, Technology, Engineering, and Mathematics.",
+    },
+  ],
+});
+
+
+await ensureSection("volunteer", {
+  title: "Volunteer Programs",
+  subtitle: "Make a difference in your community",
+  items: [
+    {
+      title: "Tutoring Program",
+      description: "Help elementary school students with reading and math skills. Training provided for all volunteers.",
+      imageUrl: "/uploads/1769940668925-571824159_1915855125897649_9209040587861907538_n.jpg"
+    },
+    {
+      title: "Environmental Club",
+      description: "Participate in tree planting, recycling campaigns, and community cleanups.",
+      imageUrl: "/uploads/1769940717539-1542.jpg"
+    },
+    {
+      title: "Community Service",
+      description: "Work with local organizations to support community development projects.",
+      imageUrl: "/uploads/1769940756304-566387587_1908325923317236_7524284606729972988_n.jpg"
+    }],
+},
+);
+
+await ensureSection("process", {
+  title: "Admissions Process",
+  subtitle: "Steps to join our community",
+  steps: [
+    {
+      title: "Inquiry & Information",
+      description: "Start by learning about our school programs and curriculum.",
+      bullets: [
+        "Attend Open House sessions",
+        "Review academic programs",
+        "Contact admissions office",
+        "Schedule campus tour"
+      ]
+    },
+    {
+      title: "Application Submission",
+      description: "Submit the complete application package including all required documents.",
+      bullets: [
+        "Complete online application form",
+        "Submit academic records",
+        "Provide birth certificate copy"
+      ]
+    },
+    {
+      title: "Assessment & Interview",
+      description: "Students are invited for assessment and interview for placement.",
+      bullets: [
+        "Academic assessment",
+        "English proficiency test"
+      ]
+    },
+    {
+      title: "Admission Decision",
+      description: "Receive admission decision and complete enrollment process.",
+      bullets: [
+        "Decision within 2 weeks",
+        "Submit enrollment agreement",
+        "Attend orientation"
+      ]
     }
-  );
+  ]
 });
 
 
-// ---------- START ----------
-app.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
+await ensureSection("application", {
+  sectionTitle: "Online Admissions",
+  sectionSubtitle: "Apply conveniently through our portal",
+
+  leftTitle: "Apply Online",
+  leftText:
+    "Our online admissions portal makes it easy to apply from anywhere. Track your application status and submit documents electronically.",
+
+  requirementsTitle: "Required Documents",
+  requirementsItems: [
+    "Completed application form",
+    "Student's birth certificate",
+    "Parent/guardian ID",
+    "Teacher recommendations",
+  ],
+
+  cardTitle: "Start Application",
+  cardText: "Begin your journey with Mongolian Itgel School today.",
+  buttonText: "Apply Online",
+  buttonUrl:
+    "https://docs.google.com/forms/d/e/1FAIpQLSeYmx8V7M2LNLFUH08G06LKwdAtbhIq6DJngrFgp2TEosNdRg/viewform",
+
+  helpText: "Need help? Contact admissions@mis.edu.mn",
 });
 
-app.get("/test", (req, res) => {
-  res.send("TEST OK");
+
+await ensureSection("tuition", {
+  sectionTitle: "Tuition & Fees",
+  sectionSubtitle: "Transparent pricing for quality education",
+  cards: [
+    {
+      title: "Primary School",
+      subtitle: "Grades 1-5",
+      items: [
+        { label: "Annual Tuition", amount: "3,600,000T" },
+        { label: "Registration Fee", amount: "20,000T" },
+        { label: "Technology Fee", amount: "20,000T" },
+        { label: "Books & Materials", amount: "10,000T" },
+      ],
+    },
+    {
+      title: "Middle School",
+      subtitle: "Grades 6-8",
+      items: [
+        { label: "Annual Tuition", amount: "3,600,000T" },
+        { label: "Registration Fee", amount: "20,000T" },
+        { label: "Technology Fee", amount: "20,000T" },
+        { label: "Books & Materials", amount: "10,000T" },
+      ],
+    },
+    {
+      title: "High School",
+      subtitle: "Grades 9-12",
+      items: [
+        { label: "Annual Tuition", amount: "3,600,000T" },
+        { label: "Registration Fee", amount: "20,000T" },
+        { label: "Technology Fee", amount: "20,000T" },
+        { label: "Books & Materials", amount: "10,000T" },
+      ],
+    },
+  ],
 });
 
-app.delete("/articles/:id", authenticateToken, (req, res) => {
-  const id = req.params.id;
 
-  db.get("SELECT image FROM articles WHERE id = ?", [id], (err, row) => {
-    if (err) return res.sendStatus(500);
-    if (!row) return res.sendStatus(404);
+await ensureSection("news", {
+  sectionTitle: "School News",
+  sectionSubtitle: "Latest updates from our school",
+  items: [
+    {
+      title: "Science Fair Winners",
+      date: "October 15, 2025",
+      excerpt:
+        "Our students achieved remarkable success at the annual science fair, winning multiple awards for innovative projects.",
+      moreText:
+        '"Renewable Energy Solutions for Rural Mongolia," was developed by 11th-grade students and received special recognition from the Ministry of Education.',
+      imageUrl:
+        "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1350&q=80",
+    },
+    {
+      title: "New Library Opening",
+      date: "September 28, 2025",
+      excerpt: "We are excited to announce the opening of our new library.",
+      moreText:
+        "The new library features state-of-the-art facilities including quiet study areas, group collaboration spaces, and a digital media center. With over 5,000 physical books, students now have unprecedented access to learning materials.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1350&q=80",
+    },
+    {
+      title: "Sports Tournament Success",
+      date: "August 20, 2025",
+      excerpt: "Our school basketball team won the regional championship tournament.",
+      moreText:
+        "The school's basketball team demonstrated exceptional skill and determination throughout the regional tournament.",
+      imageUrl:
+        "https://raw.githubusercontent.com/ventroliquizt/miu-highschool-site/main/backend/uploads/566387587_1908325923317236_7524284606729972988_n.jpg?raw=true",
+    },
+  ],
+});
 
-    // delete image file if exists
-    if (row.image) {
-      const filePath = path.join(__dirname, "uploads", row.image);
-      if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
-      }
-    }
 
-    db.run("DELETE FROM articles WHERE id = ?", [id], err => {
-      if (err) return res.sendStatus(500);
-      res.json({ success: true });
+
+// -------------------- ROUTES --------------------
+app.get("/", (req, res) => res.send("✅ API is running"));
+
+// Upload (save file to disk + save metadata to Mongo)
+app.post("/api/upload", upload.single("image"), async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+
+    const imageUrl = `/uploads/${req.file.filename}`;
+
+    await Upload.create({
+      url: imageUrl,
+      filename: req.file.filename,
+      originalName: req.file.originalname,
+      mimetype: req.file.mimetype,
+      size: req.file.size,
     });
-  });
+
+    res.json({ imageUrl });
+  } catch (e) {
+    console.error("Upload failed:", e);
+    res.status(500).json({ error: "Upload failed" });
+  }
 });
 
+// Vice (merge)
+app.get("/api/vice", async (req, res) => {
+  res.json(await getSection("vice", {}));
+});
+app.post("/api/vice", async (req, res) => {
+  const current = await getSection("vice", {});
+  await setSection("vice", { ...current, ...req.body });
+  res.json({ success: true });
+});
 
-db.run(`
-  CREATE TABLE IF NOT EXISTS sections (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    page TEXT,
-    section TEXT,
-    content TEXT
-  )
-`);
+// Mission & Vision (merge)
+app.get("/api/mission-vision", async (req, res) => {
+  res.json(await getSection("missionVision", {}));
+});
+app.post("/api/mission-vision", async (req, res) => {
+  const current = await getSection("missionVision", {});
+  await setSection("missionVision", { ...current, ...req.body });
+  res.json({ success: true });
+});
 
-app.post("/sections", authenticateToken, (req, res) => {
-  const { page, section, content } = req.body;
+// Success (merge)
+app.get("/api/success", async (req, res) => {
+  res.json(await getSection("success", {}));
+});
+app.post("/api/success", async (req, res) => {
+  const current = await getSection("success", {});
+  await setSection("success", { ...current, ...req.body });
+  res.json({ success: true });
+});
 
-  db.run(
-    `
-    INSERT INTO sections (page, section, content)
-    VALUES (?, ?, ?)
-    ON CONFLICT(page, section) DO UPDATE SET content = excluded.content
-    `,
-    [page, section, content],
-    () => res.json({ success: true })
+// Cafeteria (merge)
+app.get("/api/cafeteria", async (req, res) => {
+  res.json(await getSection("cafeteria", {}));
+});
+app.post("/api/cafeteria", async (req, res) => {
+  const current = await getSection("cafeteria", {});
+  await setSection("cafeteria", { ...current, ...req.body });
+  res.json({ success: true });
+});
+
+// Banner (replace)
+app.get("/api/banner", async (req, res) => {
+  res.json(await getSection("banner", { imageUrl: "" }));
+});
+app.post("/api/banner", async (req, res) => {
+  const { imageUrl } = req.body || {};
+  await setSection("banner", { imageUrl: imageUrl || "" });
+  res.json({ success: true });
+});
+app.delete("/api/banner", async (req, res) => {
+  await setSection("banner", { imageUrl: "" });
+  res.json({ success: true });
+});
+
+// Activities (replace whole object)
+app.get("/api/activities", async (req, res) => {
+  res.json(
+    await getSection("activities", {
+      title: "Extracurricular Activities",
+      subtitle: "Enriching experiences beyond the classroom",
+      items: [],
+    })
   );
 });
-
-app.get("/sections/:page", (req, res) => {
-  db.all(
-    "SELECT * FROM sections WHERE page = ?",
-    [req.params.page],
-    (err, rows) => res.json(rows)
-  );
-});
-
-
-app.get("/content", (req, res) => {
-  const page = req.query.page;
-
-  if (!page) {
-    return res.status(400).json({ error: "page is required" });
+app.put("/api/activities", async (req, res) => {
+  const body = req.body;
+  if (!body || typeof body !== "object") {
+    return res.status(400).json({ error: "Invalid body" });
   }
 
-  const sql = `
-    SELECT section, title, content, image
-    FROM articles
-    WHERE page = ? AND status = 'published'
-    ORDER BY id ASC
-  `;
-
-  db.all(sql, [page], (err, rows) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: "DB error" });
-    }
-    res.json(rows);
-  });
-});
-
-
-app.post("/api/upload", upload.single("image"), (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ error: "No file uploaded" });
-  }
-
-  res.json({
-    imageUrl: `/uploads/${req.file.filename}`,
-  });
-});
-
-
-// GET banner
-app.get("/api/banner", (req, res) => {
-  res.json({
-  });
-});
-
-// UPDATE banner (from admin)
-app.put("/api/banner", (req, res) => {
-  // save title, text, image path
-});
-
-
-app.delete("/api/banner", (req, res) => {
-  const emptyBanner = {
-    title: "",
-    content: "",
-    imageUrl: ""
+  const next = {
+    title: body.title ?? "Extracurricular Activities",
+    subtitle: body.subtitle ?? "",
+    items: Array.isArray(body.items) ? body.items : [],
   };
 
-  fs.writeFileSync(
-    path.join(__dirname, "data/homeBanner.json"),
-    JSON.stringify(emptyBanner, null, 2)
-  );
+  await setSection("activities", next);
+  res.json({ success: true });
+});
 
+// Special Programs (merge)
+app.get("/api/special-programs", async (req, res) => {
+  res.json(await getSection("specialPrograms", {}));
+});
+app.post("/api/special-programs", async (req, res) => {
+  const current = await getSection("specialPrograms", {});
+  await setSection("specialPrograms", { ...current, ...req.body });
+  res.json({ success: true });
+});
+
+// Calendar (replace whole)
+app.get("/api/calendar", async (req, res) => {
+  res.json(await getSection("calendar", { events: {} }));
+});
+app.put("/api/calendar", async (req, res) => {
+  const body = req.body;
+
+  if (!body || typeof body !== "object" || typeof body.events !== "object") {
+    return res
+      .status(400)
+      .json({ error: "Invalid calendar format. Expected { events: { ... } }" });
+  }
+
+  for (const k of Object.keys(body.events)) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) {
+      return res.status(400).json({ error: `Invalid date key: ${k}` });
+    }
+  }
+
+  await setSection("calendar", { events: body.events });
+  res.json({ success: true });
+});
+
+// Calendar: update ONE date
+app.post("/api/calendar/event", async (req, res) => {
+  const { date, event } = req.body || {};
+  if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return res.status(400).json({ error: "date must be YYYY-MM-DD" });
+  }
+
+  const cal = await getSection("calendar", { events: {} });
+
+  if (!event) {
+    delete cal.events[date];
+  } else {
+    cal.events[date] = {
+      type: event.type || "event",
+      title: event.title || "",
+      fullDesc: event.fullDesc || "",
+    };
+  }
+
+  await setSection("calendar", cal);
+  res.json({ success: true, calendar: cal });
+});
+
+// ----- Start
+app.listen(PORT, () => {
+  console.log(`🚀 Backend running on http://localhost:${PORT}`);
+});
+
+app.get("/api/volunteer", async (req, res) => {
+  res.json(
+    await getSection("volunteer", {
+      title: "Volunteer Programs",
+      subtitle: "Make a difference in your community",
+      items: [],
+    })
+  );
+});
+app.put("/api/volunteer", async (req, res) => {
+  const body = req.body;
+  if (!body || typeof body !== "object") {
+    return res.status(400).json({ error: "Invalid body" });
+  }
+
+  const next = {
+    title: body.title ?? "Volunteer Programs",
+    subtitle: body.subtitle ?? "",
+    items: Array.isArray(body.items) ? body.items : [],
+  };
+
+  await setSection("volunteer", next);
   res.json({ success: true });
 });
 
 
+// Admissions Process
+app.get("/api/process", async (req, res) => {
+  const data = await getSection("process", {
+    title: "Admissions Process",
+    subtitle: "Steps to join our community",
+    steps: [],
+  });
+  res.json(data);
+});
+
+app.put("/api/process", async (req, res) => {
+  await setSection("process", {
+    title: req.body.title ?? "",
+    subtitle: req.body.subtitle ?? "",
+    steps: Array.isArray(req.body.steps) ? req.body.steps : [],
+  });
+  res.json({ success: true });
+});
+
+
+// GET
+app.get("/api/application", async (req, res) => {
+  try {
+    const doc = await Section.findOne({ key: "application" }).lean();
+    res.json(doc?.data || null);
+  } catch (e) {
+    console.error("GET /api/application failed:", e);
+    res.status(500).json({ error: "Failed to load application" });
+  }
+});
+
+// PUT
+app.put("/api/application", async (req, res) => {
+  try {
+    const payload = req.body || {};
+
+    // basic normalization so the frontend always gets the right types
+    const clean = {
+      sectionTitle: String(payload.sectionTitle ?? ""),
+      sectionSubtitle: String(payload.sectionSubtitle ?? ""),
+      leftTitle: String(payload.leftTitle ?? ""),
+      leftText: String(payload.leftText ?? ""),
+      requirementsTitle: String(payload.requirementsTitle ?? ""),
+      requirementsItems: Array.isArray(payload.requirementsItems)
+        ? payload.requirementsItems.map((s) => String(s ?? ""))
+        : [],
+      cardTitle: String(payload.cardTitle ?? ""),
+      cardText: String(payload.cardText ?? ""),
+      buttonText: String(payload.buttonText ?? ""),
+      buttonUrl: String(payload.buttonUrl ?? ""),
+      helpText: String(payload.helpText ?? ""),
+    };
+
+    await Section.updateOne(
+      { key: "application" },
+      { $set: { data: clean } },
+      { upsert: true }
+    );
+
+    res.json({ ok: true });
+  } catch (e) {
+    console.error("PUT /api/application failed:", e);
+    res.status(500).json({ error: "Failed to save application" });
+  }
+});
+
+
+app.get("/api/tuition", async (req, res) => {
+  try {
+    const data = await getSection("tuition", {
+      sectionTitle: "Tuition & Fees",
+      sectionSubtitle: "Transparent pricing for quality education",
+      cards: [],
+    });
+
+    // Backward compatibility: if old data exists (title/subtitle/fees), normalize it
+    const normalized = {
+      sectionTitle: data.sectionTitle ?? data.title ?? "",
+      sectionSubtitle: data.sectionSubtitle ?? data.subtitle ?? "",
+      cards: Array.isArray(data.cards)
+        ? data.cards.map((c) => {
+            const items = Array.isArray(c.items)
+              ? c.items
+              : Array.isArray(c.fees)
+              ? c.fees.map((f) => ({
+                  label: f.name ?? "",
+                  amount: f.amount ?? "",
+                }))
+              : [];
+
+            return {
+              title: c.title ?? "",
+              subtitle: c.subtitle ?? "",
+              items: items.map((it) => ({
+                label: it.label ?? it.name ?? "",
+                amount: it.amount ?? "",
+              })),
+            };
+          })
+        : [],
+    };
+
+    res.json(normalized);
+  } catch (e) {
+    console.error("GET /api/tuition failed:", e);
+    res.status(500).json({ error: "Failed to load tuition" });
+  }
+});
+
+app.put("/api/tuition", async (req, res) => {
+  try {
+    const body = req.body || {};
+
+    let cards = body.cards;
+    if (typeof cards === "string") {
+      try {
+        cards = JSON.parse(cards);
+      } catch {
+        cards = [];
+      }
+    }
+
+    const clean = {
+      sectionTitle: String(body.sectionTitle ?? body.title ?? ""),
+      sectionSubtitle: String(body.sectionSubtitle ?? body.subtitle ?? ""),
+      cards: Array.isArray(cards)
+        ? cards.map((c) => {
+            const rawItems = Array.isArray(c.items)
+              ? c.items
+              : Array.isArray(c.fees)
+              ? c.fees.map((f) => ({
+                  label: f.name ?? f.label ?? "",
+                  amount: f.amount ?? "",
+                }))
+              : [];
+
+            return {
+              title: String(c?.title ?? ""),
+              subtitle: String(c?.subtitle ?? ""),
+              items: rawItems.map((it) => ({
+                label: String(it?.label ?? it?.name ?? ""),
+                amount: String(it?.amount ?? ""),
+              })),
+            };
+          })
+        : [],
+    };
+
+    await setSection("tuition", clean);
+    res.json({ ok: true });
+  } catch (e) {
+    console.error("PUT /api/tuition failed:", e);
+    res.status(500).json({ error: "Failed to save tuition" });
+  }
+});

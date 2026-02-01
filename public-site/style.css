@@ -172,15 +172,10 @@ body {
 
 /* ================= PAGE HEADERS ================= */
 .page-header {
-  background-image: url('https://github.com/ventroliquizt/miu-highschool-site/blob/main/backend/uploads/556981901_1889760831840412_9179320815925247158_n.jpg?raw=true');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 120px 0;
-  text-align: center;
-  color: white;
-  position: relative;
-  min-height: 500px;
+  min-height: 500px
 }
 
 /* Breadcrumb Navigation */
@@ -866,3 +861,44 @@ body {
     font-size: 20px;
   }
 }
+
+#vice-img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== Vice Greeting Text Styling ===== */
+
+#vice-title {
+  color: #0f2d56;          /* dark blue */
+  font-size: 1.6rem;       /* bigger headline */
+  font-weight: 700;        /* bold */
+  margin-bottom: 18px;
+}
+
+#vice-p1 {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+#vice-p2 {
+  font-size: 1.2rem;       /* slightly bigger */
+  font-weight: 600;        /* semi-bold */
+  color: #0f2d56;          /* same dark blue */
+  margin-bottom: 20px;
+}
+
+#vice-sign {
+  margin-top: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0f2d56;
+  line-height: 1.7;
+}
+

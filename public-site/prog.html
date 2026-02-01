@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs - Mongolian International School</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    
+    /* Activities Styles */
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .activity-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+
+    .activity-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .activity-content {
+      padding: 20px;
+    }
+
+    .activity-content h3 {
+      color: #0f2d56;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .activity-content p {
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .activity-details {
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      font-size: 0.9rem;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+
+    .activity-details i {
+      color: #c52233;
+      margin-right: 5px;
+    }
+
+    /* Special Programs Styles */
+    .special-programs {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .special-programs::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://github.com/ventroliquizt/miu-highschool-site/blob/main/ChatGPT_Image_Nov_8__2025__04_54_58_AM-removebg-preview.png?raw=true') no-repeat center left;
+      background-size: 25%;
+      opacity: 0.3;
+    }
+
+    .special-programs .section-header h2,
+    .special-programs .section-header p {
+      color: white;
+    }
+
+    .special-programs .section-header h2::after {
+      background: white;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .program-card {
+      background: rgba(255,255,255,0.9);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .program-icon {
+      font-size: 40px;
+      color: #c52233;
+      margin-bottom: 15px;
+    }
+
+    /* Volunteer Programs */
+    .volunteer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .volunteer-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+
+    .volunteer-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .volunteer-content {
+      padding: 20px;
+    }
+
+    .volunteer-content h3 {
+      color: #0f2d56;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .volunteer-content p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .days-grid .day {
+        height: 55px;
+        font-size: 0.9rem;
+      }
+      
+      .calendar-nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .calendar-nav h3 {
+        min-width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+      <div class="logo">
+        <a href="index.html">
+          <img src="https://raw.githubusercontent.com/ventroliquizt/miu-highschool-site/main/backend/uploads/mis_logo_001-copy-2.jpg" alt="Mongolian Itgel School Logo">
+        </a>
+        <span class="school-name">Mongolian Itgel School</span>
+      </div>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="index.html">About Us</a>
+        <ul class="dropdown-menu">
+          <li><a href="index.html#vice-greeting">Vice's Greeting</a></li>
+          <li><a href="index.html#mission-vision">Mission & Vision</a></li>
+          <li><a href="index.html#our-success">Our Success</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="programs.html">Programs</a>
+        <ul class="dropdown-menu">
+          <li><a href="#academic-calendar">Academic Calendar</a></li>
+          <li><a href="#activities">Extracurricular Activities</a></li>
+          <li><a href="#special-programs">Special Programs</a></li>
+          <li><a href="#volunteer">Volunteer</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="admissions.html">Admissions</a>
+        <ul class="dropdown-menu">
+          <li><a href="admissions.html#process">Process</a></li>
+          <li><a href="admissions.html#online">Online Admissions</a></li>
+          <li><a href="admissions.html#tuition">Tuition & Fees</a></li>
+        </ul>
+      </li>
+      <li><a href="information.html">Information</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header"></section>
+
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumb">
+    <div class="container breadcrumb-content">
+      <div class="breadcrumb-links">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Programs</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Academic Calendar -->
+  <section id="tuition" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Tuition & Fees</h2>
+        <p>Transparent pricing for quality education</p>
+      </div>
+
+      <div class="tuition-grid">
+        <div class="tuition-card">
+          <div class="tuition-header">
+            <h3>Primary School</h3>
+            <p>Grades 1-5</p>
+          </div>
+          <div class="tuition-content">
+            <div class="fee-item">
+              <span class="fee-name">Annual Tuition</span>
+              <span class="fee-amount">3,600,000T</span>
+            </div>
+            <div class="fee-item">
+              <span class="fee-name">Registration Fee</span>
+              <span class="fee-amount">20,000T</span>
+            </div>
+            <div class="fee-item">
+              <span class="fee-name">Technology Fee</span>
+              <span class="fee-amount">20,000T</span>
+            </div>
+            <div class="fee-item">
+              <span class="fee-name">Books & Materials</span>
+              <span class="fee-amount">10,000T</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tuition-card">
+          <div class="tuition-header">
+            <h3>Middle School</h3>
+            <p>Grades 6-8</p>
+          </div>
+          <div class="tuition-content">
+            <div class="fee-item">
+              <span class="fee-name">Annual Tuition</span>
+              <span class="fee-amount">3,600,000T</span>
+            </div>
+            <div class="fee-item">
+              <span class="fee-name">Registration Fee</span>
+              <span class="fee-amount">20,000T</span>
+            </div>
+            <div class="fee-item">
+              <span class="fee-name">Technology Fee</span>
+              <span class="fee-amount">20,000T</span>
+            </div>
+            <div class="fee-item">
+              <span class="fee-name">Books & Materials</span>
+              <span class="fee-amount">10,000T</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tuition-card">
+          <div class="tuition-header">
+            <h3>High School</h3>
+            <p>Grades 9-12</p>
+          </div>
+          <div class="tuition-content">
+            <div class="fee-item">
+              <span class="fee-name">Annual Tuition</span>
+              <span class="fee-amount">3,600,000T</span>
+            </div>
+            <div class="fee-item">
+              <span class="fee-name">Registration Fee</span>
+              <span class="fee-amount">20,000T</span>
+            </div>
+            <div class="fee-item">
+              <span class="fee-name">Technology Fee</span>
+              <span class="fee-amount">20,000T</span>
+            </div>
+            <div class="fee-item">
+              <span class="fee-name">Books & Materials</span>
+              <span class="fee-amount">10,000T</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="financial-aid">
+        <h3><i class="fas fa-graduation-cap"></i> Financial Aid</h3>
+        <p style="margin-bottom: 15px; line-height: 1.6;">
+          We offer merit-based scholarships and need-based financial aid to qualified students. 
+          Scholarship applications must be submitted by March 31st.
+        </p>
+        <a href="contact.html" class="btn">Contact for Financial Aid</a>
+      </div>
+    </div>
+  </section>
+
+ <script src="script/script.js"></script>
+
+ </body>
+ </html>

@@ -12,8 +12,6 @@ function Banners() {
     fetch("http://localhost:3001/api/banner")
       .then(res => res.json())
       .then(data => {
-        setTitle(data.title || "");
-        setContent(data.content || "");
         setImageUrl(data.imageUrl || "");
       });
   }, []);
@@ -40,8 +38,6 @@ function Banners() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        title,
-        content,
         imageUrl: finalImageUrl
       })
     });
@@ -55,9 +51,6 @@ function Banners() {
     await fetch("http://localhost:3001/api/banner", {
       method: "DELETE"
     });
-
-    setTitle("");
-    setContent("");
     setImageUrl("");
     setNewImage(null);
     setStatus("Banner deleted 🗑️");
@@ -68,27 +61,13 @@ function Banners() {
       <h2>Home Banner</h2>
 
       <form onSubmit={saveBanner}>
-        <label>Title</label>
-        <input
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-        />
-
-        <label>Content</label>
-        <textarea
-          rows="4"
-          value={content}
-          onChange={e => setContent(e.target.value)}
-        />
-
-        <label>Image</label>
 
         {imageUrl && (
           <div style={{ marginBottom: "10px" }}>
             <img
               src={`http://localhost:3001${imageUrl}`}
               alt="Banner"
-              style={{ width: "100%", maxHeight: "250px", objectFit: "cover" }}
+              style={{ width: "100%", maxHeight: "800px", objectFit: "cover" }}
             />
           </div>
         )}

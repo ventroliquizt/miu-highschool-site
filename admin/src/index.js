@@ -18,3 +18,9 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
+function markScrolled() {
+  if (window.scrollY > 10) document.body.classList.add("scrolled");
+  else document.body.classList.remove("scrolled");
+}
+window.addEventListener("scroll", markScrolled, { passive: true });
+markScrolled();

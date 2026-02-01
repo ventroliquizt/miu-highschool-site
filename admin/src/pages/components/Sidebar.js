@@ -15,58 +15,80 @@ function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-header" onClick={() => navigate("/dashboard")}>
-        <HiOutlineHome />
         <span>MIS Dashboard</span>
       </div>
 
       <div className="sidebar-section">
-        <p className="section-title">Website Management</p>
+        <p className="section-title">Home MIS</p>
 
         <button type="button" onClick={() => navigate("/banners")}>
-          <HiOutlinePhotograph />
           <span>Banners</span>
         </button>
 
-        <button type="button" onClick={() => navigate("/events")}>
-          <HiOutlineBell />
-          <span>Events</span>
+        <button type="button" onClick={() => navigate("/vice")}>
+          <span>Vice</span>
         </button>
 
-        <button type="button" onClick={() => navigate("/popups")}>
-          <HiOutlineBell />
-          <span>Popups</span>
+        <button type="button" onClick={() => navigate("/mission")}>
+          <span>Mission</span>
         </button>
+
+        <button type="button" onClick={() => navigate("/success")}>
+          <span>Our Success</span>
+        </button>
+
+        <button type="button" onClick={() => navigate("/cafe")}>
+          <span>Cafeteria</span>
+        </button>
+
       </div>
 
       <div className="sidebar-section">
-        <p className="section-title">Content Management</p>
+        <p className="section-title">Programs</p>
 
-        <button type="button" onClick={() => navigate("/dashboard/news")}>
-          <HiOutlineNewspaper />
-          <span>News</span>
+        <button type="button" onClick={() => navigate("/calendar")}>
+          <span>Calendar</span>
         </button>
 
-        <button type="button" onClick={() => navigate("/dashboard/about")}>
-          <HiOutlineAcademicCap />
-          <span>About Us</span>
+        <button type="button" onClick={() => navigate("/activities")}>
+          <span>Activities</span>
         </button>
 
-        <button type="button" onClick={() => navigate("/dashboard/faq")}>
-          <HiOutlineQuestionMarkCircle />
-          <span>FAQ</span>
+        <button type="button" onClick={() => navigate("/special")}>
+          <span>Special</span>
         </button>
+
+        <button type="button" onClick={() => navigate("/volunteer")}>
+          <span>Volunteer</span>
+        </button>
+
       </div>
 
       <div className="sidebar-section">
         <p className="section-title">Admissions</p>
 
-        <button type="button" onClick={() => navigate("/dashboard/process")}>
+        <button type="button" onClick={() => navigate("/process")}>
           Process
         </button>
-        <button type="button" onClick={() => navigate("/dashboard/tuition")}>
+
+        <button type="button" onClick={() => navigate("/application")}>
+          Online Admission
+        </button>
+        
+        <button type="button" onClick={() => navigate("/tuition")}>
           Tuition
         </button>
       </div>
+
+      <div className="sidebar-section">
+        <p className="section-title">Information</p>
+
+        <button type="button" onClick={() => navigate("/news")}>
+          News
+        </button>
+
+      </div>
+
 
       <div className="sidebar-footer">
         <button

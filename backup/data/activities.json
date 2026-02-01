@@ -1,0 +1,27 @@
+{
+  "title": "Extracurricular Activities",
+  "subtitle": "",
+  "items": [
+    {
+      "title": "Basketball Team",
+      "description": "Develop athletic skills and teamwork.",
+      "time": " Wed 3:40-5:00 PM",
+      "grades": " Grades 9-12",
+      "imageUrl": "/uploads/1769422892657-559235804_1895783727904789_3739476468778142488_n.jpg"
+    },
+    {
+      "title": "Taekwondo Club",
+      "description": "Develop athletic skills and teamwork.",
+      "time": " Mon/Wed 4:00-5:30 PM",
+      "grades": "Grades 7-12",
+      "imageUrl": "/uploads/1769422921497-568292496_1908326693317159_3626035863105372190_n.jpg"
+    },
+    {
+      "title": "Music & Arts",
+      "description": "Explore creativity through various art forms and musical instruments.",
+      "time": "Tue 3:40-5:00 PM",
+      "grades": "All Grades",
+      "imageUrl": "/uploads/1769422924875-497537379_1768540893962407_7532981151105264191_n.jpg"
+    }
+  ]
+}

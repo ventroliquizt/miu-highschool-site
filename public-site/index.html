@@ -108,158 +108,121 @@
   </nav>
 
   <!-- Vice's Greeting -->
-  <section id="vice-greeting" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Vice's Greeting</h2>
+ <!-- Vice's Greeting -->
+<section id="vice-greeting" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Vice's Greeting</h2>
+    </div>
+
+    <div style="display:grid; grid-template-columns:420px 1fr; gap:40px; align-items:center;">
+      <div style="background:#f0f2f5; border-radius:10px; padding:20px; display:flex; justify-content:center; align-items:center;">
+        <img id="vice-img" src="" alt="Vice Principal" />
       </div>
-      
-      <div
-  style="
-    display: grid;
-    grid-template-columns: 420px 1fr;
-    gap: 40px;
-    align-items: center;
-  "
->
-  <!-- Image card -->
-  <div
-    style="
-      background: #f0f2f5;
-      border-radius: 10px;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    "
-  >
-    <img
-      src="images/vice.png"
-      alt="Vice Principal"
-      style="
-        width: 100%;
-        max-width: 360px;
-        border-radius: 8px;
-        object-fit: cover;
-      "
-    />
-  </div>
 
-        <!-- Text -->
-  <div>
-    <h3 style="color: #0f2d56; margin-bottom: 20px;">
-      Dear Students, Parents, and Community,
-    </h3>
+      <div>
+        <h3 id="vice-title"></h3>
+        <p id="vice-p1"></p>
+        <p id="vice-p2"></p>
+        <p id="vice-sign"></p>
 
-    <p style="margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem;">
-      Welcome to Mongolian International School.
-    </p>
-
-    <p style="margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem;">
-      As the Vice Principal.
-    </p>
-
-    <p style="line-height: 1.8; font-size: 1.1rem; font-weight: 600;">
-      Mr.<br />
-      Vice Principal
-    </p>
-  </div>
-</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Mission & Vision -->
   <section id="mission-vision" class="section" style="background: #f0f2f5;">
-    <div class="container">
-      <div class="section-header">
-        <h2>Mission & Vision</h2>
+  <div class="container">
+    <div class="section-header">
+      <h2>Mission & Vision</h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+      <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+        <h3 style="color: #c52233; margin-bottom: 20px;">
+          Our Mission
+        </h3>
+        <p id="mission-text" style="line-height: 1.6; margin-bottom: 15px;"></p>
       </div>
-      
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
-        <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
-          <h3 style="color: #c52233; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-            <i></i> Our Mission
-          </h3>
-          <p style="line-height: 1.6; margin-bottom: 15px;">
-            To provide a high-quality international education that nurtures academic excellence, critical thinking, and strong moral values.
-We are committed to developing confident, responsible, and compassionate students who are prepared to succeed in higher education and contribute positively to society.
-          </p>
-        </div>
-        
-        <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
-          <h3 style="color: #c52233; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-            <i></i> Our Vision
-          </h3>
-          <p style="line-height: 1.6; margin-bottom: 15px;">
-           To be a leading international school recognized for educational excellence, innovation, and character development.
-We strive to empower students to become lifelong learners and global citizens who are ready to meet the challenges of a changing world.
-          </p>
-        </div>
+
+      <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+        <h3 style="color: #c52233; margin-bottom: 20px;">
+          Our Vision
+        </h3>
+        <p id="vision-text" style="line-height: 1.6; margin-bottom: 15px;"></p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Our Success -->
   <section id="our-success" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Our Success</h2>
-        <p>Celebrating achievements and milestones</p>
+  <div class="container">
+    <div class="section-header">
+      <h2>Our Success</h2>
+      <p id="success-subtitle"></p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3>Graduation Student numbers</h3>
+        <p id="success-graduates"></p>
       </div>
-      
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-graduation-cap"></i>
-          </div>
-          <h3>Graduation Student numbers</h3>
-          <p>123</p>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-award"></i>
         </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-award"></i>
-          </div>
-          <h3>Award Winning</h3>
-          <p>Recognized for excellence in education</p>
+        <h3>Award Winning</h3>
+        <p id="success-awards"></p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-users"></i>
         </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-users"></i>
-          </div>
-          <h3>Community Impact</h3>
-          <p>Active participation in community service projects</p>
-        </div>
+        <h3>Community Impact</h3>
+        <p id="success-community"></p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+
 
   <!-- Cafeteria Section -->
   <section id="cafeteria" class="section cafeteria-section" style="background: #f0f2f5;">
-    <div class="container">
-      <div class="section-header">
-        <h2>School Cafeteria</h2>
-        <p>Healthy and nutritious meals for our students</p>
+  <div class="container">
+    <div class="section-header">
+      <h2 id="cafeteria-title"></h2>
+      <p id="cafeteria-subtitle"></p>
+    </div>
+
+    <div class="cafeteria-content">
+      <div>
+        <h3 id="cafeteria-heading" style="color: #0f2d56; margin-bottom: 20px;"></h3>
+        <p id="cafeteria-text" style="margin-bottom: 20px; line-height: 1.8;"></p>
       </div>
-      
-      <div class="cafeteria-content">
-        <div>
-          <h3 style="color: #0f2d56; margin-bottom: 20px;">Nutrition-Focused Meals</h3>
-          <p style="margin-bottom: 20px; line-height: 1.8;">
-            Our cafeteria provides balanced meals prepared daily by professional chefs using fresh ingredients. 
-            We accommodate all dietary requirements including vegetarian, vegan, and allergy-specific meals.
-          </p>
-        </div>
-        <div class="cafeteria-image">
-          <div style="width: 100%; height: 300px; background: #e0e0e0; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
-            <i style="font-size: 80px; color: #666;"></i>
-          </div>
+
+      <div class="cafeteria-image">
+        <!-- show an image if you want -->
+        <img id="cafeteria-img" alt="Cafeteria" style="display:none;" />
+
+        <!-- fallback placeholder -->
+        <div id="cafeteria-placeholder"
+             style="width: 100%; height: 300px; background: #e0e0e0; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+          <i style="font-size: 80px; color: #666;"></i>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Footer -->
   <footer class="footer">
@@ -302,6 +265,6 @@ We strive to empower students to become lifelong learners and global citizens wh
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script/index.js"></script>
 </body>
 </html>

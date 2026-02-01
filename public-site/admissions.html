@@ -271,198 +271,77 @@
 
   <!-- Admissions Process -->
   <section id="process" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Admissions Process</h2>
-        <p>Steps to join our community</p>
-      </div>
-
-      <div class="process-steps">
-        <div class="process-step">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h3>Inquiry & Information</h3>
-            <p>Start by learning about our school programs and curriculum.</p>
-            <ul class="step-details">
-              <li>Attend Open House sessions</li>
-              <li>Review academic programs</li>
-              <li>Contact admissions office</li>
-              <li>Schedule campus tour</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="process-step">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h3>Application Submission</h3>
-            <p>Submit the complete application package including all required documents.</p>
-            <ul class="step-details">
-              <li>Complete online application form</li>
-              <li>Submit academic records</li>
-              <li>Provide birth certificate copy</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="process-step">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h3>Assessment & Interview</h3>
-            <p>Students are invited for assessment and interview for placement.</p>
-            <ul class="step-details">
-              <li>Academic assessment</li>
-              <li>English proficiency test</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="process-step">
-          <div class="step-number">4</div>
-          <div class="step-content">
-            <h3>Admission Decision</h3>
-            <p>Receive admission decision and complete enrollment process.</p>
-            <ul class="step-details">
-              <li>Decision within 2 weeks</li>
-              <li>Submit enrollment agreement</li>
-              <li>Attend orientation</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+  <div class="container">
+    <div class="section-header">
+      <h2 id="process-title"></h2>
+      <p id="process-subtitle"></p>
     </div>
-  </section>
+
+    <div class="process-steps" id="process-steps"></div>
+  </div>
+</section>
 
   <!-- Online Admissions -->
-  <section id="online" class="section" style="background: #f0f2f5;">
-    <div class="container">
-      <div class="section-header">
-        <h2>Online Admissions</h2>
-        <p>Apply conveniently through our portal</p>
+<section id="online" class="section" style="background: #f0f2f5;">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="online-title"></h2>
+      <p id="online-subtitle"></p>
+    </div>
+
+    <div class="admissions-container">
+      <!-- LEFT -->
+      <div>
+        <h2 id="online-left-title" style="color:#0f2d56; margin-bottom:20px;"></h2>
+
+        <p id="online-left-text" style="margin-bottom:20px; line-height:1.8;"></p>
+
+        <div class="requirements-box">
+          <h3>
+            <i class="fas fa-file-alt"></i>
+            <span id="online-req-title"></span>
+          </h3>
+
+          <ul id="online-req-list" class="requirements-list"></ul>
+        </div>
       </div>
 
-      <div class="admissions-container">
-        <div>
-          <h2 style="color: #0f2d56; margin-bottom: 20px;">Apply Online</h2>
-          <p style="margin-bottom: 20px; line-height: 1.8;">
-            Our online admissions portal makes it easy to apply from anywhere. 
-            Track your application status and submit documents electronically.
-          </p>
-          
-          <div class="requirements-box">
-            <h3><i class="fas fa-file-alt"></i> Required Documents</h3>
-            <ul class="requirements-list">
-              <li>Completed application form</li>
-              <li>Student's birth certificate</li>
-              <li>Parent/guardian ID</li>
-              <li>Teacher recommendations</li>
-            </ul>
-          </div>
-        </div>
+      <!-- RIGHT CARD -->
+      <div
+        style="
+          background:white;
+          padding:30px;
+          border-radius:10px;
+          text-align:center;
+          box-shadow:0 3px 15px rgba(0,0,0,0.1);
+        "
+      >
+        <h3 id="online-card-title" style="color:#0f2d56; margin-bottom:20px;"></h3>
 
-        <div style="background: white; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
-          <h3 style="color: #0f2d56; margin-bottom: 20px;">Start Application</h3>
-          <p style="margin-bottom: 30px;">
-            Begin your journey with Mongolian Itgel School today.
-          </p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeYmx8V7M2LNLFUH08G06LKwdAtbhIq6DJngrFgp2TEosNdRg/viewform" 
-            class="btn" 
-            style="display: block; margin-bottom: 20px;" 
-            target="_blank">
-            Apply Online
-          </a>
-          <p style="color: #666; font-size: 0.9rem;">
-            Need help? Contact admissions@mis.edu.mn
-          </p>
-        </div>
+        <p id="online-card-text" style="margin-bottom:30px;"></p>
+
+        <a
+          id="online-btn"
+          class="btn"
+          target="_blank"
+          style="display:block; margin-bottom:20px;"
+        ></a>
+
+        <p id="online-help" style="color:#666; font-size:0.9rem;"></p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Tuition & Fees -->
   <section id="tuition" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Tuition & Fees</h2>
-        <p>Transparent pricing for quality education</p>
-      </div>
+  <div class="container">
+    <div class="section-header">
+      <h2 id="tuition-title"></h2>
+      <p id="tuition-subtitle"></p>
+    </div>
 
-      <div class="tuition-grid">
-        <div class="tuition-card">
-          <div class="tuition-header">
-            <h3>Primary School</h3>
-            <p>Grades 1-5</p>
-          </div>
-          <div class="tuition-content">
-            <div class="fee-item">
-              <span class="fee-name">Annual Tuition</span>
-              <span class="fee-amount">3,600,000T</span>
-            </div>
-            <div class="fee-item">
-              <span class="fee-name">Registration Fee</span>
-              <span class="fee-amount">20,000T</span>
-            </div>
-            <div class="fee-item">
-              <span class="fee-name">Technology Fee</span>
-              <span class="fee-amount">20,000T</span>
-            </div>
-            <div class="fee-item">
-              <span class="fee-name">Books & Materials</span>
-              <span class="fee-amount">10,000T</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tuition-card">
-          <div class="tuition-header">
-            <h3>Middle School</h3>
-            <p>Grades 6-8</p>
-          </div>
-          <div class="tuition-content">
-            <div class="fee-item">
-              <span class="fee-name">Annual Tuition</span>
-              <span class="fee-amount">3,600,000T</span>
-            </div>
-            <div class="fee-item">
-              <span class="fee-name">Registration Fee</span>
-              <span class="fee-amount">20,000T</span>
-            </div>
-            <div class="fee-item">
-              <span class="fee-name">Technology Fee</span>
-              <span class="fee-amount">20,000T</span>
-            </div>
-            <div class="fee-item">
-              <span class="fee-name">Books & Materials</span>
-              <span class="fee-amount">10,000T</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tuition-card">
-          <div class="tuition-header">
-            <h3>High School</h3>
-            <p>Grades 9-12</p>
-          </div>
-          <div class="tuition-content">
-            <div class="fee-item">
-              <span class="fee-name">Annual Tuition</span>
-              <span class="fee-amount">3,600,000T</span>
-            </div>
-            <div class="fee-item">
-              <span class="fee-name">Registration Fee</span>
-              <span class="fee-amount">20,000T</span>
-            </div>
-            <div class="fee-item">
-              <span class="fee-name">Technology Fee</span>
-              <span class="fee-amount">20,000T</span>
-            </div>
-            <div class="fee-item">
-              <span class="fee-name">Books & Materials</span>
-              <span class="fee-amount">10,000T</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div id="tuition-grid" class="tuition-grid"></div>
 
       <div class="financial-aid">
         <h3><i class="fas fa-graduation-cap"></i> Financial Aid</h3>
@@ -516,6 +395,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script/admissions.js"></script>
 </body>
 </html>
