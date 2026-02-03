@@ -1,155 +1,174 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const menuToggle = document.getElementById('menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  
-  if (menuToggle) {
-    menuToggle.addEventListener('click', function() {
-      navLinks.classList.toggle('active');
-    });
-  }
-  
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href === '#' || href.startsWith('#')) {
-        e.preventDefault();
-        const targetId = href.substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 120,
-            behavior: 'smooth'
-          });
-        }
-      }
-    });
-  });
-  
-  updateBreadcrumb();
-  
-  function updateBreadcrumb() {
-    const breadcrumbLinks = document.querySelector('.breadcrumb-links');
-    if (!breadcrumbLinks) return;
-    
-    const currentPage = window.location.pathname.split('/').pop();
-    let pageName = 'Home';
-    
-    switch(currentPage) {
-      case 'programs.html':
-        pageName = 'Programs';
-        break;
-      case 'admissions.html':
-        pageName = 'Admissions';
-        break;
-      case 'information.html':
-        pageName = 'Information';
-        break;
-      case 'contact.html':
-        pageName = 'Contact';
-        break;
-      default:
-        pageName = 'Home';
-    }
-    
-    breadcrumbLinks.innerHTML = `
-      <a href="index.html">Home</a>
-      ${currentPage !== 'index.html' ? '<span>›</span>' : ''}
-      ${currentPage !== 'index.html' ? `<span>${pageName}</span>` : ''}
-    `;
-  }
-  
-  document.querySelectorAll('.news-toggle').forEach(button => {
-    button.addEventListener('click', function() {
-      const newsCard = this.closest('.news-card');
-      newsCard.classList.toggle('expanded');
-      this.textContent = newsCard.classList.contains('expanded') ? 
-        'Show Less' : 'Learn More';
-    });
-  });
-});
+// script/information.js
 
+const API_BASE = "http://localhost:3001"; // change later when deployed
+
+function escapeHtml(s) {
+  return String(s ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function toAbsUrl(url) {
+  if (!url) return "";
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  if (url.startsWith("/")) return `${API_BASE}${url}`;
+  return `${API_BASE}/${url}`;
+}
+
+async function fetchJson(url, options) {
+  const res = await fetch(url, options);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
+/* ---------------- Banner (optional) ---------------- */
 async function loadBanner() {
   try {
-    const API_BASE = "http://localhost:3001";
-
-    const res = await fetch(`${API_BASE}/api/banner`);
-    const data = await res.json();
-
     const header = document.querySelector(".page-header");
-    if (!header || !data.imageUrl) return;
+    if (!header) return;
 
-    // If backend returns "/uploads/xxx.jpg", make it absolute
-    const imgUrl = data.imageUrl.startsWith("http")
-      ? data.imageUrl
-      : `${API_BASE}${data.imageUrl}`;
+    // If you have /api/banner already, keep this. If not, delete this function.
+    const data = await fetchJson(`${API_BASE}/api/banner`);
+    if (!data?.imageUrl) return;
 
-    // Cache-bust so replacing the same filename updates immediately
-    header.style.backgroundImage = `url("${imgUrl}?v=${Date.now()}")`;
-  } catch (err) {
-    console.error("Banner failed to load", err);
+    header.style.backgroundImage = `url("${toAbsUrl(data.imageUrl)}?v=${Date.now()}")`;
+  } catch (e) {
+    // silently ignore banner failures
+    console.warn("Banner not loaded:", e.message);
   }
 }
 
-// public-site/script/information.js
-// Requires script.js loaded first
-
+/* ---------------- News ---------------- */
 async function loadNews() {
+  const titleEl = document.getElementById("news-title");
+  const subtitleEl = document.getElementById("news-subtitle");
+  const gridEl = document.getElementById("news-grid");
+  if (!gridEl) return;
+
   try {
-    const data = await fetchJson(`${API_BASE}/api/news`);
+    const raw = await fetchJson(`${API_BASE}/api/news`);
 
-    const titleEl = document.getElementById("news-title");
-    const subEl = document.getElementById("news-subtitle");
-    const grid = document.getElementById("news-grid");
+    // support both shapes
+    const data = Array.isArray(raw)
+      ? { sectionTitle: "News", sectionSubtitle: "", items: raw }
+      : {
+          sectionTitle: raw.sectionTitle || raw.title || "News",
+          sectionSubtitle: raw.sectionSubtitle || raw.subtitle || "",
+          items: Array.isArray(raw.items) ? raw.items : []
+        };
 
-    if (titleEl) titleEl.textContent = data?.sectionTitle || "School News";
-    if (subEl) subEl.textContent = data?.sectionSubtitle || "";
-    if (!grid) return;
+    if (titleEl) titleEl.textContent = data.sectionTitle || "";
+    if (subtitleEl) subtitleEl.textContent = data.sectionSubtitle || "";
 
-    const items = Array.isArray(data?.items) ? data.items : [];
+    if (!data.items.length) {
+      gridEl.innerHTML = "<p>No news yet.</p>";
+      return;
+    }
 
-    grid.innerHTML = items
-      .map(
-        (n) => `
-        <div class="news-card">
-          <div class="news-image">
-            <img src="${escapeHtml(n?.imageUrl)}" alt="${escapeHtml(n?.title)}">
+    gridEl.innerHTML = data.items
+      .map((n) => {
+        const img = n.imageUrl ? toAbsUrl(n.imageUrl) : "";
+        const title = escapeHtml(n.title || "");
+        const date = escapeHtml(n.date || "");
+        const excerpt = escapeHtml(n.excerpt || n.body || "");
+        const more = escapeHtml(n.moreText || "");
+
+        return `
+          <div class="news-card">
+            ${img ? `<img class="news-img" src="${img}" alt="">` : ""}
+            <h3>${title}</h3>
+            ${date ? `<small>${date}</small>` : ""}
+            <p>${excerpt}</p>
+
+            ${more ? `<div class="news-more"><p>${more}</p></div>` : ""}
+            ${more ? `<a href="#" class="news-toggle">Learn More</a>` : ""}
           </div>
-          <div class="news-content">
-            <h3>${escapeHtml(n?.title)}</h3>
-            <div class="news-date">
-              <i class="far fa-calendar"></i> ${escapeHtml(n?.date)}
-            </div>
-            <p class="news-excerpt">${escapeHtml(n?.excerpt)}</p>
-            <button class="news-toggle">Learn More</button>
-            <div class="news-more">
-              <p>${escapeHtml(n?.moreText)}</p>
-            </div>
+        `;
+      })
+      .join("");
+  } catch (e) {
+    console.error("loadNews failed:", e);
+    gridEl.innerHTML = "<p>Failed to load news.</p>";
+  }
+}
+
+/* ---------------- FAQ ---------------- */
+async function loadFaq() {
+  const titleEl = document.getElementById("faq-title");
+  const subtitleEl = document.getElementById("faq-subtitle");
+  const listEl = document.getElementById("faq-list");
+  if (!listEl) return;
+
+  try {
+    const raw = await fetchJson(`${API_BASE}/api/faq`);
+
+    const data = Array.isArray(raw)
+      ? {
+          sectionTitle: "Frequently Asked Questions",
+          sectionSubtitle: "Find answers to common questions",
+          items: raw
+        }
+      : {
+          sectionTitle: raw.sectionTitle || "Frequently Asked Questions",
+          sectionSubtitle: raw.sectionSubtitle || "Find answers to common questions",
+          items: Array.isArray(raw.items) ? raw.items : []
+        };
+
+    if (titleEl) titleEl.textContent = data.sectionTitle;
+    if (subtitleEl) subtitleEl.textContent = data.sectionSubtitle;
+
+    if (!data.items.length) {
+      listEl.innerHTML = "<p>No questions yet.</p>";
+      return;
+    }
+
+    listEl.innerHTML = data.items
+      .map(
+        (x) => `
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>${escapeHtml(x.question)}</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>${escapeHtml(x.answer)}</p>
           </div>
         </div>
       `
       )
       .join("");
-
-    // Re-attach toggle behavior for dynamically created cards
-    grid.querySelectorAll(".news-toggle").forEach((button) => {
-      button.addEventListener("click", function (e) {
-        e.preventDefault();
-        const newsCard = this.closest(".news-card");
-        if (newsCard.classList.contains("expanded")) {
-          newsCard.classList.remove("expanded");
-          this.textContent = "Learn More";
-        } else {
-          newsCard.classList.add("expanded");
-          this.textContent = "Show Less";
-        }
-      });
-    });
   } catch (e) {
-    console.error("News load failed:", e);
+    console.error("loadFaq failed:", e);
+    listEl.innerHTML = "<p>Failed to load FAQ.</p>";
   }
 }
 
-document.addEventListener("DOMContentLoaded", loadNews);
+/* ---------------- Click handlers (works with dynamic content) ---------------- */
+document.addEventListener("click", (e) => {
+  // FAQ accordion
+  const q = e.target.closest(".faq-question");
+  if (q) {
+    const item = q.closest(".faq-item");
+    if (item) item.classList.toggle("active");
+    return;
+  }
 
+  // News expand/collapse
+  const btn = e.target.closest(".news-toggle");
+  if (btn) {
+    e.preventDefault();
+    const card = btn.closest(".news-card");
+    if (!card) return;
+    card.classList.toggle("expanded");
+    btn.textContent = card.classList.contains("expanded") ? "Show Less" : "Learn More";
+  }
+});
 
-document.addEventListener("DOMContentLoaded", loadBanner);
+document.addEventListener("DOMContentLoaded", () => {
+  loadBanner(); // optional
+  loadNews();
+  loadFaq();
+});

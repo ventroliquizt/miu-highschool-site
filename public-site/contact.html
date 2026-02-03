@@ -131,45 +131,52 @@
   </nav>
 
   <!-- Contact Information -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Contact Information</h2>
-        <p>Get in touch with us</p>
+  <!-- Contact Information -->
+<section class="contact-info section">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="contact-title">Contact Information</h2>
+      <div class="underline"></div>
+      <p id="contact-subtitle">Get in touch with us</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Address -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <h3>Address</h3>
+        <p id="contact-org"></p>
+        <p id="contact-address-1"></p>
+        <p id="contact-address-2"></p>
       </div>
 
-      <div class="contact-grid">
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <h3>Address</h3>
-          <p>Mongolian Itgel School</p>
-          <p>Bayanzurkh District, 13khoroo</p>
-          <p>Ulaanbaatar, Mongolia</p>
+      <!-- Phone -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-phone"></i>
         </div>
+        <h3>Phone</h3>
+        <p><strong>Main Office:</strong> <span id="contact-phone-main"></span></p>
+        <p><strong>Admissions:</strong> <span id="contact-phone-adm"></span></p>
+      </div>
 
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-phone"></i>
-          </div>
-          <h3>Phone</h3>
-          <p><strong>Main Office:</strong> +976 123-4567</p>
-          <p><strong>Admissions:</strong> +976 123-4568</p>
+      <!-- Email -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-envelope"></i>
         </div>
-
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <h3>Email</h3>
-          <p><strong>General:</strong> info@mis.edu.mn</p>
-          <p><strong>Admissions:</strong> admissions@mis.edu.mn</p>
-          <p><strong>Registrar:</strong> registrar@mis.edu.mn</p>
-        </div>
+        <h3>Email</h3>
+        <p><strong>General:</strong> <span id="contact-email-general"></span></p>
+        <p><strong>Admissions:</strong> <span id="contact-email-adm"></span></p>
+        <p><strong>Registrar:</strong> <span id="contact-email-reg"></span></p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+
 
   <!-- Map Section -->
   <section class="section" style="background: #f0f2f5;">
@@ -213,6 +220,6 @@
     </div>
   </footer>
 
-  <script src="script/contact.js"></script>
+  <script src="script/contact.js?v=99"></script>
 </body>
 </html>

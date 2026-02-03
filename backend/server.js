@@ -136,7 +136,7 @@ await ensureSection("cafeteria", {
   imageUrl: "",
 });
 
-await ensureSection("banner", { imageUrl: "/uploads/1769599994787-556981901_1889760831840412_9179320815925247158_n.jpg" });
+await ensureSection("banner", { imageUrl: "/uploads/556981901_1889760831840412_9179320815925247158_n.jpg" });
 
 // Calendar format: { events: { "YYYY-MM-DD": { type, title, fullDesc } } }
 await ensureSection("calendar", { events: {} });
@@ -150,21 +150,21 @@ await ensureSection("activities", {
       description: "Develop athletic skills and teamwork.",
       time: "Wed 3:40-5:00 PM",
       grades: "Grades 9-12",
-      imageUrl: "/uploads/1769602115112-568292496_1908326693317159_3626035863105372190_n.jpg"
+      imageUrl: "/uploads/568292496_1908326693317159_3626035863105372190_n.jpg"
     },
     {
       title: "Taekwondo Club",
       description: "Develop athletic skills and teamwork.",
       time: " Mon/Wed 4:00-5:30 PM",
       grades: "Grades 7-12",
-      imageUrl: "/uploads/1769602004608-559235804_1895783727904789_3739476468778142488_n.jpg"
+      imageUrl: "/uploads/559235804_1895783727904789_3739476468778142488_n.jpg"
     },
     {
       title: "Music & Arts",
       description: "Explore creativity through various art forms and musical instruments.",
       time: "Tue 3:40-5:00 PM",
       grades: "All Grades",
-      imageUrl: "/uploads/1769602026305-497537379_1768540893962407_7532981151105264191_n.jpg"
+      imageUrl: "/uploads/497537379_1768540893962407_7532981151105264191_n.jpg"
     }],
 },
 );
@@ -334,9 +334,9 @@ await ensureSection("news", {
       excerpt:
         "Our students achieved remarkable success at the annual science fair, winning multiple awards for innovative projects.",
       moreText:
-        '"Renewable Energy Solutions for Rural Mongolia," was developed by 11th-grade students and received special recognition from the Ministry of Education.',
+        'Renewable Energy Solutions for Rural Mongolia," was developed by 11th-grade students and received special recognition from the Ministry of Education.',
       imageUrl:
-        "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1350&q=80",
+        "/uploads/1111",
     },
     {
       title: "New Library Opening",
@@ -345,7 +345,7 @@ await ensureSection("news", {
       moreText:
         "The new library features state-of-the-art facilities including quiet study areas, group collaboration spaces, and a digital media center. With over 5,000 physical books, students now have unprecedented access to learning materials.",
       imageUrl:
-        "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1350&q=80",
+        "/uploads/1112",
     },
     {
       title: "Sports Tournament Success",
@@ -354,12 +354,61 @@ await ensureSection("news", {
       moreText:
         "The school's basketball team demonstrated exceptional skill and determination throughout the regional tournament.",
       imageUrl:
-        "https://raw.githubusercontent.com/ventroliquizt/miu-highschool-site/main/backend/uploads/566387587_1908325923317236_7524284606729972988_n.jpg?raw=true",
+        "/uploads/1345",
     },
   ],
 });
 
+await ensureSection("faq", {
+  "sectionTitle": "Frequently Asked Questions",
+  "sectionSubtitle": "Find answers to common questions",
+  "items": [
+    {
+      "question": "What is the application deadline?",
+      "answer": "Applications are accepted year-round, but we recommend applying by April 30th for the following academic year starting in August."
+    },
+    {
+      "question": "What documents are required for admission?",
+      "answer": "Required documents include:\n- Completed application form\n- Previous academic transcripts (2 years)\n- Birth certificate or passport copy\n- Parent/guardian identification\n- Teacher recommendations"
+    },
+    {
+      "question": "Is there an entrance exam?",
+      "answer": "Yes, students in grades 3-12 take an entrance assessment including:\n- English language proficiency test\n- Mathematics assessment\n- Reading comprehension (for grades 6-12)\n- Writing sample (for grades 9-12)"
+    },
+    {
+      "question": "What curriculum does the school follow?",
+      "answer": "We follow an international curriculum combining:\n- American Common Core Standards for English and Math\n- British curriculum for Sciences\n- Advanced Placement (AP) courses for high school\n- Mongolian language and cultural studies\n- English language programs"
+    },
+    {
+      "question": "Are scholarships available?",
+      "answer": "Yes, we offer several scholarship opportunities:\n- Academic Excellence Scholarship: For top-performing students\n- Need-Based Financial Aid: For families with financial constraints\n- Sports Scholarship: For exceptional athletes\n\nApplications must be submitted by March 31st each year."
+    }
+  ]
+})
 
+await ensureSection("contact", {
+  sectionTitle: "Contact Information",
+  sectionSubtitle: "Get in touch with us",
+  address: {
+    org: "Mongolian Itgel School",
+    line1: "Bayanzurkh District, 13khoroo",
+    line2: "Ulaanbaatar, Mongolia"
+  },
+  phones: {
+    mainOffice: "+976 123-4567",
+    admissions: "+976 123-4568"
+  },
+  emails: {
+    general: "info@mis.edu.mn",
+    admissions: "admissions@mis.edu.mn",
+    registrar: "registrar@mis.edu.mn"
+  },
+  socials: {
+    facebook: "#",
+    instagram: "#",
+    email: "mailto:info@mis.edu.mn"
+  }
+});
 
 // -------------------- ROUTES --------------------
 app.get("/", (req, res) => res.send("✅ API is running"));
@@ -706,5 +755,159 @@ app.put("/api/tuition", async (req, res) => {
   } catch (e) {
     console.error("PUT /api/tuition failed:", e);
     res.status(500).json({ error: "Failed to save tuition" });
+  }
+});
+
+
+app.get("/api/news", async (req, res) => {
+  try {
+    const raw = await getSection("news", {
+      sectionTitle: "School News",
+      sectionSubtitle: "",
+      items: []
+    });
+
+    // Backward compatible: if older data stored as an array, wrap it
+    const normalized = Array.isArray(raw)
+      ? { sectionTitle: "School News", sectionSubtitle: "", items: raw }
+      : {
+          sectionTitle: String(raw?.sectionTitle ?? "School News"),
+          sectionSubtitle: String(raw?.sectionSubtitle ?? ""),
+          items: Array.isArray(raw?.items) ? raw.items : []
+        };
+
+    res.json(normalized);
+  } catch (e) {
+    console.error("GET /api/news failed:", e);
+    res.status(500).json({ error: "Failed to load news" });
+  }
+});
+
+// PUT news (accepts either full object or an array)
+app.put("/api/news", async (req, res) => {
+  try {
+    const body = req.body || {};
+
+    // Allow older admin code that sends an array directly:
+    const incoming = Array.isArray(body) ? { items: body } : body;
+
+    const clean = {
+      sectionTitle: String(incoming.sectionTitle ?? "School News"),
+      sectionSubtitle: String(incoming.sectionSubtitle ?? ""),
+      items: Array.isArray(incoming.items)
+        ? incoming.items.map((n) => ({
+            title: String(n?.title ?? ""),
+            date: String(n?.date ?? ""),
+            imageUrl: String(n?.imageUrl ?? ""),
+            excerpt: String(n?.excerpt ?? ""),
+            moreText: String(n?.moreText ?? "")
+          }))
+        : []
+    };
+
+    await setSection("news", clean);
+    res.json({ ok: true });
+  } catch (e) {
+    console.error("PUT /api/news failed:", e);
+    res.status(500).json({ error: "Failed to save news" });
+  }
+});
+
+// FAQ: GET
+app.get("/api/faq", async (req, res) => {
+  try {
+    const raw = await getSection("faq", {
+      sectionTitle: "Frequently Asked Questions",
+      sectionSubtitle: "Find answers to common questions",
+      items: []
+    });
+
+    // backward compatible: if older data stored as array, wrap it
+    const normalized = Array.isArray(raw)
+      ? {
+          sectionTitle: "Frequently Asked Questions",
+          sectionSubtitle: "Find answers to common questions",
+          items: raw
+        }
+      : {
+          sectionTitle: String(raw?.sectionTitle ?? "Frequently Asked Questions"),
+          sectionSubtitle: String(raw?.sectionSubtitle ?? "Find answers to common questions"),
+          items: Array.isArray(raw?.items) ? raw.items : []
+        };
+
+    res.json(normalized);
+  } catch (e) {
+    console.error("GET /api/faq failed:", e);
+    res.status(500).json({ error: "Failed to load faq" });
+  }
+});
+
+// FAQ: PUT (admin saves)
+app.put("/api/faq", async (req, res) => {
+  try {
+    const b = req.body || {};
+
+    const clean = {
+      sectionTitle: String(b.sectionTitle ?? "Frequently Asked Questions"),
+      sectionSubtitle: String(b.sectionSubtitle ?? "Find answers to common questions"),
+      items: Array.isArray(b.items)
+        ? b.items.map((x) => ({
+            question: String(x?.question ?? ""),
+            answer: String(x?.answer ?? "").replaceAll("\\n", "\n"), // ✅ FIX
+          }))
+        : [],
+    };
+
+    await setSection("faq", clean);
+    res.json({ ok: true });
+  } catch (e) {
+    console.error("PUT /api/faq failed:", e);
+    res.status(500).json({ error: "Failed to save faq" });
+  }
+});
+
+app.get("/api/contact", async (req, res) => {
+  try {
+    const data = await getSection("contact", null);
+    res.json(data);
+  } catch (e) {
+    console.error("GET /api/contact failed:", e);
+    res.status(500).json({ error: "Failed to load contact" });
+  }
+});
+
+app.put("/api/contact", async (req, res) => {
+  try {
+    const b = req.body || {};
+
+    const clean = {
+      sectionTitle: String(b.sectionTitle ?? "Contact Information"),
+      sectionSubtitle: String(b.sectionSubtitle ?? "Get in touch with us"),
+      address: {
+        org: String(b?.address?.org ?? ""),
+        line1: String(b?.address?.line1 ?? ""),
+        line2: String(b?.address?.line2 ?? "")
+      },
+      phones: {
+        mainOffice: String(b?.phones?.mainOffice ?? ""),
+        admissions: String(b?.phones?.admissions ?? "")
+      },
+      emails: {
+        general: String(b?.emails?.general ?? ""),
+        admissions: String(b?.emails?.admissions ?? ""),
+        registrar: String(b?.emails?.registrar ?? "")
+      },
+      socials: {
+        facebook: String(b?.socials?.facebook ?? "#"),
+        instagram: String(b?.socials?.instagram ?? "#"),
+        email: String(b?.socials?.email ?? "")
+      }
+    };
+
+    await setSection("contact", clean);
+    res.json({ ok: true });
+  } catch (e) {
+    console.error("PUT /api/contact failed:", e);
+    res.status(500).json({ error: "Failed to save contact" });
   }
 });

@@ -87,7 +87,17 @@ function Sidebar() {
           News
         </button>
 
+
+        <button type="button" onClick={() => navigate("/questions")}>
+          Questions
+        </button>
+
+        <button type="button" onClick={() => navigate("/contact")}>
+          Contact
+        </button>
+
       </div>
+
 
 
       <div className="sidebar-footer">

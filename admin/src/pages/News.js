@@ -52,7 +52,7 @@ async function fetchJson(url, options) {
 // If your backend expects field name "image" instead of "file", change here.
 async function uploadImage(file) {
   const fd = new FormData();
-  fd.append("file", file);
+  fd.append("image", file);
 
   const res = await fetch(`${API_BASE}/api/upload`, {
     method: "POST",
